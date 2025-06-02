@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2424 | Uniform Store</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="store-page"> <!-- Add class for page-specific dark theme -->
+    <header id="main-header">
+        <!-- Navigation remains the same, but might need style tweaks for dark theme if not handled globally -->
+        <nav id="main-nav">
+            <div class="container">
+                <a href="index.html" class="logo">2424</a>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="matches.html">Matches</a></li>
+                    <li><a href="store.html" class="active">Uniforms</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="store-header" class="text-center">
+            <div class="container">
+                <h1>The Locker Room</h1>
+                <p>Premium gear for the discerning fan. Experience the 2424 style.</p>
+            </div>
+        </section>
+
+        <section id="uniform-showcase" class="page-section">
+            <div class="container">
+                <div class="uniform-grid">
+                    <!-- Uniform Product Card 1: Home Kit -->
+                    <div class="uniform-card animate-on-scroll">
+                        <div class="uniform-image-wrapper">
+                            <img src="https://via.placeholder.com/400x500/0A4A1B/FFFFFF?text=Home+Jersey" alt="Team 2424 Home Jersey" class="uniform-image">
+                            <!-- <div class="uniform-texture-overlay concrete"></div> -->
+                        </div>
+                        <div class="uniform-info">
+                            <h3 class="uniform-name">2424 Home Kit</h3>
+                            <p class="uniform-price">$79.99</p>
+                            <div class="color-options">
+                                <span class="color-dot active" style="background-color: var(--primary-green);" data-image="https://via.placeholder.com/400x500/0A4A1B/FFFFFF?text=Home+Jersey"></span>
+                                <!-- Add more color dots if variants exist -->
+                            </div>
+                            <button class="btn btn-store">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Uniform Product Card 2: Away Kit -->
+                    <div class="uniform-card animate-on-scroll">
+                        <div class="uniform-image-wrapper">
+                            <img src="https://via.placeholder.com/400x500/FFFFFF/0A4A1B?text=Away+Jersey" alt="Team 2424 Away Jersey" class="uniform-image">
+                            <!-- <div class="uniform-texture-overlay metal"></div> -->
+                        </div>
+                        <div class="uniform-info">
+                            <h3 class="uniform-name">2424 Away Kit</h3>
+                            <p class="uniform-price">$79.99</p>
+                            <div class="color-options">
+                                 <span class="color-dot active" style="background-color: var(--crisp-white);" data-image="https://via.placeholder.com/400x500/FFFFFF/0A4A1B?text=Away+Jersey"></span>
+                            </div>
+                            <button class="btn btn-store">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Uniform Product Card 3: Third Kit -->
+                    <div class="uniform-card animate-on-scroll">
+                        <div class="uniform-image-wrapper">
+                            <img src="https://via.placeholder.com/400x500/333333/FFD700?text=Third+Kit" alt="Team 2424 Third Kit" class="uniform-image">
+                            <!-- <div class="uniform-texture-overlay wood"></div> -->
+                        </div>
+                        <div class="uniform-info">
+                            <h3 class="uniform-name">2424 Third Kit</h3>
+                            <p class="uniform-price">$85.00</p>
+                            <div class="color-options">
+                                <span class="color-dot active" style="background-color: var(--dark-gray);" data-image="https://via.placeholder.com/400x500/333333/FFD700?text=Third+Kit"></span>
+                            </div>
+                            <button class="btn btn-store">View Details</button>
+                        </div>
+                    </div>
+                    <!-- More uniform cards can be added here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+         <!-- Footer remains the same, but might need style tweaks for dark theme -->
+        <div class="container">
+            <p>&copy; 2024 Team 2424. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/store.js" defer></script>
+    <script src="js/animations.js" defer></script>
+</body>
+</html>

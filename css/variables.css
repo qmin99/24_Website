@@ -1,0 +1,24 @@
+/* css/variables.css */
+   :root {
+       /* Color Palette */
+       --primary-green: #0A4A1B; /* Deep Green */
+       --secondary-green: #1E8A3E; /* Lighter, vibrant green for accents */
+       --crisp-white: #FFFFFF;
+       --light-gray: #F0F0F0; /* For backgrounds or subtle divisions */
+       --dark-gray: #333333;  /* For text and darker elements */
+       --accent-gold: #FFD700; /* Bold accent color - can be adjusted */
+       --black: #000000;
+
+       /* Typography */
+       --font-primary: 'Roboto', sans-serif; /* Modern, readable sans-serif */
+       --font-secondary: 'Montserrat', sans-serif; /* For headings or emphasis */
+       --font-weight-light: 300;
+       --font-weight-regular: 400;
+       --font-weight-bold: 700;
+
+       /* Sizes & Spacing */
+       --base-font-size: 16px;
+       --spacing-unit: 8px; /* Base unit for margins, paddings */
+
+       --header-height: 70px; /* Example header height */
+   }
