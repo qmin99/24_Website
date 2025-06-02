@@ -13,14 +13,39 @@
         <nav id="main-nav">
             <div class="container">
                 <a href="index.html" class="logo">2424</a>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="matches.html" class="active">Matches</a></li>
-                    <li><a href="store.html">Uniforms</a></li>
-                    <li><a href="join.html">Join Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                <button class="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-dropdown">
+                            <a href="about.html">About</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html#team-history">Team History</a></li>
+                                <li><a href="about.html#our-values">Our Values</a></li>
+                                <li><a href="about.html#player-profiles">Player Profiles</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="matches.html" class="active">Matches</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="matches.html#schedule">Schedule</a></li>
+                                <li><a href="matches.html#results">Results</a></li>
+                                <li><a href="matches.html#gallery">Photo Gallery</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="store.html">Uniforms</a></li>
+                        <li><a href="join.html">Join Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-signin">Sign In</a>
+                    <a href="#" class="btn btn-getstarted">Get Started</a>
+                </div>
             </div>
         </nav>
     </header>
