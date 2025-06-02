@@ -19,7 +19,7 @@
        color: var(--dark-gray);
        background-color: var(--crisp-white);
        line-height: 1.6;
-       padding-top: var(--header-height); /* To prevent content from hiding behind sticky header */
+       /* padding-top: var(--header-height); /* Adjusted by new header height later if needed */
    }
 
    h1, h2, h3, h4, h5, h6 {
@@ -50,11 +50,12 @@
        padding: 0 calc(var(--spacing-unit) * 2); /* 16px */
    }
 
-   /* Header & Navigation Basic Styles */
+/* === START OF COMMENTED OUT OLD NAVBAR STYLES === */
+/*
    #main-header {
        background-color: var(--crisp-white);
        border-bottom: 1px solid var(--light-gray);
-       position: fixed; /* Sticky header */
+       position: fixed; 
        top: 0;
        left: 0;
        width: 100%;
@@ -66,25 +67,44 @@
 
    #main-nav .container {
        display: flex;
-       justify-content: space-between;
+       justify-content: space-between; 
        align-items: center;
        height: 100%;
+       min-height: var(--header-height); 
    }
 
    #main-nav .logo {
-       font-size: 1.8rem; /* Adjust as needed */
+       font-size: 1.8rem; 
        font-weight: var(--font-weight-bold);
        color: var(--primary-green);
        text-transform: uppercase;
+       margin-right: auto; 
+   }
+
+   
+   .nav-links {
+       flex-grow: 1; 
+       display: flex;
+       justify-content: center; 
    }
 
    #main-nav ul {
        list-style: none;
        display: flex;
+       margin: 0; 
+       padding: 0; 
    }
 
    #main-nav ul li {
-       margin-left: calc(var(--spacing-unit) * 2.5); /* 20px */
+       margin: 0 calc(var(--spacing-unit) * 1.5); 
+   }
+
+   #main-nav ul li:first-child {
+       margin-left: 0;
+   }
+
+   #main-nav ul li:last-child {
+       margin-right: 0;
    }
 
    #main-nav ul li a {
@@ -92,14 +112,323 @@
        font-weight: var(--font-weight-regular);
        color: var(--dark-gray);
        font-size: 1rem;
+       padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 0.25); 
+       border-bottom: 2px solid transparent; 
+       transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
    }
 
-   #main-nav ul li a:hover,
-   #main-nav ul li a.active { /* Style for active page link */
-       color: var(--secondary-green);
-       border-bottom: 2px solid var(--secondary-green);
-       padding-bottom: var(--spacing-unit); /* 8px */
+  
+   #main-nav ul li:not(.has-dropdown) a:hover {
+       color: var(--primary-green);
+       border-bottom-color: var(--primary-green); 
    }
+
+   
+   #main-nav ul li.has-dropdown > a:hover {
+       color: var(--primary-green);
+       
+   }
+   
+   
+   #main-nav ul li a.active {
+       color: var(--primary-green); 
+       font-weight: var(--font-weight-bold); 
+       border-bottom: 2px solid var(--primary-green); 
+       padding-bottom: calc(var(--spacing-unit) * 0.5 - 2px); 
+   }
+
+   
+   #main-nav ul li a.active:hover {
+        color: var(--primary-green); 
+        border-bottom-color: var(--primary-green); 
+   }
+
+
+   
+   .nav-buttons {
+       display: flex;
+       align-items: center;
+       margin-left: auto; 
+   }
+
+   .nav-buttons .btn {
+       margin-left: var(--spacing-unit); 
+       padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2); 
+       font-size: 0.9rem;
+       transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+   }
+
+   .btn-signin {
+       background-color: transparent;
+       color: var(--primary-green); 
+       border: 1px solid transparent; 
+   }
+   .btn-signin:hover {
+       color: var(--secondary-green);
+       background-color: rgba(0,0,0,0.05); 
+       border-color: transparent; 
+       transform: translateY(-1px);
+   }
+
+   .btn-getstarted {
+       background-color: var(--primary-green);
+       color: var(--crisp-white);
+       border: 1px solid var(--primary-green);
+   }
+   .btn-getstarted:hover {
+       background-color: var(--secondary-green); 
+       border-color: var(--secondary-green);
+       transform: translateY(-1px); 
+   }
+
+   
+   #main-nav ul li.has-dropdown {
+       position: relative; 
+   }
+
+   .dropdown-menu {
+       display: none; 
+       position: absolute;
+       top: 100%; 
+       left: 0;
+       background-color: var(--crisp-white);
+       border: 1px solid var(--light-gray);
+       border-top: 1px solid var(--medium-gray); 
+       z-index: 1001; 
+       min-width: 200px; 
+       box-shadow: 0 5px 10px rgba(0,0,0,0.12); 
+       padding: calc(var(--spacing-unit) * 0.5) 0; 
+       list-style: none; 
+       border-radius: 0 0 5px 5px; 
+   }
+
+   .dropdown-menu li {
+       margin: 0; 
+   }
+
+   .dropdown-menu li a {
+       padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 2); 
+       display: block;
+       color: var(--dark-gray);
+       font-size: 0.95rem;
+       font-weight: var(--font-weight-regular);
+       white-space: nowrap; 
+       border-bottom: none; 
+       transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+   }
+
+   .dropdown-menu li a:hover {
+       background-color: var(--primary-green); 
+       color: var(--crisp-white); 
+       border-bottom: none; 
+   }
+
+*/
+/* === END OF COMMENTED OUT OLD NAVBAR STYLES === */
+
+
+/* New Desktop-First Navbar Styles */
+#main-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0; /* Or box-shadow: 0 2px 4px rgba(0,0,0,0.05); */
+    height: 70px; /* Adjust as needed */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+#main-nav { /* Assuming #main-nav is direct child of #main-header or is the header itself */
+    height: 100%;
+    width: 100%;
+    display: flex; /* Added to help align container */
+    align-items: center; /* Added to help align container */
+}
+
+#main-nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%; /* Or your existing container width */
+    max-width: 1200px; /* Or your existing container max-width */
+    margin: 0 auto;
+    height: 100%; 
+}
+
+#main-nav .logo {
+    font-size: 1.8rem; /* Adjust as needed */
+    font-weight: var(--font-weight-bold, bold);
+    color: #333; /* Darker color for logo */
+    text-decoration: none;
+    /* margin-right: 20px; /* Space from nav-links if needed, but flex-grow on nav-links should handle it */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center; /* Center the ul if it doesn't fill .nav-links */
+    flex-grow: 1; /* Allows .nav-links to take available space, pushing logo left and buttons right */
+}
+
+.nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Vertically align items if header is taller */
+}
+
+.nav-links ul li {
+    margin: 0; /* Reset any default */
+}
+
+.nav-links ul li a {
+    font-family: var(--font-secondary, sans-serif);
+    font-size: 1rem; /* 16px */
+    font-weight: 500; /* Medium weight */
+    color: #333;
+    text-decoration: none;
+    padding: 24px 18px; /* Generous padding: (70px header - (16px font * 1.2 line-height approx)) / 2 = ~25px. Adjust to fit height. */
+    display: inline-block;
+    line-height: calc(70px - (24px * 2)); /* Align text vertically if padding is exact for height */
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-links ul li a:hover {
+    color: var(--primary-green);
+    border-bottom-color: var(--primary-green);
+}
+
+.nav-links ul li a.active {
+    color: var(--primary-green);
+    font-weight: 700; /* Bolder for active */
+    border-bottom-color: var(--primary-green);
+}
+
+/* Refined Dropdown Menu Styles (Desktop) */
+#main-nav ul li.has-dropdown {
+    position: relative; /* Ensure this is active */
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position right below the parent li */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0; /* Light border */
+    border-top: none; /* If main nav has bottom border, avoid double border */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Softer shadow */
+    border-radius: 0 0 4px 4px; /* Rounded corners at the bottom */
+    min-width: 200px; /* Or adjust based on content */
+    z-index: 1001; /* Above other elements */
+    padding: 8px 0; /* Padding at top/bottom of the dropdown itself */
+    list-style: none; /* Remove bullets */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); /* Start slightly lower for entry animation */
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px; /* Adjust padding */
+    font-family: var(--font-secondary, sans-serif);
+    font-size: 0.95rem;
+    color: #333; /* Dark gray/black text */
+    text-decoration: none;
+    white-space: nowrap; /* Prevent long links from wrapping */
+    border-bottom: none; /* Ensure no border from main nav links */
+    line-height: normal; /* Reset from main nav links if needed */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f5f5f5; /* Light gray background on hover */
+    color: var(--primary-green); /* Accent color for text */
+}
+
+#main-nav ul li.has-dropdown:hover > .dropdown-menu {
+    /* display: block; /* Replaced by opacity/visibility for transition */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Optional: Add arrow to parent item */
+/*
+#main-nav ul li.has-dropdown > a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+*/
+
+/* Store Page Dropdown Overrides */
+.store-page #main-nav ul li.has-dropdown .dropdown-menu { /* Increased specificity */
+    background-color: #333; /* Dark background for dropdown on store page */
+    border-color: #444;
+}
+
+.store-page .dropdown-menu li a {
+    color: #eee; /* Light text for items on dark dropdown */
+}
+
+.store-page .dropdown-menu li a:hover {
+    background-color: #555; /* Slightly lighter dark for hover */
+    color: var(--accent-gold); /* Use accent gold for hover text on store page */
+}
+
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Space from .nav-links if it's not full width */
+}
+
+.nav-buttons .btn {
+    font-family: var(--font-secondary, sans-serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 20px; /* Vertical padding should make it smaller than nav links */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-left: 10px; /* Space between buttons */
+    line-height: normal; /* Explicitly set for buttons */
+}
+
+.btn-getstarted {
+    background-color: var(--primary-green);
+    color: #fff;
+    border: 1px solid var(--primary-green);
+}
+
+.btn-getstarted:hover {
+    background-color: var(--secondary-green); 
+    border-color: var(--secondary-green);
+    color: #fff; /* Ensure text color remains white */
+}
+
+.btn-signin {
+    background-color: transparent;
+    color: var(--primary-green);
+    border: 1px solid var(--primary-green);
+}
+
+.btn-signin:hover {
+    background-color: rgba(0, 123, 255, 0.05); /* Using a generic light blue for example if primary-green-light is not set, otherwise use var(--primary-green-light) or make one from primary-green with alpha */
+    /* For primary-green: background-color: rgba(10, 74, 27, 0.1); /* Assuming primary-green is #0A4A1B */
+    color: var(--primary-green);
+}
+
+/* Body padding adjustment for fixed header */
+body {
+    padding-top: 70px; /* Match header height */
+}
 
 
    /* Footer Basic Styles */
@@ -130,7 +459,7 @@
        background-position: center;
        background-color: var(--primary-green); /* Fallback if image fails */
        color: var(--crisp-white);
-       height: calc(100vh - var(--header-height)); /* Full viewport height minus header */
+       height: calc(100vh - 70px); /* Full viewport height minus new header height */
        display: flex;
        align-items: center;
        justify-content: center;
@@ -721,15 +1050,45 @@
    }
 
    .store-page #main-nav .logo,
-   .store-page #main-nav ul li a {
+   .store-page #main-nav ul li a { /* This will be overridden by new styles below for non-store pages */
        color: var(--crisp-white);
    }
     .store-page #main-nav ul li a:hover,
-    .store-page #main-nav ul li a.active {
-        color: var(--accent-gold); /* Gold accent for hover/active link */
+    .store-page #main-nav ul li a.active { /* This will be overridden by new styles below for non-store pages */
+        color: var(--accent-gold); 
         border-bottom-color: var(--accent-gold);
     }
-    
+    /* Store-specific overrides for NEW navbar structure */
+    .store-page #main-nav .logo { /* New logo color for store page */
+        color: var(--crisp-white) !important; 
+    }
+    .store-page .nav-links ul li a { /* New nav links color for store page */
+        color: var(--crisp-white) !important;
+    }
+    .store-page .nav-links ul li a:hover,
+    .store-page .nav-links ul li a.active {
+        color: var(--accent-gold) !important;
+        border-bottom-color: var(--accent-gold) !important;
+    }
+    .store-page .nav-buttons .btn-getstarted {
+        background-color: var(--accent-gold) !important;
+        color: #1A1A1A !important;
+        border-color: var(--accent-gold) !important;
+    }
+    .store-page .nav-buttons .btn-getstarted:hover {
+        background-color: var(--crisp-white) !important;
+        color: #1A1A1A !important;
+        border-color: var(--crisp-white) !important;
+    }
+     .store-page .nav-buttons .btn-signin {
+        color: var(--crisp-white) !important;
+        border-color: var(--crisp-white) !important;
+    }
+    .store-page .nav-buttons .btn-signin:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: var(--accent-gold) !important;
+    }
+
    .store-page #main-footer {
        background-color: #111111; /* Even darker for footer */
        color: var(--light-gray);
