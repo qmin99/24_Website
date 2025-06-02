@@ -1,1 +1,157 @@
 /* Media queries and responsive design adjustments for 2424 website */
+
+/* Default styles for hamburger menu (hidden on desktop) */
+.hamburger-menu {
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: auto; /* Push it to the right, aligning with where nav-buttons were */
+    z-index: 1005; /* Ensure it's above other nav elements if they overlap before hiding */
+}
+
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-green);
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Styles for tablet and mobile devices */
+@media (max-width: 768px) {
+    #main-nav .container {
+        /* Allow items to wrap if needed, though hamburger should prevent it */
+        flex-wrap: wrap; 
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger menu */
+        order: 2; /* Ensure it's after the logo if .nav-links and .nav-buttons are hidden */
+    }
+
+    #main-nav .nav-links,
+    #main-nav .nav-buttons {
+        display: none; /* Hide original nav links and buttons */
+        width: 100%;
+        order: 3; /* Place them below logo and hamburger in flex order */
+    }
+    
+    /* Style for the mobile menu when it's toggled active */
+    /* This class (.mobile-menu-active) would typically be added by JavaScript */
+    /* For demonstration, we can style based on a hypothetical active state or :focus-within on container */
+
+    #main-nav.mobile-menu-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height); /* Position below the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--crisp-white);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding-bottom: var(--spacing-unit); /* Add some padding at the bottom */
+        z-index: 1000;
+    }
+    
+    #main-nav.mobile-menu-active .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #main-nav.mobile-menu-active .nav-links ul li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--light-gray);
+    }
+    
+    #main-nav.mobile-menu-active .nav-links ul li:last-child {
+        border-bottom: none;
+    }
+
+    #main-nav.mobile-menu-active .nav-links ul li a {
+        display: block;
+        padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2); /* 12px 16px */
+        text-align: left;
+        border-bottom: none; /* Remove desktop border */
+        font-weight: var(--font-weight-medium); /* Slightly bolder for mobile */
+    }
+    #main-nav.mobile-menu-active .nav-links ul li a.active,
+    #main-nav.mobile-menu-active .nav-links ul li a:hover {
+        color: var(--secondary-green);
+        background-color: rgba(0,0,0,0.03);
+        border-bottom: none; /* Ensure no accidental desktop border */
+    }
+
+    /* Dropdown menus in mobile view */
+    #main-nav.mobile-menu-active .dropdown-menu {
+        position: static; /* Override absolute positioning */
+        display: block; /* Show by default or controlled by JS click on parent */
+        background-color: rgba(0,0,0,0.03); /* Indent or slightly different bg */
+        border: none;
+        box-shadow: none;
+        padding-left: calc(var(--spacing-unit) * 2); /* Indent dropdown links */
+        min-width: 100%;
+        border-radius: 0;
+    }
+    
+    #main-nav.mobile-menu-active .has-dropdown > a::after {
+        content: ' ▼'; /* Simple indicator for dropdown */
+        float: right;
+    }
+    
+    /* Hide nested dropdowns by default, toggle with JS by adding .dropdown-open to li.has-dropdown */
+     #main-nav.mobile-menu-active .has-dropdown .dropdown-menu {
+        display: none; /* Hidden by default */
+    }
+    #main-nav.mobile-menu-active .has-dropdown.dropdown-open .dropdown-menu {
+        display: block; /* Shown when parent li has .dropdown-open */
+    }
+
+
+    #main-nav.mobile-menu-active .dropdown-menu li a {
+        padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+        padding-left: calc(var(--spacing-unit) * 3); /* Further indent */
+        font-size: 0.9rem;
+    }
+
+    /* Nav buttons in mobile menu */
+    #main-nav.mobile-menu-active .nav-buttons {
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-unit) calc(var(--spacing-unit) * 2); /* 8px 16px */
+        border-top: 1px solid var(--light-gray); /* Separator */
+    }
+
+    #main-nav.mobile-menu-active .nav-buttons .btn {
+        width: 100%;
+        margin: calc(var(--spacing-unit) * 0.5) 0; /* 4px top/bottom margin */
+        text-align: center;
+    }
+    
+    /* Hamburger animation for active state (X mark) */
+    /* This would be toggled by adding a class like 'hamburger-active' to .hamburger-menu */
+    .hamburger-menu.hamburger-active .hamburger-bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-menu.hamburger-active .hamburger-bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.hamburger-active .hamburger-bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* Further adjustments for very small screens if needed */
+@media (max-width: 480px) {
+    #main-nav .logo {
+        font-size: 1.6rem; /* Slightly smaller logo */
+    }
+
+    #main-nav.mobile-menu-active .nav-links ul li a {
+        padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 2); /* 10px 16px */
+        font-size: 0.95rem;
+    }
+}
