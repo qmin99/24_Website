@@ -2,13 +2,13 @@
 
 /* Default styles for hamburger menu (hidden on desktop) */
 .hamburger-menu {
-    display: none; /* Hidden by default, shown in media query */
+    display: none; 
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    margin-left: auto; /* Push it to the right, aligning with where nav-buttons were */
-    z-index: 1005; /* Ensure it's above other nav elements if they overlap before hiding */
+    margin-left: auto; 
+    z-index: 1005; 
 }
 
 .hamburger-bar {
@@ -22,37 +22,41 @@
 
 /* Styles for tablet and mobile devices */
 @media (max-width: 768px) {
+    #main-header { /* Ensure header height is consistent if not using var(--header-height) from main CSS */
+        height: 70px; 
+    }
+    body { /* Ensure body padding matches header height */
+        padding-top: 70px;
+    }
+
     #main-nav .container {
-        /* Allow items to wrap if needed, though hamburger should prevent it */
         flex-wrap: wrap; 
     }
 
     .hamburger-menu {
-        display: block; /* Show hamburger menu */
-        order: 2; /* Ensure it's after the logo if .nav-links and .nav-buttons are hidden */
+        display: block; 
+        order: 2; 
     }
 
     #main-nav .nav-links,
     #main-nav .nav-buttons {
-        display: none; /* Hide original nav links and buttons */
+        display: none; /* Hidden by default, shown when mobile-menu-active */
         width: 100%;
-        order: 3; /* Place them below logo and hamburger in flex order */
+        order: 3; 
     }
     
-    /* Style for the mobile menu when it's toggled active */
-    /* This class (.mobile-menu-active) would typically be added by JavaScript */
-    /* For demonstration, we can style based on a hypothetical active state or :focus-within on container */
-
+    /* Mobile Menu Active State */
     #main-nav.mobile-menu-active .nav-links {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: var(--header-height); /* Position below the header */
+        top: 70px; /* Match header height */
         left: 0;
         width: 100%;
-        background-color: var(--crisp-white);
+        background-color: #fff; /* White background for mobile menu */
+        padding: 10px 0;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding-bottom: var(--spacing-unit); /* Add some padding at the bottom */
+        border-top: 1px solid #e0e0e0;
         z-index: 1000;
     }
     
@@ -62,77 +66,116 @@
     }
 
     #main-nav.mobile-menu-active .nav-links ul li {
-        margin: 0;
+        margin: 0; /* Reset desktop margins */
         width: 100%;
-        border-bottom: 1px solid var(--light-gray);
     }
     
-    #main-nav.mobile-menu-active .nav-links ul li:last-child {
+    #main-nav.mobile-menu-active .nav-links ul li a {
+        display: block;
+        padding: 12px 20px; /* Touch-friendly padding */
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0; /* Separator for links */
+        color: #333;
+        font-weight: 500; /* Match desktop nav link weight */
+        text-align: left;
+    }
+    
+    #main-nav.mobile-menu-active .nav-links ul li a.active,
+    #main-nav.mobile-menu-active .nav-links ul li a:hover {
+        color: var(--primary-green);
+        background-color: #f5f5f5;
+    }
+
+    #main-nav.mobile-menu-active .nav-links ul li:last-child a {
         border-bottom: none;
     }
 
-    #main-nav.mobile-menu-active .nav-links ul li a {
-        display: block;
-        padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2); /* 12px 16px */
-        text-align: left;
-        border-bottom: none; /* Remove desktop border */
-        font-weight: var(--font-weight-medium); /* Slightly bolder for mobile */
-    }
-    #main-nav.mobile-menu-active .nav-links ul li a.active,
-    #main-nav.mobile-menu-active .nav-links ul li a:hover {
-        color: var(--secondary-green);
-        background-color: rgba(0,0,0,0.03);
-        border-bottom: none; /* Ensure no accidental desktop border */
-    }
-
-    /* Dropdown menus in mobile view */
-    #main-nav.mobile-menu-active .dropdown-menu {
-        position: static; /* Override absolute positioning */
-        display: block; /* Show by default or controlled by JS click on parent */
-        background-color: rgba(0,0,0,0.03); /* Indent or slightly different bg */
-        border: none;
-        box-shadow: none;
-        padding-left: calc(var(--spacing-unit) * 2); /* Indent dropdown links */
-        min-width: 100%;
-        border-radius: 0;
-    }
-    
-    #main-nav.mobile-menu-active .has-dropdown > a::after {
-        content: ' ▼'; /* Simple indicator for dropdown */
-        float: right;
-    }
-    
-    /* Hide nested dropdowns by default, toggle with JS by adding .dropdown-open to li.has-dropdown */
-     #main-nav.mobile-menu-active .has-dropdown .dropdown-menu {
-        display: none; /* Hidden by default */
-    }
-    #main-nav.mobile-menu-active .has-dropdown.dropdown-open .dropdown-menu {
-        display: block; /* Shown when parent li has .dropdown-open */
-    }
-
-
-    #main-nav.mobile-menu-active .dropdown-menu li a {
-        padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
-        padding-left: calc(var(--spacing-unit) * 3); /* Further indent */
-        font-size: 0.9rem;
-    }
-
-    /* Nav buttons in mobile menu */
+    /* Mobile Nav Buttons */
     #main-nav.mobile-menu-active .nav-buttons {
-        display: flex;
+        display: flex; /* Show buttons in mobile menu */
         flex-direction: column;
-        padding: var(--spacing-unit) calc(var(--spacing-unit) * 2); /* 8px 16px */
-        border-top: 1px solid var(--light-gray); /* Separator */
+        padding: 10px 20px;
+        width: 100%; /* Ensure it takes full width if needed */
+        box-sizing: border-box;
+        border-top: 1px solid #e0e0e0; /* Separator from links */
+        margin-top: 10px; /* Space above buttons block */
+        background-color: #fff; /* Ensure background if .nav-links doesn't extend */
     }
 
     #main-nav.mobile-menu-active .nav-buttons .btn {
         width: 100%;
-        margin: calc(var(--spacing-unit) * 0.5) 0; /* 4px top/bottom margin */
+        margin: 8px 0; /* More margin for stacked buttons */
         text-align: center;
     }
     
+    #main-nav.mobile-menu-active .btn-getstarted {
+        background-color: var(--primary-green);
+        color: #fff;
+        border-color: var(--primary-green);
+    }
+    #main-nav.mobile-menu-active .btn-getstarted:hover {
+        background-color: var(--secondary-green);
+        border-color: var(--secondary-green);
+    }
+
+    #main-nav.mobile-menu-active .btn-signin {
+        background-color: transparent;
+        color: var(--primary-green);
+        border: 1px solid var(--primary-green);
+    }
+     #main-nav.mobile-menu-active .btn-signin:hover {
+        background-color: rgba(10, 74, 27, 0.05); /* Light primary green */
+        color: var(--primary-green);
+    }
+
+
+    /* Mobile Dropdown Menu Styling */
+    #main-nav.mobile-menu-active li.has-dropdown > a::after {
+        content: ' ▼'; 
+        float: right;
+        font-size: 0.8em;
+        transition: transform 0.2s ease-out; /* For rotating arrow */
+    }
+
+    #main-nav.mobile-menu-active li.has-dropdown.submenu-open > a::after {
+        content: ' ▲'; /* Or transform: rotate(180deg); on the '▼' */
+    }
+
+    #main-nav.mobile-menu-active .has-dropdown .dropdown-menu {
+        display: none; /* Hidden by default */
+        position: static; /* Not absolute in mobile */
+        width: 100%;
+        background-color: #f9f9f9; /* Slightly different bg for submenu */
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid #e0e0e0; /* Separator line */
+        padding-left: 0; /* Reset desktop padding */
+        /* Override desktop animation properties */
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none; 
+    }
+
+    #main-nav.mobile-menu-active .has-dropdown.submenu-open .dropdown-menu {
+        display: block; /* Show when .submenu-open is toggled by JS */
+    }
+
+    #main-nav.mobile-menu-active .has-dropdown .dropdown-menu li a {
+        padding: 10px 20px 10px 35px; /* Indent further than main links */
+        color: #444; /* Slightly lighter text for submenu items */
+        font-size: 0.9rem;
+        border-bottom: 1px solid #e8e8e8; /* Separators for submenu items */
+    }
+    #main-nav.mobile-menu-active .has-dropdown .dropdown-menu li:last-child a {
+        border-bottom: none;
+    }
+    #main-nav.mobile-menu-active .has-dropdown .dropdown-menu li a:hover {
+        background-color: #efefef;
+        color: var(--primary-green);
+    }
+    
     /* Hamburger animation for active state (X mark) */
-    /* This would be toggled by adding a class like 'hamburger-active' to .hamburger-menu */
     .hamburger-menu.hamburger-active .hamburger-bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -141,6 +184,60 @@
     }
     .hamburger-menu.hamburger-active .hamburger-bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Store Page Mobile Menu Overrides */
+    .store-page #main-nav.mobile-menu-active .nav-links,
+    .store-page #main-nav.mobile-menu-active .nav-buttons {
+        background-color: #262626; /* Dark background for store mobile menu */
+        border-top-color: #333;
+    }
+    .store-page #main-nav.mobile-menu-active .nav-links ul li a {
+        color: #eee;
+        border-bottom-color: #333;
+    }
+    .store-page #main-nav.mobile-menu-active .nav-links ul li a.active,
+    .store-page #main-nav.mobile-menu-active .nav-links ul li a:hover {
+        color: var(--accent-gold);
+        background-color: #303030;
+    }
+    /* Store page mobile nav buttons */
+    .store-page #main-nav.mobile-menu-active .nav-buttons {
+        border-top-color: #333;
+    }
+    .store-page #main-nav.mobile-menu-active .btn-getstarted {
+        background-color: var(--accent-gold) !important; /* from style.css */
+        color: #1A1A1A !important; /* from style.css */
+        border-color: var(--accent-gold) !important; /* from style.css */
+    }
+    .store-page #main-nav.mobile-menu-active .btn-getstarted:hover {
+        background-color: var(--crisp-white) !important; /* from style.css */
+        color: #1A1A1A !important; /* from style.css */
+        border-color: var(--crisp-white) !important; /* from style.css */
+    }
+    .store-page #main-nav.mobile-menu-active .btn-signin {
+        color: var(--crisp-white) !important; /* from style.css */
+        border-color: var(--crisp-white) !important; /* from style.css */
+    }
+    .store-page #main-nav.mobile-menu-active .btn-signin:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important; /* from style.css */
+        color: var(--accent-gold) !important; /* from style.css */
+    }
+    /* Store page mobile dropdowns */
+    .store-page #main-nav.mobile-menu-active .has-dropdown > a::after {
+        color: #eee; /* Ensure indicator is visible on dark background */
+    }
+    .store-page #main-nav.mobile-menu-active .has-dropdown .dropdown-menu {
+        background-color: #303030; /* Darker shade for submenu */
+        border-top-color: #444;
+    }
+    .store-page #main-nav.mobile-menu-active .has-dropdown .dropdown-menu li a {
+        color: #ddd;
+        border-bottom-color: #444;
+    }
+    .store-page #main-nav.mobile-menu-active .has-dropdown .dropdown-menu li a:hover {
+        background-color: #3a3a3a;
+        color: var(--accent-gold);
     }
 }
 
@@ -151,7 +248,15 @@
     }
 
     #main-nav.mobile-menu-active .nav-links ul li a {
-        padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 2); /* 10px 16px */
+        padding: 10px 15px; /* Slightly less padding */
         font-size: 0.95rem;
+    }
+    #main-nav.mobile-menu-active .nav-buttons .btn {
+        padding: 10px 15px; /* Adjust button padding */
+        font-size: 0.85rem;
+    }
+    #main-nav.mobile-menu-active .has-dropdown .dropdown-menu li a {
+        padding: 8px 15px 8px 30px; /* Adjust submenu item padding */
+        font-size: 0.85rem;
     }
 }
