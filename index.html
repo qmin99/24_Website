@@ -219,14 +219,6 @@
         backdrop-filter: blur(5px);
       }
 
-      /* Hide cursors on mobile only */
-      @media (max-width: 768px) and (hover: none) {
-        .stadium-cursor,
-        .cursor-aura {
-          display: none;
-        }
-      }
-
       /* Championship Portal Enhanced with Uniform Diagonal */
       .championship-portal {
         position: fixed;
@@ -346,6 +338,13 @@
         box-shadow: 0 0 10px var(--championship-gold);
       }
 
+      /* Hide cursors on mobile only */
+      @media (max-width: 768px) and (hover: none) {
+        .stadium-cursor,
+        .cursor-aura {
+          display: none;
+        }
+      }
       /* Mobile-First Glassmorphism Navigation */
       .stadium-nav {
         position: fixed;
@@ -1622,45 +1621,151 @@
     <script>
       // Premium Stadium Experience - Enhanced Cursor Always Active
       document.addEventListener("DOMContentLoaded", function () {
-        // Enhanced Cursor System - Always Active on Desktop
+        // Intro management with smooth animations for both first-time and returning visitors
+        function initializeIntro() {
+          const hasVisited = sessionStorage.getItem("hasVisitedIndex");
+          const portal = document.getElementById("portal");
+
+          if (hasVisited) {
+            // Hide intro immediately for returning visitors
+            portal.style.opacity = "0";
+            portal.style.visibility = "hidden";
+            portal.style.pointerEvents = "none";
+            portal.style.zIndex = "-1";
+
+            // Show content with smooth animation for returning visitors too
+            setTimeout(() => {
+              const elements = document.querySelectorAll(".fade-up");
+              elements.forEach((el, index) => {
+                setTimeout(() => {
+                  el.classList.add("visible");
+                }, index * 100); // Faster animation for returning visitors
+              });
+            }, 200);
+
+            return;
+          }
+
+          // Save visit record after intro completes (keep original timing)
+          setTimeout(() => {
+            sessionStorage.setItem("hasVisitedIndex", "true");
+          }, 3500);
+        }
+
+        // Initialize intro check
+        initializeIntro();
+
+        // Premium Cursor System with enhanced design
         const cursor = document.querySelector(".stadium-cursor");
         const aura = document.querySelector(".cursor-aura");
+        const isMobile = window.innerWidth <= 768;
 
         if (cursor && aura) {
-          document.addEventListener("mousemove", (e) => {
-            requestAnimationFrame(() => {
-              cursor.style.left = e.clientX + "px";
-              cursor.style.top = e.clientY + "px";
+          // Synchronized movement with smooth positioning
+          function handleMouseMove(e) {
+            const x = e.clientX;
+            const y = e.clientY;
 
-              setTimeout(() => {
-                aura.style.left = e.clientX - 15 + "px";
-                aura.style.top = e.clientY - 15 + "px";
-              }, 50);
+            // Both cursors move together instantly
+            requestAnimationFrame(() => {
+              cursor.style.left = x + "px";
+              cursor.style.top = y + "px";
+              aura.style.left = x - 20 + "px";
+              aura.style.top = y - 20 + "px";
             });
+          }
+
+          // Touch movement for mobile
+          function handleTouchMove(e) {
+            if (e.touches && e.touches[0]) {
+              const x = e.touches[0].clientX;
+              const y = e.touches[0].clientY;
+
+              requestAnimationFrame(() => {
+                cursor.style.left = x + "px";
+                cursor.style.top = y + "px";
+                aura.style.left = x - 20 + "px";
+                aura.style.top = y - 20 + "px";
+              });
+            }
+          }
+
+          // Add event listeners for both mouse and touch
+          document.addEventListener("mousemove", handleMouseMove);
+          document.addEventListener("touchmove", handleTouchMove, {
+            passive: true,
           });
 
-          // Enhanced cursor interactions
-          document
-            .querySelectorAll(".bubble-portal, .stat-hexagon, .nav-btn")
-            .forEach((element) => {
-              element.addEventListener("mouseenter", function () {
-                cursor.style.transform = "scale(2)";
-                aura.style.transform = "scale(1.5)";
-                cursor.style.background = "var(--golden-bright)";
-                cursor.style.boxShadow = "0 0 30px var(--championship-gold)";
-              });
+          // Touch handlers for mobile
+          document.addEventListener(
+            "touchstart",
+            (e) => {
+              if (e.touches[0]) {
+                const x = e.touches[0].clientX;
+                const y = e.touches[0].clientY;
 
-              element.addEventListener("mouseleave", function () {
-                cursor.style.transform = "scale(1)";
-                aura.style.transform = "scale(1)";
-                cursor.style.background = "var(--golden-bright)";
-                cursor.style.boxShadow = "0 0 20px var(--championship-gold)";
-              });
+                cursor.style.left = x + "px";
+                cursor.style.top = y + "px";
+                aura.style.left = x - 20 + "px";
+                aura.style.top = y - 20 + "px";
+
+                // Show cursors on touch
+                cursor.classList.add("touch-active");
+                aura.classList.add("touch-active");
+              }
+            },
+            { passive: true }
+          );
+
+          document.addEventListener("touchend", () => {
+            // Hide cursors after touch ends
+            setTimeout(() => {
+              cursor.classList.remove("touch-active");
+              aura.classList.remove("touch-active");
+            }, 800);
+          });
+
+          // Enhanced cursor interactions with new active states
+          const interactiveElements = document.querySelectorAll(
+            ".bubble-portal, .stat-hexagon, .nav-btn, a, button, [onclick]"
+          );
+
+          interactiveElements.forEach((element) => {
+            element.addEventListener("mouseenter", function () {
+              cursor.classList.add("active");
+              aura.classList.add("active");
             });
+
+            element.addEventListener("mouseleave", function () {
+              cursor.classList.remove("active");
+              aura.classList.remove("active");
+            });
+
+            // Touch events for mobile
+            element.addEventListener(
+              "touchstart",
+              function () {
+                cursor.classList.add("active");
+                aura.classList.add("active");
+              },
+              { passive: true }
+            );
+
+            element.addEventListener(
+              "touchend",
+              function () {
+                setTimeout(() => {
+                  cursor.classList.remove("active");
+                  aura.classList.remove("active");
+                }, 150);
+              },
+              { passive: true }
+            );
+          });
         }
 
         // Mobile Detection
-        const isMobile = window.innerWidth <= 768;
+        const isMobileDevice = window.innerWidth <= 768;
 
         // Mobile Menu Toggle
         const mobileMenuToggle = document.getElementById("mobileMenuToggle");
@@ -1688,20 +1793,31 @@
               document.body.style.overflow = "";
             });
           });
+
+          // Close when clicking overlay
+          mobileMenuOverlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+              mobileMenuToggle.classList.remove("active");
+              this.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
         }
 
-        // Championship Portal Sequence
+        // Championship Portal Sequence (keep original)
         const portal = document.getElementById("portal");
         const progressFill = document.getElementById("progressFill");
 
         // Enhanced progress animation
         setTimeout(() => {
-          progressFill.style.width = "100%";
+          if (progressFill) {
+            progressFill.style.width = "100%";
+          }
         }, 1000);
 
         // Stadium entrance with particles
         setTimeout(() => {
-          if (!isMobile) {
+          if (!isMobileDevice) {
             createStadiumParticles();
           }
           portal.style.transition = "all 2s cubic-bezier(0.19, 1, 0.22, 1)";
@@ -1710,22 +1826,26 @@
 
           setTimeout(() => {
             portal.style.visibility = "hidden";
+            portal.style.zIndex = "-1";
           }, 2000);
         }, 3500);
 
-        // Enhanced Arena Entrance
-        setTimeout(() => {
-          const elements = document.querySelectorAll(".fade-up");
-          elements.forEach((el, index) => {
-            setTimeout(() => {
-              el.classList.add("visible");
-            }, index * 200);
-          });
-        }, 5500);
+        // Enhanced Arena Entrance - only for first-time visitors
+        const hasVisited = sessionStorage.getItem("hasVisitedIndex");
+        if (!hasVisited) {
+          setTimeout(() => {
+            const elements = document.querySelectorAll(".fade-up");
+            elements.forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add("visible");
+              }, index * 200);
+            });
+          }, 5500);
+        }
 
         // Stadium particle system - Desktop Only
         function createStadiumParticles() {
-          if (isMobile) return;
+          if (isMobileDevice) return;
 
           for (let i = 0; i < 15; i++) {
             setTimeout(() => {
@@ -1733,13 +1853,13 @@
               particle.className = "stadium-particle";
               particle.style.left = Math.random() * window.innerWidth + "px";
               particle.style.animationDelay = Math.random() * 4 + "s";
-              document
-                .querySelector(".championship-arena")
-                .appendChild(particle);
-
-              setTimeout(() => {
-                particle.remove();
-              }, 4000);
+              const arena = document.querySelector(".championship-arena");
+              if (arena) {
+                arena.appendChild(particle);
+                setTimeout(() => {
+                  particle.remove();
+                }, 4000);
+              }
             }, i * 200);
           }
         }
@@ -1758,7 +1878,7 @@
             }
 
             // Hide nav on scroll down, show on scroll up (mobile)
-            if (isMobile) {
+            if (isMobileDevice) {
               if (window.scrollY > lastScrollY && window.scrollY > 100) {
                 nav.style.transform = "translateY(-100%)";
               } else {
@@ -1776,7 +1896,7 @@
           .forEach((element) => {
             // Mouse events for desktop
             element.addEventListener("mouseenter", function () {
-              if (!isMobile) {
+              if (!isMobileDevice) {
                 this.style.transform = this.classList.contains("bubble-portal")
                   ? "translateY(-20px) scale(1.1)"
                   : "translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1)";
@@ -1784,7 +1904,7 @@
             });
 
             element.addEventListener("mouseleave", function () {
-              if (!isMobile) {
+              if (!isMobileDevice) {
                 this.style.transform = "translateY(0) scale(1)";
               }
             });
@@ -1793,7 +1913,7 @@
             element.addEventListener(
               "touchstart",
               function () {
-                if (isMobile) {
+                if (isMobileDevice) {
                   this.style.transform = "scale(0.95)";
                 }
               },
@@ -1803,7 +1923,7 @@
             element.addEventListener(
               "touchend",
               function () {
-                if (isMobile) {
+                if (isMobileDevice) {
                   this.style.transform = "scale(1)";
                 }
               },
@@ -1812,12 +1932,12 @@
           });
 
         // Create ambient particles periodically - Desktop Only
-        if (!isMobile) {
+        if (!isMobileDevice) {
           setInterval(createStadiumParticles, 15000);
         }
 
         // Performance optimizations for mobile
-        if (isMobile) {
+        if (isMobileDevice) {
           // Reduce animation complexity
           document.documentElement.style.setProperty(
             "--ease-out-quart",
@@ -1833,7 +1953,7 @@
         }
 
         // Enhanced 3D Tilt Effects for Hexagons - Desktop Only
-        if (!isMobile) {
+        if (!isMobileDevice) {
           document.querySelectorAll(".stat-hexagon").forEach((hexagon) => {
             hexagon.addEventListener("mousemove", (e) => {
               const rect = hexagon.getBoundingClientRect();
@@ -1885,7 +2005,6 @@
 
         setTimeout(
           () => {
-            // 경기 결과 페이지로 이동
             window.location.href = "matches.html";
           },
           isMobile ? 100 : 500
@@ -1901,7 +2020,6 @@
 
         setTimeout(
           () => {
-            // 하이라이트 페이지로 이동
             window.location.href = "highlights.html";
           },
           isMobile ? 100 : 500
@@ -1917,7 +2035,6 @@
 
         setTimeout(
           () => {
-            // 유니폼 신청 페이지로 이동
             window.location.href = "store.html";
           },
           isMobile ? 100 : 500
@@ -1927,17 +2044,17 @@
       function createTransitionEffect() {
         const effect = document.createElement("div");
         effect.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.9));
-                z-index: 9998;
-                opacity: 0;
-                transition: opacity 0.5s ease;
-                pointer-events: none;
-            `;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.9));
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  `;
         document.body.appendChild(effect);
 
         setTimeout(() => {

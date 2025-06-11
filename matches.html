@@ -38,6 +38,7 @@
     <style>
       /* Championship Premium Variables */
       :root {
+        
         /* Team Colors - Based on Uniform */
         --midnight-black: #0a0a0a;
         --pure-black: #000000;
@@ -528,13 +529,13 @@
         align-items: center;
         justify-content: center;
         padding: var(--mobile-space-2xl) var(--mobile-space-lg);
-        margin-top: 70px;
+        margin-top: 15px;
       }
 
       @media (min-width: 769px) {
         .championship-arena {
           padding: var(--space-3xl) 0;
-          margin-top: 90px;
+          margin-top: 70px;
           min-height: 50vh;
         }
       }
@@ -661,14 +662,13 @@
 
       /* Matches Container */
       .matches-container {
-        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
         max-width: 1400px;
         margin: 0 auto;
       }
 
       @media (min-width: 769px) {
         .matches-container {
-          padding: var(--space-3xl) var(--space-xl);
+          padding: var(--space-sm) var(--space-sm);
         }
       }
 
@@ -891,13 +891,11 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: var(--mobile-space-xl);
-        margin-bottom: var(--mobile-space-3xl);
       }
 
       @media (min-width: 769px) {
         .matches-grid {
           grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-          gap: var(--space-2xl);
         }
       }
 
@@ -1339,6 +1337,7 @@
         transform: translateY(0);
       }
 
+    
       /* Championship Footer */
       .championship-footer {
         background: linear-gradient(
@@ -1358,7 +1357,6 @@
           margin-top: var(--space-2xl);
         }
       }
-
       .footer-content {
         max-width: 1400px;
         margin: 0 auto;
@@ -2037,15 +2035,15 @@
     <!-- Championship Footer -->
     <footer class="championship-footer">
       <div class="footer-content">
-        <div class="footer-brand">
-          <div class="footer-logo">24HD</div>
-          <div class="footer-tagline">24시 항시대기 • 공식 웹페이지</div>
-        </div>
-        <div class="footer-text">
-          &copy; 2025 24HD. All rights reserved. For the driven.
-        </div>
+          <div class="footer-brand">
+              <div class="footer-logo">24HD</div>
+              <div class="footer-tagline">24시 항시대기 • 공식 웹페이지</div>
+          </div>
+          <div class="footer-text">
+              &copy; 2025 24HD. All rights reserved. For the driven.
+          </div>
       </div>
-    </footer>
+  </footer>
     <script>
       // Premium Stadium Experience - Enhanced Cursor Always Active
       document.addEventListener("DOMContentLoaded", function () {
