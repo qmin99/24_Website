@@ -29,6 +29,7 @@
         --championship-gold: #c19b3a;
         --golden-accent: #d4af37;
         --golden-bright: #f4d03f;
+        --neon-gold: #ffeb3b;
         --platinum-white: #ffffff;
         --glass-white: rgba(255, 255, 255, 0.1);
         --glass-strong: rgba(255, 255, 255, 0.2);
@@ -40,18 +41,11 @@
           var(--stadium-black) 50%,
           var(--championship-gold) 100%
         );
-        --gradient-diagonal: linear-gradient(
-          135deg,
-          var(--pure-black) 0%,
-          var(--championship-gold) 50%,
-          var(--pure-black) 100%
-        );
-        --gradient-uniform: linear-gradient(
+        --gradient-neon: linear-gradient(
           45deg,
-          var(--pure-black) 30%,
-          var(--championship-gold) 35%,
-          var(--championship-gold) 65%,
-          var(--pure-black) 70%
+          var(--neon-gold) 0%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 100%
         );
         --gradient-gold: linear-gradient(
           45deg,
@@ -62,11 +56,6 @@
           135deg,
           rgba(255, 255, 255, 0.1) 0%,
           rgba(255, 255, 255, 0.05) 100%
-        );
-        --gradient-glass-strong: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.2) 0%,
-          rgba(255, 255, 255, 0.1) 100%
         );
 
         /* Premium Typography */
@@ -692,7 +681,7 @@
         align-items: center;
         justify-content: center;
         padding: var(--mobile-space-2xl) var(--mobile-space-lg);
-        margin-top: 70px;
+        margin-top: 30px;
       }
 
       @media (min-width: 769px) {
@@ -773,16 +762,17 @@
         }
       }
 
-      /* Hero Logo Enhancement - REDUCED SIZE & SPACING */
+      /* Hero Logo Enhancement - REDUCED SIZE & SPACING & IMPROVED CROPPING */
       .hero-logo-container {
         position: relative;
-        margin-bottom: var(--mobile-space-xs);
+        margin-bottom: 0;
+        margin-top: -var(--mobile-space-md);
       }
 
       .hero-logo {
-        width: 200px;
-        height: 150px;
-        margin: 0 auto var(--mobile-space-xs);
+        width: 180px;
+        height: 120px;
+        margin: 0 auto;
         display: block;
         transition: all 0.5s var(--ease-out-quart);
         object-fit: cover;
@@ -790,15 +780,16 @@
       }
 
       .hero-logo:hover {
-        transform: scale(1.08) rotate(1deg);
+        transform: scale(1.05) rotate(0.5deg);
         filter: brightness(0) saturate(100%) invert(100%)
           drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
       }
 
       @media (min-width: 769px) {
         .hero-logo {
-          width: 160px;
-          height: 120px;
+          width: 100px;
+          height: 200px;
+       
         }
       }
 
@@ -811,11 +802,13 @@
         color: var(--platinum-white);
         position: relative;
         letter-spacing: -0.05em;
+        margin-top: -var(--mobile-space-md);
       }
 
       @media (min-width: 769px) {
         .arena-title {
           margin-bottom: var(--space-lg);
+          margin-top: -var(--space-md);
         }
       }
 
@@ -832,7 +825,7 @@
         font-family: var(--font-korean);
         font-size: clamp(1rem, 4vw, 1.6rem);
         font-weight: 400;
-        margin-bottom: var(--mobile-space-2xl);
+        margin-bottom: var(--mobile-space-sm);
         color: rgba(255, 255, 255, 0.8);
         max-width: 700px;
         margin-left: auto;
@@ -843,413 +836,380 @@
 
       @media (min-width: 769px) {
         .arena-subtitle {
-          margin-bottom: var(--space-2xl);
+          margin-bottom: var(--space-md);
           padding: 0;
         }
       }
 
+      /* 🔥 REVOLUTIONARY HEXAGON NEON GRID - 2025 HIGH-TECH TREND */
       .stadium-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap: var(--mobile-space-lg);
         margin-bottom: var(--mobile-space-xl);
-        max-width: 800px;
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
         perspective: 1000px;
+        padding: var(--mobile-space-xl) 0;
       }
 
       @media (min-width: 769px) {
         .stadium-stats {
-          gap: var(--space-xl);
+          gap: var(--space-2xl);
           margin-bottom: var(--space-xl);
+          max-width: 800px;
+          padding: var(--space-2xl) 0;
         }
       }
 
-      .stat-card {
-        background: linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.05) 0%,
-          rgba(255, 255, 255, 0.02) 50%,
-          rgba(212, 175, 55, 0.1) 100%
-        );
-        backdrop-filter: var(--glass-blur);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        border-radius: 20px;
-        padding: var(--mobile-space-xl);
-        text-align: center;
-        transition: all 0.6s var(--ease-out-quart);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      /* Hexagonal Neon Stats - Revolutionary Design */
+      .stat-hexagon {
         position: relative;
-        overflow: hidden;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        transition: all 0.6s var(--ease-out-expo);
         transform-style: preserve-3d;
       }
 
-      .stat-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent 0%,
-          var(--championship-gold) 50%,
-          transparent 100%
-        );
-        transform: scaleX(0);
-        transition: transform 0.6s var(--ease-out-quart);
+      @media (min-width: 769px) {
+        .stat-hexagon {
+          width: 120px;
+          height: 120px;
+        }
       }
 
-      .stat-card::after {
+      /* Hexagon Shape with CSS Clip-Path */
+      .hexagon-shape {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.2) 0%,
+          rgba(212, 175, 55, 0.3) 50%,
+          rgba(196, 155, 58, 0.2) 100%
+        );
+        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid transparent;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Animated Neon Border */
+      .hexagon-shape::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          60deg,
+          transparent 0%,
+          var(--neon-gold) 25%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 75%,
+          transparent 100%
+        );
+        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        z-index: -1;
+        opacity: 0;
+        animation: neonFlow 3s ease-in-out infinite;
+        transition: opacity 0.4s ease;
+      }
+
+      @keyframes neonFlow {
+        0%, 100% {
+          background-position: 0% 50%;
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          background-position: 100% 50%;
+          filter: hue-rotate(45deg);
+        }
+      }
+
+      .stat-hexagon:hover .hexagon-shape::before {
+        opacity: 1;
+      }
+
+      /* Pulsing Glow Effect */
+      .hexagon-shape::after {
         content: "";
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 100%;
-        height: 100%;
+        width: 120%;
+        height: 120%;
         background: radial-gradient(
           circle,
-          rgba(212, 175, 55, 0.1) 0%,
+          rgba(255, 235, 59, 0.3) 0%,
+          rgba(212, 175, 55, 0.2) 30%,
           transparent 70%
         );
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.8s var(--ease-out-quart);
-        pointer-events: none;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: hexagonPulse 2s ease-in-out infinite;
+        z-index: -2;
+        border-radius: 50%;
       }
 
-      @media (min-width: 769px) {
-        .stat-card {
-          border-radius: 24px;
-          padding: var(--space-2xl);
+      @keyframes hexagonPulse {
+        0%, 100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.8);
+        }
+        50% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1.2);
         }
       }
 
-      .stat-card:hover {
-        transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.05);
-        background: linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0.05) 50%,
-          rgba(212, 175, 55, 0.2) 100%
-        );
-        border-color: rgba(212, 175, 55, 0.5);
-        box-shadow: 0 25px 60px rgba(212, 175, 55, 0.3),
-          0 15px 35px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+      .stat-hexagon:hover .hexagon-shape::after {
+        animation-duration: 1s;
       }
 
-      .stat-card:hover::before {
-        transform: scaleX(1);
+      /* Enhanced Hover Effect */
+      .stat-hexagon:hover {
+        transform: translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1);
       }
 
-      .stat-card:hover::after {
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      .stat-card:nth-child(1):hover {
-        transform: translateY(-15px) rotateX(5deg) rotateY(-3deg) scale(1.05);
-      }
-
-      .stat-card:nth-child(3):hover {
-        transform: translateY(-15px) rotateX(5deg) rotateY(3deg) scale(1.05);
-      }
-
-      .stat-number {
-        font-family: var(--font-display);
-        font-size: clamp(1.8rem, 3vw, 5rem);
-        font-weight: 900;
+      .stat-hexagon:hover .hexagon-shape {
         background: linear-gradient(
           135deg,
-          var(--championship-gold) 0%,
-          var(--golden-bright) 50%,
-          var(--championship-gold) 100%
+          rgba(255, 235, 59, 0.4) 0%,
+          rgba(212, 175, 55, 0.5) 50%,
+          rgba(196, 155, 58, 0.4) 100%
         );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        display: block;
-        line-height: 0.9;
-        margin-bottom: var(--mobile-space-md);
-        position: relative;
-        z-index: 2;
-        text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
-        transition: all 0.4s var(--ease-out-quart);
+        box-shadow: 
+          0 20px 40px rgba(255, 235, 59, 0.3),
+          inset 0 0 20px rgba(255, 235, 59, 0.2);
       }
 
-      .stat-card:hover .stat-number {
+      .hex-stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 900;
+        color: var(--neon-gold);
+        line-height: 1;
+        margin-bottom: 2px;
+        text-shadow: 
+          0 0 10px var(--neon-gold),
+          0 0 20px rgba(255, 235, 59, 0.5);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-number {
         transform: scale(1.1);
-        text-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
+        text-shadow: 
+          0 0 15px var(--neon-gold),
+          0 0 30px rgba(255, 235, 59, 0.8),
+          0 0 45px rgba(255, 235, 59, 0.4);
       }
 
-      .stat-label {
+      .hex-stat-label {
         font-family: var(--font-korean);
-        font-size: 0.75rem;
-        color: rgba(255, 255, 255, 0.8);
+        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+        color: rgba(255, 255, 255, 0.9);
         text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-weight: 500;
-        position: relative;
-        z-index: 2;
-        transition: all 0.4s var(--ease-out-quart);
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
       }
 
-      .stat-card:hover .stat-label {
-        color: var(--championship-gold);
-        transform: translateY(-2px);
-        letter-spacing: 0.3em;
+      .stat-hexagon:hover .hex-stat-label {
+        color: var(--neon-gold);
+        text-shadow: 0 0 8px rgba(255, 235, 59, 0.6);
       }
 
-      @media (min-width: 769px) {
-        .stat-label {
-          font-size: 0.85rem;
-          letter-spacing: 0.25em;
-        }
-
-        .stat-card:hover .stat-label {
-          letter-spacing: 0.35em;
-        }
-      }
-
-      /* Creative Action Interface - MIXED RESPONSIVE DESIGN */
+      /* 🫧 FLOATING BUBBLE PORTALS - ORGANIC DESIGN REVOLUTION */
       .stadium-interface {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: var(--mobile-space-md);
-        max-width: 800px;
+        max-width: 700px;
         margin: 0 auto;
+        padding: var(--mobile-space-xl) 0;
       }
 
       @media (min-width: 769px) {
         .stadium-interface {
           grid-template-columns: repeat(3, 1fr);
-          gap: var(--space-xl);
+          gap: var(--space-lg);
           max-width: 900px;
+          padding: var(--space-2xl) 0;
         }
       }
 
-      .action-portal {
-        background: linear-gradient(145deg, 
-          rgba(255, 255, 255, 0.08) 0%, 
-          rgba(255, 255, 255, 0.03) 50%, 
-          rgba(212, 175, 55, 0.05) 100%
-        );
-        backdrop-filter: var(--glass-blur);
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        border-radius: 16px;
-        padding: var(--mobile-space-lg);
-        text-align: center;
-        transition: all 0.4s var(--ease-out-quart);
-        cursor: pointer;
+      /* Revolutionary Floating Bubble Portals */
+      .bubble-portal {
         position: relative;
-        overflow: hidden;
-        box-shadow: 
-          0 4px 20px rgba(0, 0, 0, 0.15),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        min-height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      @media (min-width: 769px) {
-        .action-portal {
-          background: var(--gradient-glass);
-          border: var(--glass-border);
-          border-radius: 24px;
-          padding: var(--space-2xl);
-          min-height: 280px;
-          justify-content: space-between;
-          box-shadow: var(--glass-shadow);
-        }
-      }
-
-      .action-portal::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, 
-          transparent 0%, 
-          var(--championship-gold) 50%, 
-          transparent 100%
-        );
-        transform: scaleX(0);
-        transition: transform 0.4s var(--ease-out-quart);
+        aspect-ratio: 1;
+        cursor: pointer;
+        transition: all 0.6s var(--ease-out-expo);
+        transform-style: preserve-3d;
       }
 
-      .action-portal::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
+      .bubble-shape {
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(212, 175, 55, 0.1),
-          transparent
-        );
-        transition: left 0.6s ease;
-      }
-
-      @media (min-width: 769px) {
-        .action-portal::after {
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(212, 175, 55, 0.2),
-            transparent
-          );
-          transition: left 0.8s ease;
-        }
-      }
-
-      .action-portal:hover::before {
-        transform: scaleX(1);
-      }
-
-      .action-portal:hover::after {
-        left: 100%;
-      }
-
-      .portal-icon {
-        font-size: 2rem;
-        margin-bottom: var(--mobile-space-sm);
-        display: block;
-        background: linear-gradient(135deg, 
-          var(--championship-gold) 0%, 
-          var(--golden-bright) 50%, 
-          var(--championship-gold) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
-        transition: all 0.3s ease;
-      }
-
-      @media (min-width: 769px) {
-        .portal-icon {
-          font-size: 3.5rem;
-          margin-bottom: var(--space-lg);
-          background: var(--gradient-gold);
-          filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
-        }
-      }
-
-      .portal-title {
-        font-family: var(--font-display);
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--platinum-white);
-        letter-spacing: 0.02em;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        line-height: 1.2;
-      }
-
-      @media (min-width: 769px) {
-        .portal-title {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin-bottom: var(--space-sm);
-          letter-spacing: -0.02em;
-          text-transform: none;
-        }
-      }
-
-      .portal-description {
-        display: none;
-      }
-
-      @media (min-width: 769px) {
-        .portal-description {
-          display: block;
-          font-family: var(--font-korean);
-          font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.7);
-          line-height: 1.4;
-          margin-bottom: var(--space-xl);
-          font-weight: 400;
-        }
-      }
-
-      .portal-action {
-        display: none;
-      }
-
-      @media (min-width: 769px) {
-        .portal-action {
-          display: inline-flex;
-          align-items: center;
-          gap: var(--space-sm);
-          padding: var(--space-lg) var(--space-2xl);
-          background: var(--gradient-gold);
-          color: var(--pure-black);
-          font-family: var(--font-display);
-          font-size: 0.9rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          border: none;
-          border-radius: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          margin-top: auto;
-        }
-      }
-
-      .action-portal:hover {
-        transform: translateY(-8px) scale(1.02);
-        border-color: rgba(212, 175, 55, 0.4);
-        background: linear-gradient(145deg, 
-          rgba(255, 255, 255, 0.12) 0%, 
-          rgba(255, 255, 255, 0.06) 50%, 
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 40%,
           rgba(212, 175, 55, 0.1) 100%
         );
+        border-radius: 50%;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s var(--ease-out-quart);
+        
+        /* Bubble Reflection Effect */
         box-shadow: 
-          0 12px 40px rgba(212, 175, 55, 0.15),
-          0 8px 20px rgba(0, 0, 0, 0.2),
-          inset 0 2px 0 rgba(255, 255, 255, 0.15);
+          inset 0 0 30px rgba(255, 255, 255, 0.1),
+          0 8px 32px rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
       }
 
-      @media (min-width: 769px) {
-        .action-portal:hover {
-          transform: translateY(-12px) scale(1.03);
-          border-color: rgba(212, 175, 55, 0.6);
-          background: var(--gradient-glass-strong);
-          box-shadow: 0 25px 60px rgba(212, 175, 55, 0.25);
+      /* Floating Animation */
+      @keyframes bubbleFloat {
+        0%, 100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        33% {
+          transform: translateY(-8px) rotate(1deg);
+        }
+        66% {
+          transform: translateY(-4px) rotate(-1deg);
         }
       }
 
-      .action-portal:hover .portal-icon {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      .bubble-portal:nth-child(1) {
+        animation: bubbleFloat 6s ease-in-out infinite;
       }
 
-      @media (min-width: 769px) {
-        .action-portal:hover .portal-icon {
-          filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+      .bubble-portal:nth-child(2) {
+        animation: bubbleFloat 8s ease-in-out infinite 2s;
+      }
+
+      .bubble-portal:nth-child(3) {
+        animation: bubbleFloat 7s ease-in-out infinite 4s;
+      }
+
+      /* Iridescent Shimmer Effect */
+      .bubble-shape::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.1) 60deg,
+          rgba(212, 175, 55, 0.2) 120deg,
+          rgba(255, 255, 255, 0.1) 180deg,
+          transparent 240deg,
+          rgba(255, 235, 59, 0.15) 300deg,
+          transparent 360deg
+        );
+        border-radius: 50%;
+        opacity: 0;
+        animation: shimmerRotate 4s linear infinite;
+        transition: opacity 0.3s ease;
+      }
+
+      @keyframes shimmerRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
         }
       }
 
-      .action-portal:hover .portal-title {
+      .bubble-portal:hover .bubble-shape::before {
+        opacity: 1;
+      }
+
+      /* Enhanced Hover Effect */
+      .bubble-portal:hover {
+        transform: translateY(-20px) scale(1.1);
+        animation-play-state: paused;
+      }
+
+      .bubble-portal:hover .bubble-shape {
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.1) 40%,
+          rgba(212, 175, 55, 0.2) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: 
+          inset 0 0 40px rgba(255, 255, 255, 0.2),
+          0 20px 60px rgba(212, 175, 55, 0.3),
+          0 0 0 2px rgba(212, 175, 55, 0.2);
+      }
+
+      .bubble-icon {
+        font-size: 2rem;
+        margin-bottom: var(--mobile-space-sm);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        transition: all 0.4s var(--ease-out-back);
+      }
+
+      @media (min-width: 769px) {
+        .bubble-icon {
+          font-size: 2.5rem;
+        }
+      }
+
+      .bubble-portal:hover .bubble-icon {
+        transform: scale(1.2) rotateY(15deg);
+        filter: drop-shadow(0 8px 16px rgba(212, 175, 55, 0.3));
+      }
+
+      .bubble-title {
+        font-family: var(--font-display);
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+        font-weight: 600;
+        color: var(--platinum-white);
+        text-align: center;
+        line-height: 1.2;
+        transition: all 0.3s ease;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      @media (min-width: 769px) {
+        .bubble-title {
+          font-size: 1rem;
+        }
+      }
+
+      .bubble-portal:hover .bubble-title {
         color: var(--championship-gold);
         transform: translateY(-2px);
-      }
-
-      @media (min-width: 769px) {
-        .portal-action:hover {
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-          background: linear-gradient(45deg, var(--golden-bright) 0%, var(--championship-gold) 100%);
-        }
+        text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
       }
 
       /* Championship Footer */
@@ -1260,13 +1220,15 @@
           var(--stadium-black) 100%
         );
         border-top: var(--glass-border);
-        padding: var(--mobile-space-3xl) 0;
+        padding: var(--mobile-space-2xl) 0;
         backdrop-filter: var(--glass-blur);
+        margin-top: var(--mobile-space-xl);
       }
 
       @media (min-width: 769px) {
         .championship-footer {
-          padding: var(--space-4xl) 0;
+          padding: var(--space-3xl) 0;
+          margin-top: var(--space-2xl);
         }
       }
 
@@ -1284,65 +1246,65 @@
       }
 
       .footer-brand {
-        margin-bottom: var(--mobile-space-xl);
+        margin-bottom: var(--mobile-space-lg);
         background: var(--gradient-glass);
         backdrop-filter: var(--glass-blur);
         border: var(--glass-border);
         border-radius: 16px;
-        padding: var(--mobile-space-xl);
+        padding: var(--mobile-space-lg);
         display: inline-block;
         box-shadow: var(--glass-shadow);
       }
 
       @media (min-width: 769px) {
         .footer-brand {
-          margin-bottom: var(--space-2xl);
+          margin-bottom: var(--space-xl);
           border-radius: 20px;
-          padding: var(--space-2xl);
+          padding: var(--space-xl);
         }
       }
 
       .footer-logo {
         font-family: var(--font-display);
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 900;
         background: var(--gradient-gold);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        margin-bottom: var(--mobile-space-sm);
+        margin-bottom: var(--mobile-space-xs);
       }
 
       @media (min-width: 769px) {
         .footer-logo {
-          font-size: 2.5rem;
+          font-size: 2.2rem;
         }
       }
 
       .footer-tagline {
         font-family: var(--font-korean);
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: rgba(255, 255, 255, 0.6);
         text-transform: uppercase;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.1em;
       }
 
       @media (min-width: 769px) {
         .footer-tagline {
-          font-size: 0.9rem;
-          letter-spacing: 0.2em;
+          font-size: 0.8rem;
+          letter-spacing: 0.15em;
         }
       }
 
       .footer-text {
         font-family: var(--font-korean);
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: rgba(255, 255, 255, 0.5);
       }
 
       @media (min-width: 769px) {
         .footer-text {
-          font-size: 0.85rem;
+          font-size: 0.8rem;
         }
       }
 
@@ -1410,17 +1372,17 @@
 
       /* Touch Optimizations */
       @media (hover: none) {
-        .action-portal:hover,
-        .stat-card:hover {
+        .bubble-portal:hover,
+        .stat-hexagon:hover {
           transform: none;
         }
 
-        .action-portal:active {
-          transform: scale(0.98);
+        .bubble-portal:active {
+          transform: scale(0.95);
         }
 
-        .stat-card:active {
-          transform: scale(0.98);
+        .stat-hexagon:active {
+          transform: scale(0.95);
         }
       }
 
@@ -1431,9 +1393,9 @@
           line-height: 1.4;
         }
 
-        .portal-description {
+        .bubble-title {
           font-size: 0.8rem;
-          line-height: 1.5;
+          line-height: 1.3;
         }
       }
     </style>
@@ -1571,52 +1533,52 @@
         </h1>
 
         <p class="arena-subtitle fade-up">
-휘문고 119기 그리고 그 이상         </p>
+          휘문고 119기 그리고 그 이상
+        </p>
 
+        <!-- 🔥 REVOLUTIONARY HEXAGON NEON GRID -->
         <div class="stadium-stats fade-up">
-          <div class="stat-card">
-            <span class="stat-number">24</span>
-            <span class="stat-label">Hours</span>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">24</span>
+              <span class="hex-stat-label">Hours</span>
+            </div>
           </div>
-          <div class="stat-card">
-            <span class="stat-number">365</span>
-            <span class="stat-label">Days</span>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">365</span>
+              <span class="hex-stat-label">Days</span>
+            </div>
           </div>
-          <div class="stat-card">
-            <span class="stat-number">∞</span>
-            <span class="stat-label">Passion</span>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">∞</span>
+              <span class="hex-stat-label">Passion</span>
+            </div>
           </div>
         </div>
 
+        <!-- 🫧 FLOATING BUBBLE PORTALS -->
         <div class="stadium-interface fade-up">
-          <div class="action-portal" onclick="navigateToResults()">
-            <span class="portal-icon">🏆</span>
-            <h3 class="portal-title">경기 결과</h3>
-            <p class="portal-description">승부의 기록, 영광의 순간들</p>
-            <button class="portal-action">
-              <span>VIEW</span>
-              <span>→</span>
-            </button>
+          <div class="bubble-portal" onclick="navigateToResults()">
+            <div class="bubble-shape">
+              <span class="bubble-icon">🏆</span>
+              <h3 class="bubble-title">경기 결과</h3>
+            </div>
           </div>
 
-          <div class="action-portal" onclick="navigateToHighlights()">
-            <span class="portal-icon">🎬</span>
-            <h3 class="portal-title">하이라이트</h3>
-            <p class="portal-description">최고의 플레이, 감동의 순간들</p>
-            <button class="portal-action">
-              <span>WATCH</span>
-              <span>→</span>
-            </button>
+          <div class="bubble-portal" onclick="navigateToHighlights()">
+            <div class="bubble-shape">
+              <span class="bubble-icon">🎬</span>
+              <h3 class="bubble-title">하이라이트</h3>
+            </div>
           </div>
 
-          <div class="action-portal" onclick="navigateToUniforms()">
-            <span class="portal-icon">👕</span>
-            <h3 class="portal-title">유니폼 신청</h3>
-            <p class="portal-description">프리미엄 팀 저지 주문하기</p>
-            <button class="portal-action">
-              <span>ORDER</span>
-              <span>→</span>
-            </button>
+          <div class="bubble-portal" onclick="navigateToUniforms()">
+            <div class="bubble-shape">
+              <span class="bubble-icon">👕</span>
+              <h3 class="bubble-title">유니폼 신청</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -1659,7 +1621,7 @@
           // Enhanced cursor interactions
           document
             .querySelectorAll(
-              ".action-portal, .stat-card, .nav-btn"
+              ".bubble-portal, .stat-hexagon, .nav-btn"
             )
             .forEach((element) => {
               element.addEventListener("mouseenter", function () {
@@ -1791,14 +1753,14 @@
 
         // Enhanced interactions with touch support
         document
-          .querySelectorAll(".action-portal, .stat-card")
+          .querySelectorAll(".bubble-portal, .stat-hexagon")
           .forEach((element) => {
             // Mouse events for desktop
             element.addEventListener("mouseenter", function () {
               if (!isMobile) {
-                this.style.transform = this.classList.contains("action-portal")
-                  ? "translateY(-12px) scale(1.03)"
-                  : "translateY(-8px) scale(1.02)";
+                this.style.transform = this.classList.contains("bubble-portal")
+                  ? "translateY(-20px) scale(1.1)"
+                  : "translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1)";
               }
             });
 
@@ -1813,7 +1775,7 @@
               "touchstart",
               function () {
                 if (isMobile) {
-                  this.style.transform = "scale(0.98)";
+                  this.style.transform = "scale(0.95)";
                 }
               },
               { passive: true }
@@ -1849,6 +1811,46 @@
 
           // Optimize touch scrolling
           document.body.style.webkitOverflowScrolling = "touch";
+        }
+
+        // Enhanced 3D Tilt Effects for Hexagons - Desktop Only
+        if (!isMobile) {
+          document.querySelectorAll('.stat-hexagon').forEach(hexagon => {
+            hexagon.addEventListener('mousemove', (e) => {
+              const rect = hexagon.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / 6;
+              const rotateY = (centerX - x) / 6;
+              
+              hexagon.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            });
+
+            hexagon.addEventListener('mouseleave', () => {
+              hexagon.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+          });
+
+          // Enhanced 3D Tilt Effects for Bubble Portals - Desktop Only
+          document.querySelectorAll('.bubble-portal').forEach(bubble => {
+            bubble.addEventListener('mousemove', (e) => {
+              const rect = bubble.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / 10;
+              const rotateY = (centerX - x) / 10;
+              
+              bubble.style.transform = `translateY(-20px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            });
+
+            bubble.addEventListener('mouseleave', () => {
+              bubble.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+          });
         }
       });
 
