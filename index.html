@@ -1,1970 +1,1909 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24FC | 24시 항시대기 - Always Ready</title>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24HD | 24시 항시대기 - Always Ready</title>
+
     <!-- Premium Korean + English Typography -->
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- GSAP & Advanced Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
     <style>
-        /* Championship Premium Variables */
-        :root {
-            /* Team Colors - Based on Uniform */
-            --midnight-black: #0a0a0a;
-            --pure-black: #000000;
-            --stadium-black: #1a1a1a;
-            --championship-gold: #c19b3a;
-            --golden-accent: #d4af37;
-            --golden-bright: #f4d03f;
-            --platinum-white: #ffffff;
-            --glass-white: rgba(255, 255, 255, 0.1);
-            --glass-strong: rgba(255, 255, 255, 0.2);
-            
-            /* Enhanced Gradients with Diagonal Elements */
-            --gradient-primary: linear-gradient(135deg, var(--pure-black) 0%, var(--stadium-black) 50%, var(--championship-gold) 100%);
-            --gradient-diagonal: linear-gradient(135deg, var(--pure-black) 0%, var(--championship-gold) 50%, var(--pure-black) 100%);
-            --gradient-uniform: linear-gradient(45deg, var(--pure-black) 30%, var(--championship-gold) 35%, var(--championship-gold) 65%, var(--pure-black) 70%);
-            --gradient-gold: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
-            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-            --gradient-glass-strong: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-            
-            /* Premium Typography */
-            --font-korean: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-display: 'Orbitron', 'Pretendard', sans-serif;
-            --font-accent: 'Space Grotesk', 'Pretendard', sans-serif;
-            
-            /* Enhanced Spacing - Mobile First */
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --space-3xl: 4rem;
-            --space-4xl: 6rem;
-            
-            /* Mobile Spacing */
-            --mobile-space-xs: 0.125rem;
-            --mobile-space-sm: 0.25rem;
-            --mobile-space-md: 0.5rem;
-            --mobile-space-lg: 1rem;
-            --mobile-space-xl: 1.5rem;
-            --mobile-space-2xl: 2rem;
-            --mobile-space-3xl: 3rem;
-            
-            /* Glassmorphism Effects */
-            --glass-blur: blur(20px);
-            --glass-blur-strong: blur(40px);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.18);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            
-            /* Advanced Animations */
-            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
+      /* Championship Premium Variables */
+      :root {
+        /* Team Colors - Based on Uniform */
+        --midnight-black: #0a0a0a;
+        --pure-black: #000000;
+        --stadium-black: #1a1a1a;
+        --championship-gold: #c19b3a;
+        --golden-accent: #d4af37;
+        --golden-bright: #f4d03f;
+        --platinum-white: #ffffff;
+        --glass-white: rgba(255, 255, 255, 0.1);
+        --glass-strong: rgba(255, 255, 255, 0.2);
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Enhanced Gradients with Diagonal Elements */
+        --gradient-primary: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 50%,
+          var(--championship-gold) 100%
+        );
+        --gradient-diagonal: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--championship-gold) 50%,
+          var(--pure-black) 100%
+        );
+        --gradient-uniform: linear-gradient(
+          45deg,
+          var(--pure-black) 30%,
+          var(--championship-gold) 35%,
+          var(--championship-gold) 65%,
+          var(--pure-black) 70%
+        );
+        --gradient-gold: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        --gradient-glass-strong: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
 
+        /* Premium Typography */
+        --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-display: "Orbitron", "Pretendard", sans-serif;
+        --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+
+        /* Enhanced Spacing - Mobile First */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+        --space-4xl: 6rem;
+
+        /* Mobile Spacing */
+        --mobile-space-xs: 0.125rem;
+        --mobile-space-sm: 0.25rem;
+        --mobile-space-md: 0.5rem;
+        --mobile-space-lg: 1rem;
+        --mobile-space-xl: 1.5rem;
+        --mobile-space-2xl: 2rem;
+        --mobile-space-3xl: 3rem;
+
+        /* Glassmorphism Effects */
+        --glass-blur: blur(20px);
+        --glass-blur-strong: blur(40px);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+        --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+        /* Advanced Animations */
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      /* Mobile First Font Sizing */
+      @media (max-width: 480px) {
         html {
-            scroll-behavior: smooth;
-            font-size: 16px;
+          font-size: 14px;
         }
+      }
 
-        /* Mobile First Font Sizing */
-        @media (max-width: 480px) {
-            html {
-                font-size: 14px;
-            }
+      body {
+        font-family: var(--font-korean);
+        background: var(--pure-black);
+        color: var(--platinum-white);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+      }
+
+      /* Enhanced Stadium Background with Uniform Diagonal */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(196, 155, 58, 0.1) 45%,
+            rgba(196, 155, 58, 0.15) 50%,
+            rgba(196, 155, 58, 0.1) 55%,
+            transparent 60%,
+            transparent 100%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            135deg,
+            var(--pure-black) 0%,
+            var(--stadium-black) 100%
+          );
+        z-index: -1;
+        animation: stadiumAmbience 20s ease-in-out infinite;
+        transform: rotate(45deg) translateX(-10%) translateY(-10%);
+      }
+
+      @keyframes stadiumAmbience {
+        0%,
+        100% {
+          opacity: 1;
         }
-
-        body {
-            font-family: var(--font-korean);
-            background: var(--pure-black);
-            color: var(--platinum-white);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
+        50% {
+          opacity: 0.9;
         }
+      }
 
-        /* Enhanced Stadium Background with Uniform Diagonal */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 120%;
-            height: 120%;
-            background: 
-                linear-gradient(45deg, 
-                    transparent 0%, 
-                    transparent 40%, 
-                    rgba(196, 155, 58, 0.1) 45%, 
-                    rgba(196, 155, 58, 0.15) 50%, 
-                    rgba(196, 155, 58, 0.1) 55%, 
-                    transparent 60%, 
-                    transparent 100%
-                ),
-                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, var(--pure-black) 0%, var(--stadium-black) 100%);
-            z-index: -1;
-            animation: stadiumAmbience 20s ease-in-out infinite;
-            transform: rotate(45deg) translateX(-10%) translateY(-10%);
-        }
+      /* Premium Cursor System - Always Active */
+      .stadium-cursor {
+        width: 6px;
+        height: 6px;
+        background: var(--golden-bright);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 20px var(--championship-gold);
+      }
 
-        @keyframes stadiumAmbience {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
+      .cursor-aura {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+      }
 
-        /* Premium Cursor System - Always Active */
-        .stadium-cursor {
-            width: 6px;
-            height: 6px;
-            background: var(--golden-bright);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 10000;
-            transition: all 0.1s ease;
-            box-shadow: 0 0 20px var(--championship-gold);
-        }
-
+      /* Hide cursors on mobile only */
+      @media (max-width: 768px) and (hover: none) {
+        .stadium-cursor,
         .cursor-aura {
-            width: 30px;
-            height: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(5px);
+          display: none;
         }
+      }
 
-        /* Hide cursors on mobile only */
-        @media (max-width: 768px) and (hover: none) {
-            .stadium-cursor,
-            .cursor-aura {
-                display: none;
-            }
+      /* Championship Portal Enhanced with Uniform Diagonal */
+      .championship-portal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--gradient-primary);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        visibility: visible;
+        padding: var(--mobile-space-xl);
+      }
+
+      .portal-content {
+        text-align: center;
+        position: relative;
+        padding: var(--mobile-space-2xl);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 20px;
+        box-shadow: var(--glass-shadow);
+        max-width: 400px;
+        width: 100%;
+
+        /* Uniform Diagonal Stripe */
+        overflow: hidden;
+      }
+
+      .portal-content::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: 30%;
+        width: 25%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          rgba(196, 155, 58, 0.3) 40%,
+          rgba(196, 155, 58, 0.5) 50%,
+          rgba(196, 155, 58, 0.3) 60%,
+          transparent 100%
+        );
+        transform: rotate(45deg);
+        animation: diagonalShine 3s ease-in-out infinite;
+      }
+
+      @keyframes diagonalShine {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: rotate(45deg) translateX(-20px);
         }
-
-        /* Championship Portal Enhanced with Uniform Diagonal */
-        .championship-portal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: var(--gradient-primary);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            visibility: visible;
-            padding: var(--mobile-space-xl);
+        50% {
+          opacity: 0.7;
+          transform: rotate(45deg) translateX(20px);
         }
+      }
 
-        .portal-content {
-            text-align: center;
-            position: relative;
-            padding: var(--mobile-space-2xl);
-            background: var(--gradient-glass);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 20px;
-            box-shadow: var(--glass-shadow);
-            max-width: 400px;
-            width: 100%;
-            
-            /* Uniform Diagonal Stripe */
-            overflow: hidden;
-        }
+      .portal-logo {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 12vw, 6rem);
+        font-weight: 900;
+        color: var(--platinum-white);
+        margin-bottom: var(--mobile-space-md);
+        position: relative;
+        letter-spacing: -0.05em;
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        z-index: 2;
+      }
 
-        .portal-content::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: 30%;
-            width: 25%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent 0%, 
-                rgba(196, 155, 58, 0.3) 40%, 
-                rgba(196, 155, 58, 0.5) 50%, 
-                rgba(196, 155, 58, 0.3) 60%, 
-                transparent 100%
-            );
-            transform: rotate(45deg);
-            animation: diagonalShine 3s ease-in-out infinite;
-        }
+      .portal-subtitle {
+        font-family: var(--font-accent);
+        font-size: clamp(0.8rem, 3vw, 1.1rem);
+        color: var(--championship-gold);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-weight: 600;
+        margin-bottom: var(--mobile-space-lg);
+        z-index: 2;
+        position: relative;
+      }
 
-        @keyframes diagonalShine {
-            0%, 100% { 
-                opacity: 0.3;
-                transform: rotate(45deg) translateX(-20px);
-            }
-            50% { 
-                opacity: 0.7;
-                transform: rotate(45deg) translateX(20px);
-            }
-        }
+      .portal-tagline {
+        font-family: var(--font-korean);
+        font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: var(--mobile-space-xl);
+        z-index: 2;
+        position: relative;
+        line-height: 1.4;
+      }
 
-        .portal-logo {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 12vw, 6rem);
-            font-weight: 900;
-            color: var(--platinum-white);
-            margin-bottom: var(--mobile-space-md);
-            position: relative;
-            letter-spacing: -0.05em;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            z-index: 2;
-        }
+      .portal-progress {
+        width: 100%;
+        max-width: 250px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+        z-index: 2;
+      }
 
-        .portal-subtitle {
-            font-family: var(--font-accent);
-            font-size: clamp(0.8rem, 3vw, 1.1rem);
-            color: var(--championship-gold);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 600;
-            margin-bottom: var(--mobile-space-lg);
-            z-index: 2;
-            position: relative;
-        }
+      .progress-fill {
+        height: 100%;
+        background: var(--gradient-gold);
+        width: 0%;
+        transition: width 3s var(--ease-out-expo);
+        border-radius: 2px;
+        box-shadow: 0 0 10px var(--championship-gold);
+      }
 
-        .portal-tagline {
-            font-family: var(--font-korean);
-            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: var(--mobile-space-xl);
-            z-index: 2;
-            position: relative;
-            line-height: 1.4;
-        }
+      /* Mobile-First Glassmorphism Navigation */
+      .stadium-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: var(--glass-blur);
+        border-bottom: var(--glass-border);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-out-quart);
+      }
 
-        .portal-progress {
-            width: 100%;
-            max-width: 250px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-            z-index: 2;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--gradient-gold);
-            width: 0%;
-            transition: width 3s var(--ease-out-expo);
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--championship-gold);
-        }
-
-        /* Mobile-First Glassmorphism Navigation */
+      @media (min-width: 769px) {
         .stadium-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: var(--glass-blur);
-            border-bottom: var(--glass-border);
-            z-index: 1000;
-            transition: all 0.4s var(--ease-out-quart);
+          height: 90px;
         }
+      }
 
-        @media (min-width: 769px) {
-            .stadium-nav {
-                height: 90px;
-            }
-        }
+      .stadium-nav.scrolled {
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 1px solid var(--championship-gold);
+        backdrop-filter: var(--glass-blur-strong);
+      }
 
-        .stadium-nav.scrolled {
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 1px solid var(--championship-gold);
-            backdrop-filter: var(--glass-blur-strong);
-        }
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+      }
 
+      @media (min-width: 769px) {
         .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--mobile-space-lg);
+          padding: 0 var(--space-xl);
         }
+      }
 
-        @media (min-width: 769px) {
-            .nav-container {
-                padding: 0 var(--space-xl);
-            }
-        }
+      .team-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        text-decoration: none;
+        color: var(--platinum-white);
+        transition: all 0.3s ease;
+      }
 
+      @media (min-width: 769px) {
         .team-brand {
-            display: flex;
-            align-items: center;
-            gap: var(--mobile-space-md);
-            text-decoration: none;
-            color: var(--platinum-white);
-            transition: all 0.3s ease;
+          gap: var(--space-lg);
         }
+      }
 
-        @media (min-width: 769px) {
-            .team-brand {
-                gap: var(--space-lg);
-            }
-        }
+      .brand-shield {
+        width: 50px;
+        height: 40px;
+        background: var(--gradient-gold);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 4px;
+      }
 
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
         .brand-shield {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-gold);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 900;
-            font-size: 1rem;
-            color: var(--pure-black);
-            position: relative;
-            overflow: hidden;
+          width: 60px;
+          height: 50px;
+          border-radius: 8px;
         }
+      }
 
-        @media (min-width: 769px) {
-            .brand-shield {
-                width: 50px;
-                height: 50px;
-                border-radius: 8px;
-                font-size: 1.2rem;
-            }
-        }
+      .brand-shield::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
 
-        .brand-shield::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s ease;
-        }
+      .team-brand:hover .brand-shield::before {
+        left: 100%;
+      }
 
-        .team-brand:hover .brand-shield::before {
-            left: 100%;
-        }
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
 
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
+      .brand-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--championship-gold);
+        line-height: 1;
+      }
 
+      @media (min-width: 769px) {
         .brand-title {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--championship-gold);
-            line-height: 1;
+          font-size: 1.3rem;
         }
+      }
 
-        @media (min-width: 769px) {
-            .brand-title {
-                font-size: 1.3rem;
-            }
-        }
+      .brand-subtitle {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
 
+      @media (min-width: 769px) {
         .brand-subtitle {
-            font-family: var(--font-korean);
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+          font-size: 0.8rem;
+          letter-spacing: 0.1em;
         }
+      }
 
-        @media (min-width: 769px) {
-            .brand-subtitle {
-                font-size: 0.8rem;
-                letter-spacing: 0.1em;
-            }
-        }
+      /* Mobile Navigation Menu */
+      .nav-menu {
+        display: none;
+        list-style: none;
+        gap: var(--space-2xl);
+        align-items: center;
+      }
 
-        /* Mobile Navigation Menu */
+      @media (min-width: 769px) {
         .nav-menu {
-            display: none;
-            list-style: none;
-            gap: var(--space-2xl);
-            align-items: center;
+          display: flex;
         }
+      }
 
-        @media (min-width: 769px) {
-            .nav-menu {
-                display: flex;
-            }
-        }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: var(--space-md) var(--space-lg);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
 
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            color: var(--platinum-white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: var(--space-md) var(--space-lg);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-glass);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
 
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-glass);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+      .nav-link:hover::before {
+        opacity: 1;
+      }
 
-        .nav-link:hover::before {
-            opacity: 1;
-        }
+      .nav-link:hover {
+        color: var(--championship-gold);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+      }
 
-        .nav-link:hover {
-            color: var(--championship-gold);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-        }
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
 
-        /* Mobile Menu Toggle */
+      @media (min-width: 769px) {
         .mobile-menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
+          display: none;
         }
+      }
 
-        @media (min-width: 769px) {
-            .mobile-menu-toggle {
-                display: none;
-            }
-        }
+      .hamburger-line {
+        width: 25px;
+        height: 2px;
+        background: var(--championship-gold);
+        transition: all 0.3s ease;
+      }
 
-        .hamburger-line {
-            width: 25px;
-            height: 2px;
-            background: var(--championship-gold);
-            transition: all 0.3s ease;
-        }
+      .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
 
-        .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
+      .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
 
-        .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
+      .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
 
-        .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
+      /* Mobile Menu Overlay */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: var(--glass-blur-strong);
+        transform: translateX(-100%);
+        transition: transform 0.4s var(--ease-out-quart);
+        z-index: 999;
+        padding: var(--mobile-space-2xl);
+      }
 
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 70px);
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: var(--glass-blur-strong);
-            transform: translateX(-100%);
-            transition: transform 0.4s var(--ease-out-quart);
-            z-index: 999;
-            padding: var(--mobile-space-2xl);
-        }
+      .mobile-menu-overlay.active {
+        transform: translateX(0);
+      }
 
-        .mobile-menu-overlay.active {
-            transform: translateX(0);
-        }
+      .mobile-nav-links {
+        list-style: none;
+        margin-bottom: var(--mobile-space-2xl);
+      }
 
-        .mobile-nav-links {
-            list-style: none;
-            margin-bottom: var(--mobile-space-2xl);
-        }
+      .mobile-nav-links li {
+        margin-bottom: var(--mobile-space-lg);
+      }
 
-        .mobile-nav-links li {
-            margin-bottom: var(--mobile-space-lg);
-        }
+      .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: var(--mobile-space-lg);
+        border-radius: 10px;
+        background: var(--gradient-glass);
+        border: var(--glass-border);
+        transition: all 0.3s ease;
+      }
 
-        .mobile-nav-links a {
-            display: flex;
-            align-items: center;
-            gap: var(--mobile-space-md);
-            color: var(--platinum-white);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 500;
-            padding: var(--mobile-space-lg);
-            border-radius: 10px;
-            background: var(--gradient-glass);
-            border: var(--glass-border);
-            transition: all 0.3s ease;
-        }
+      .mobile-nav-links a:hover {
+        color: var(--championship-gold);
+        background: var(--gradient-glass-strong);
+      }
 
-        .mobile-nav-links a:hover {
-            color: var(--championship-gold);
-            background: var(--gradient-glass-strong);
-        }
+      .nav-actions {
+        display: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
 
+      @media (min-width: 769px) {
         .nav-actions {
-            display: none;
-            gap: var(--space-md);
-            align-items: center;
+          display: flex;
         }
+      }
 
-        @media (min-width: 769px) {
-            .nav-actions {
-                display: flex;
-            }
-        }
+      .nav-btn {
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        border: var(--glass-border);
+        background: var(--gradient-glass);
+        color: var(--platinum-white);
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 8px;
+        backdrop-filter: var(--glass-blur);
+        position: relative;
+        overflow: hidden;
+      }
 
+      @media (min-width: 769px) {
         .nav-btn {
-            padding: var(--mobile-space-md) var(--mobile-space-lg);
-            border: var(--glass-border);
-            background: var(--gradient-glass);
-            color: var(--platinum-white);
-            font-family: var(--font-korean);
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border-radius: 8px;
-            backdrop-filter: var(--glass-blur);
-            position: relative;
-            overflow: hidden;
+          padding: var(--space-md) var(--space-xl);
+          font-size: 0.85rem;
+          border-radius: 12px;
         }
+      }
 
-        @media (min-width: 769px) {
-            .nav-btn {
-                padding: var(--space-md) var(--space-xl);
-                font-size: 0.85rem;
-                border-radius: 12px;
-            }
-        }
+      .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--pure-black);
+        border: 1px solid var(--championship-gold);
+      }
 
-        .btn-primary {
-            background: var(--gradient-gold);
-            color: var(--pure-black);
-            border: 1px solid var(--championship-gold);
-        }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
+      .btn-secondary:hover {
+        background: var(--gradient-glass-strong);
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
 
-        .btn-secondary:hover {
-            background: var(--gradient-glass-strong);
-            color: var(--championship-gold);
-            transform: translateY(-2px);
-        }
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-space-md);
+      }
 
-        .mobile-nav-actions {
-            display: flex;
-            flex-direction: column;
-            gap: var(--mobile-space-md);
-        }
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--mobile-space-lg);
+        font-size: 1rem;
+      }
 
-        .mobile-nav-actions .nav-btn {
-            width: 100%;
-            text-align: center;
-            padding: var(--mobile-space-lg);
-            font-size: 1rem;
-        }
+      /* Epic Arena Section - Mobile First */
+      .championship-arena {
+        position: relative;
+        min-height: 100vh;
+        background: var(--pure-black);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
+        margin-top: 70px;
+      }
 
-        /* Epic Arena Section - Mobile First */
+      @media (min-width: 769px) {
         .championship-arena {
-            position: relative;
-            min-height: 100vh;
-            background: var(--pure-black);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--mobile-space-2xl) var(--mobile-space-lg);
-            margin-top: 70px;
+          padding: var(--space-4xl) 0;
+          margin-top: 90px;
         }
+      }
 
-        @media (min-width: 769px) {
-            .championship-arena {
-                padding: var(--space-4xl) 0;
-                margin-top: 90px;
-            }
+      .stadium-atmosphere {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 30% 70%,
+            rgba(212, 175, 55, 0.1) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 40%
+          ),
+          linear-gradient(
+            45deg,
+            transparent 30%,
+            rgba(212, 175, 55, 0.03) 50%,
+            transparent 70%
+          );
+        animation: atmosphereFlow 20s ease-in-out infinite;
+      }
+
+      @keyframes atmosphereFlow {
+        0%,
+        100% {
+          transform: translateX(0) scale(1);
         }
-
-        .stadium-atmosphere {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
-                linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.03) 50%, transparent 70%);
-            animation: atmosphereFlow 20s ease-in-out infinite;
+        50% {
+          transform: translateX(-20px) scale(1.02);
         }
+      }
 
-        @keyframes atmosphereFlow {
-            0%, 100% { transform: translateX(0) scale(1); }
-            50% { transform: translateX(-20px) scale(1.02); }
-        }
+      .arena-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        max-width: 1000px;
+        width: 100%;
+      }
 
-        .arena-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            max-width: 1000px;
-            width: 100%;
-        }
+      .championship-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 50px;
+        margin-bottom: var(--mobile-space-xl);
+        font-family: var(--font-accent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--championship-gold);
+        box-shadow: var(--glass-shadow);
+      }
 
+      @media (min-width: 769px) {
         .championship-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--mobile-space-sm);
-            padding: var(--mobile-space-md) var(--mobile-space-lg);
-            background: var(--gradient-glass);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 50px;
-            margin-bottom: var(--mobile-space-xl);
-            font-family: var(--font-accent);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--championship-gold);
-            box-shadow: var(--glass-shadow);
+          gap: var(--space-sm);
+          padding: var(--space-md) var(--space-xl);
+          margin-bottom: var(--space-2xl);
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
         }
+      }
 
-        @media (min-width: 769px) {
-            .championship-badge {
-                gap: var(--space-sm);
-                padding: var(--space-md) var(--space-xl);
-                margin-bottom: var(--space-2xl);
-                font-size: 0.85rem;
-                letter-spacing: 0.2em;
-            }
+      /* Hero Logo Enhancement - REDUCED SIZE & SPACING */
+      .hero-logo-container {
+        position: relative;
+        margin-bottom: var(--mobile-space-xs);
+      }
+
+      .hero-logo {
+        width: 200px;
+        height: 150px;
+        margin: 0 auto var(--mobile-space-xs);
+        display: block;
+        transition: all 0.5s var(--ease-out-quart);
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-logo:hover {
+        transform: scale(1.08) rotate(1deg);
+        filter: brightness(0) saturate(100%) invert(100%)
+          drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      }
+
+      @media (min-width: 769px) {
+        .hero-logo {
+          width: 160px;
+          height: 120px;
         }
+      }
 
+      .arena-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 15vw, 9rem);
+        font-weight: 900;
+        line-height: 0.85;
+        margin-bottom: var(--mobile-space-lg);
+        color: var(--platinum-white);
+        position: relative;
+        letter-spacing: -0.05em;
+      }
+
+      @media (min-width: 769px) {
         .arena-title {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 15vw, 9rem);
-            font-weight: 900;
-            line-height: 0.85;
-            margin-bottom: var(--mobile-space-lg);
-            color: var(--platinum-white);
-            position: relative;
-            letter-spacing: -0.05em;
+          margin-bottom: var(--space-lg);
         }
+      }
 
-        @media (min-width: 769px) {
-            .arena-title {
-                margin-bottom: var(--space-lg);
-            }
-        }
+      .title-highlight {
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        font-size: clamp(2.5rem, 2vw, 2.6rem);
+      }
 
-        .title-highlight {
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
-        }
+      .arena-subtitle {
+        font-family: var(--font-korean);
+        font-size: clamp(1rem, 4vw, 1.6rem);
+        font-weight: 400;
+        margin-bottom: var(--mobile-space-2xl);
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        padding: 0 var(--mobile-space-md);
+      }
 
+      @media (min-width: 769px) {
         .arena-subtitle {
-            font-family: var(--font-korean);
-            font-size: clamp(1rem, 4vw, 1.6rem);
-            font-weight: 400;
-            margin-bottom: var(--mobile-space-2xl);
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-            padding: 0 var(--mobile-space-md);
+          margin-bottom: var(--space-2xl);
+          padding: 0;
         }
+      }
 
-        @media (min-width: 769px) {
-            .arena-subtitle {
-                margin-bottom: var(--space-2xl);
-                padding: 0;
-            }
-        }
+      .stadium-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-xl);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        perspective: 1000px;
+      }
 
+      @media (min-width: 769px) {
         .stadium-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--mobile-space-lg);
-            margin-bottom: var(--mobile-space-2xl);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            perspective: 1000px;
+          gap: var(--space-xl);
+          margin-bottom: var(--space-xl);
         }
+      }
 
-        @media (min-width: 769px) {
-            .stadium-stats {
-                gap: var(--space-2xl);
-                margin-bottom: var(--space-4xl);
-            }
-        }
+      .stat-card {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.02) 50%,
+          rgba(212, 175, 55, 0.1) 100%
+        );
+        backdrop-filter: var(--glass-blur);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 20px;
+        padding: var(--mobile-space-xl);
+        text-align: center;
+        transition: all 0.6s var(--ease-out-quart);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+      }
 
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--championship-gold) 50%,
+          transparent 100%
+        );
+        transform: scaleX(0);
+        transition: transform 0.6s var(--ease-out-quart);
+      }
+
+      .stat-card::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.8s var(--ease-out-quart);
+        pointer-events: none;
+      }
+
+      @media (min-width: 769px) {
         .stat-card {
-            background: linear-gradient(145deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 50%, 
-                rgba(212, 175, 55, 0.1) 100%
-            );
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            padding: var(--mobile-space-xl);
-            text-align: center;
-            transition: all 0.6s var(--ease-out-quart);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
+          border-radius: 24px;
+          padding: var(--space-2xl);
         }
+      }
 
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                var(--championship-gold) 50%, 
-                transparent 100%
-            );
-            transform: scaleX(0);
-            transition: transform 0.6s var(--ease-out-quart);
-        }
+      .stat-card:hover {
+        transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.05);
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 50%,
+          rgba(212, 175, 55, 0.2) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.5);
+        box-shadow: 0 25px 60px rgba(212, 175, 55, 0.3),
+          0 15px 35px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+      }
 
-        .stat-card::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, 
-                rgba(212, 175, 55, 0.1) 0%, 
-                transparent 70%
-            );
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.8s var(--ease-out-quart);
-            pointer-events: none;
-        }
+      .stat-card:hover::before {
+        transform: scaleX(1);
+      }
 
-        @media (min-width: 769px) {
-            .stat-card {
-                border-radius: 24px;
-                padding: var(--space-2xl);
-            }
-        }
+      .stat-card:hover::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        .stat-card:hover {
-            transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.05);
-            background: linear-gradient(145deg, 
-                rgba(255, 255, 255, 0.1) 0%, 
-                rgba(255, 255, 255, 0.05) 50%, 
-                rgba(212, 175, 55, 0.2) 100%
-            );
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 
-                0 25px 60px rgba(212, 175, 55, 0.3),
-                0 15px 35px rgba(0, 0, 0, 0.4),
-                inset 0 2px 0 rgba(255, 255, 255, 0.2);
-        }
+      .stat-card:nth-child(1):hover {
+        transform: translateY(-15px) rotateX(5deg) rotateY(-3deg) scale(1.05);
+      }
 
-        .stat-card:hover::before {
-            transform: scaleX(1);
-        }
+      .stat-card:nth-child(3):hover {
+        transform: translateY(-15px) rotateX(5deg) rotateY(3deg) scale(1.05);
+      }
 
-        .stat-card:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
+      .stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3vw, 5rem);
+        font-weight: 900;
+        background: linear-gradient(
+          135deg,
+          var(--championship-gold) 0%,
+          var(--golden-bright) 50%,
+          var(--championship-gold) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        line-height: 0.9;
+        margin-bottom: var(--mobile-space-md);
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+        transition: all 0.4s var(--ease-out-quart);
+      }
 
-        .stat-card:nth-child(1):hover {
-            transform: translateY(-15px) rotateX(5deg) rotateY(-3deg) scale(1.05);
-        }
+      .stat-card:hover .stat-number {
+        transform: scale(1.1);
+        text-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
+      }
 
-        .stat-card:nth-child(3):hover {
-            transform: translateY(-15px) rotateX(5deg) rotateY(3deg) scale(1.05);
-        }
+      .stat-label {
+        font-family: var(--font-korean);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-weight: 500;
+        position: relative;
+        z-index: 2;
+        transition: all 0.4s var(--ease-out-quart);
+      }
 
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 10vw, 5rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, 
-                var(--championship-gold) 0%, 
-                var(--golden-bright) 50%, 
-                var(--championship-gold) 100%
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            line-height: 0.9;
-            margin-bottom: var(--mobile-space-md);
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
-            transition: all 0.4s var(--ease-out-quart);
-        }
+      .stat-card:hover .stat-label {
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+        letter-spacing: 0.3em;
+      }
 
-        .stat-card:hover .stat-number {
-            transform: scale(1.1);
-            text-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
-        }
-
+      @media (min-width: 769px) {
         .stat-label {
-            font-family: var(--font-korean);
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 500;
-            position: relative;
-            z-index: 2;
-            transition: all 0.4s var(--ease-out-quart);
+          font-size: 0.85rem;
+          letter-spacing: 0.25em;
         }
 
         .stat-card:hover .stat-label {
-            color: var(--championship-gold);
-            transform: translateY(-2px);
-            letter-spacing: 0.3em;
+          letter-spacing: 0.35em;
         }
+      }
 
-        @media (min-width: 769px) {
-            .stat-label {
-                font-size: 0.85rem;
-                letter-spacing: 0.25em;
-            }
-            
-            .stat-card:hover .stat-label {
-                letter-spacing: 0.35em;
-            }
-        }
+      /* Creative Action Interface - MIXED RESPONSIVE DESIGN */
+      .stadium-interface {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--mobile-space-md);
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-        /* Creative Action Interface - Mobile First */
+      @media (min-width: 769px) {
         .stadium-interface {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--mobile-space-lg);
-            max-width: 800px;
-            margin: 0 auto;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-xl);
+          max-width: 900px;
         }
+      }
 
-        @media (min-width: 769px) {
-            .stadium-interface {
-                grid-template-columns: 1fr 1fr;
-                gap: var(--space-xl);
-            }
-        }
+      .action-portal {
+        background: linear-gradient(145deg, 
+          rgba(255, 255, 255, 0.08) 0%, 
+          rgba(255, 255, 255, 0.03) 50%, 
+          rgba(212, 175, 55, 0.05) 100%
+        );
+        backdrop-filter: var(--glass-blur);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: 16px;
+        padding: var(--mobile-space-lg);
+        text-align: center;
+        transition: all 0.4s var(--ease-out-quart);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+          0 4px 20px rgba(0, 0, 0, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
+      @media (min-width: 769px) {
         .action-portal {
-            background: var(--gradient-glass);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 16px;
-            padding: var(--mobile-space-xl);
-            text-align: center;
-            transition: all 0.5s var(--ease-out-quart);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--glass-shadow);
+          background: var(--gradient-glass);
+          border: var(--glass-border);
+          border-radius: 24px;
+          padding: var(--space-2xl);
+          min-height: 280px;
+          justify-content: space-between;
+          box-shadow: var(--glass-shadow);
         }
+      }
 
-        @media (min-width: 769px) {
-            .action-portal {
-                border-radius: 20px;
-                padding: var(--space-2xl);
-            }
+      .action-portal::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, 
+          transparent 0%, 
+          var(--championship-gold) 50%, 
+          transparent 100%
+        );
+        transform: scaleX(0);
+        transition: transform 0.4s var(--ease-out-quart);
+      }
+
+      .action-portal::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      @media (min-width: 769px) {
+        .action-portal::after {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(212, 175, 55, 0.2),
+            transparent
+          );
+          transition: left 0.8s ease;
         }
+      }
 
-        .action-portal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-            transition: left 0.8s ease;
-        }
+      .action-portal:hover::before {
+        transform: scaleX(1);
+      }
 
-        .action-portal:hover::before {
-            left: 100%;
-        }
+      .action-portal:hover::after {
+        left: 100%;
+      }
 
-        .action-portal:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: var(--championship-gold);
-            background: var(--gradient-glass-strong);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
-        }
+      .portal-icon {
+        font-size: 2rem;
+        margin-bottom: var(--mobile-space-sm);
+        display: block;
+        background: linear-gradient(135deg, 
+          var(--championship-gold) 0%, 
+          var(--golden-bright) 50%, 
+          var(--championship-gold) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+        transition: all 0.3s ease;
+      }
 
+      @media (min-width: 769px) {
         .portal-icon {
-            font-size: 2.5rem;
-            margin-bottom: var(--mobile-space-lg);
-            display: block;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+          font-size: 3.5rem;
+          margin-bottom: var(--space-lg);
+          background: var(--gradient-gold);
+          filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
         }
+      }
 
-        @media (min-width: 769px) {
-            .portal-icon {
-                font-size: 3rem;
-            }
-        }
+      .portal-title {
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--platinum-white);
+        letter-spacing: 0.02em;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
 
+      @media (min-width: 769px) {
         .portal-title {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--platinum-white);
-            margin-bottom: var(--mobile-space-md);
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: var(--space-sm);
+          letter-spacing: -0.02em;
+          text-transform: none;
+        }
+      }
+
+      .portal-description {
+        display: none;
+      }
+
+      @media (min-width: 769px) {
+        .portal-description {
+          display: block;
+          font-family: var(--font-korean);
+          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.4;
+          margin-bottom: var(--space-xl);
+          font-weight: 400;
+        }
+      }
+
+      .portal-action {
+        display: none;
+      }
+
+      @media (min-width: 769px) {
+        .portal-action {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--space-sm);
+          padding: var(--space-lg) var(--space-2xl);
+          background: var(--gradient-gold);
+          color: var(--pure-black);
+          font-family: var(--font-display);
+          font-size: 0.9rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          border: none;
+          border-radius: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: auto;
+        }
+      }
+
+      .action-portal:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(212, 175, 55, 0.4);
+        background: linear-gradient(145deg, 
+          rgba(255, 255, 255, 0.12) 0%, 
+          rgba(255, 255, 255, 0.06) 50%, 
+          rgba(212, 175, 55, 0.1) 100%
+        );
+        box-shadow: 
+          0 12px 40px rgba(212, 175, 55, 0.15),
+          0 8px 20px rgba(0, 0, 0, 0.2),
+          inset 0 2px 0 rgba(255, 255, 255, 0.15);
+      }
+
+      @media (min-width: 769px) {
+        .action-portal:hover {
+          transform: translateY(-12px) scale(1.03);
+          border-color: rgba(212, 175, 55, 0.6);
+          background: var(--gradient-glass-strong);
+          box-shadow: 0 25px 60px rgba(212, 175, 55, 0.25);
+        }
+      }
+
+      .action-portal:hover .portal-icon {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      }
+
+      @media (min-width: 769px) {
+        .action-portal:hover .portal-icon {
+          filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+        }
+      }
+
+      .action-portal:hover .portal-title {
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
+
+      @media (min-width: 769px) {
+        .portal-action:hover {
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+          background: linear-gradient(45deg, var(--golden-bright) 0%, var(--championship-gold) 100%);
+        }
+      }
+
+      /* Championship Footer */
+      .championship-footer {
+        background: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 100%
+        );
+        border-top: var(--glass-border);
+        padding: var(--mobile-space-3xl) 0;
+        backdrop-filter: var(--glass-blur);
+      }
+
+      @media (min-width: 769px) {
+        .championship-footer {
+          padding: var(--space-4xl) 0;
+        }
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .footer-content {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .footer-brand {
+        margin-bottom: var(--mobile-space-xl);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 16px;
+        padding: var(--mobile-space-xl);
+        display: inline-block;
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .footer-brand {
+          margin-bottom: var(--space-2xl);
+          border-radius: 20px;
+          padding: var(--space-2xl);
+        }
+      }
+
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 900;
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--mobile-space-sm);
+      }
+
+      @media (min-width: 769px) {
+        .footer-logo {
+          font-size: 2.5rem;
+        }
+      }
+
+      .footer-tagline {
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+
+      @media (min-width: 769px) {
+        .footer-tagline {
+          font-size: 0.9rem;
+          letter-spacing: 0.2em;
+        }
+      }
+
+      .footer-text {
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (min-width: 769px) {
+        .footer-text {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Enhanced Animation Classes */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .fade-up {
+          transform: translateY(40px);
+        }
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Stadium Effect Particles */
+      .stadium-particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: var(--championship-gold);
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 4s infinite ease-in-out;
+      }
+
+      @media (min-width: 769px) {
+        .stadium-particle {
+          width: 3px;
+          height: 3px;
+        }
+      }
+
+      @keyframes particleFloat {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5);
+        }
+        50% {
+          opacity: 0.8;
+          transform: translateY(-100px) scale(1);
+        }
+      }
+
+      @media (min-width: 769px) {
+        @keyframes particleFloat {
+          0%,
+          100% {
+            opacity: 0;
+            transform: translateY(0) scale(0.5);
+          }
+          50% {
+            opacity: 0.8;
+            transform: translateY(-150px) scale(1);
+          }
+        }
+      }
+
+      /* Touch Optimizations */
+      @media (hover: none) {
+        .action-portal:hover,
+        .stat-card:hover {
+          transform: none;
         }
 
-        @media (min-width: 769px) {
-            .portal-title {
-                font-size: 1.4rem;
-            }
+        .action-portal:active {
+          transform: scale(0.98);
+        }
+
+        .stat-card:active {
+          transform: scale(0.98);
+        }
+      }
+
+      /* Improved readability on small screens */
+      @media (max-width: 480px) {
+        .arena-subtitle {
+          font-size: 0.9rem;
+          line-height: 1.4;
         }
 
         .portal-description {
-            font-family: var(--font-korean);
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.5;
-            margin-bottom: var(--mobile-space-lg);
+          font-size: 0.8rem;
+          line-height: 1.5;
         }
-
-        @media (min-width: 769px) {
-            .portal-description {
-                font-size: 0.9rem;
-            }
-        }
-
-        .portal-action {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--mobile-space-sm);
-            padding: var(--mobile-space-md) var(--mobile-space-lg);
-            background: var(--gradient-gold);
-            color: var(--pure-black);
-            font-family: var(--font-korean);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        @media (min-width: 769px) {
-            .portal-action {
-                gap: var(--space-sm);
-                padding: var(--space-md) var(--space-xl);
-                font-size: 0.85rem;
-                border-radius: 10px;
-            }
-        }
-
-        .portal-action:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Enhanced Content Sections */
-        .content-universe {
-            padding: var(--mobile-space-3xl) 0;
-            position: relative;
-        }
-
-        @media (min-width: 769px) {
-            .content-universe {
-                padding: var(--space-4xl) 0;
-            }
-        }
-
-        .universe-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--mobile-space-lg);
-        }
-
-        @media (min-width: 769px) {
-            .universe-container {
-                padding: 0 var(--space-xl);
-            }
-        }
-
-        .section-portal {
-            text-align: center;
-            margin-bottom: var(--mobile-space-3xl);
-        }
-
-        @media (min-width: 769px) {
-            .section-portal {
-                margin-bottom: var(--space-4xl);
-            }
-        }
-
-        .section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--mobile-space-sm);
-            padding: var(--mobile-space-md) var(--mobile-space-lg);
-            background: var(--gradient-glass);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 50px;
-            margin-bottom: var(--mobile-space-xl);
-            font-family: var(--font-accent);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--championship-gold);
-            box-shadow: var(--glass-shadow);
-        }
-
-        @media (min-width: 769px) {
-            .section-badge {
-                gap: var(--space-sm);
-                padding: var(--space-md) var(--space-xl);
-                margin-bottom: var(--space-xl);
-                font-size: 0.8rem;
-                letter-spacing: 0.2em;
-            }
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 8vw, 4.5rem);
-            font-weight: 800;
-            color: var(--platinum-white);
-            margin-bottom: var(--mobile-space-lg);
-            letter-spacing: -0.02em;
-        }
-
-        @media (min-width: 769px) {
-            .section-title {
-                margin-bottom: var(--space-lg);
-            }
-        }
-
-        .section-description {
-            font-family: var(--font-korean);
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            padding: 0 var(--mobile-space-md);
-        }
-
-        @media (min-width: 769px) {
-            .section-description {
-                font-size: 1.1rem;
-                padding: 0;
-            }
-        }
-
-        /* Match Galaxy - Mobile First */
-        .match-galaxy {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--mobile-space-lg);
-        }
-
-        @media (min-width: 769px) {
-            .match-galaxy {
-                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-                gap: var(--space-xl);
-            }
-        }
-
-        .match-universe {
-            background: var(--gradient-glass);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 16px;
-            padding: var(--mobile-space-xl);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s var(--ease-out-quart);
-            cursor: pointer;
-            box-shadow: var(--glass-shadow);
-        }
-
-        @media (min-width: 769px) {
-            .match-universe {
-                border-radius: 20px;
-                padding: var(--space-2xl);
-            }
-        }
-
-        .match-universe::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient-gold);
-            transform: scaleX(0);
-            transition: transform 0.5s var(--ease-out-quart);
-        }
-
-        .match-universe:hover::before {
-            transform: scaleX(1);
-        }
-
-        .match-universe:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--championship-gold);
-            background: var(--gradient-glass-strong);
-            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.15);
-        }
-
-        .match-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--mobile-space-lg);
-            flex-wrap: wrap;
-            gap: var(--mobile-space-sm);
-        }
-
-        @media (min-width: 769px) {
-            .match-header {
-                margin-bottom: var(--space-xl);
-                flex-wrap: nowrap;
-                gap: 0;
-            }
-        }
-
-        .match-date {
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            color: var(--championship-gold);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        @media (min-width: 769px) {
-            .match-date {
-                font-size: 0.9rem;
-                letter-spacing: 0.1em;
-            }
-        }
-
-        .match-status {
-            padding: var(--mobile-space-sm) var(--mobile-space-md);
-            background: rgba(212, 175, 55, 0.2);
-            color: var(--championship-gold);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        @media (min-width: 769px) {
-            .match-status {
-                padding: var(--space-sm) var(--space-lg);
-                font-size: 0.75rem;
-                letter-spacing: 0.1em;
-            }
-        }
-
-        .match-teams {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--platinum-white);
-            margin-bottom: var(--mobile-space-lg);
-            line-height: 1.3;
-        }
-
-        @media (min-width: 769px) {
-            .match-teams {
-                font-size: 1.6rem;
-            }
-        }
-
-        .match-description {
-            font-family: var(--font-korean);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-
-        @media (min-width: 769px) {
-            .match-description {
-                font-size: 0.95rem;
-            }
-        }
-
-        /* Championship Footer */
-        .championship-footer {
-            background: linear-gradient(135deg, var(--pure-black) 0%, var(--stadium-black) 100%);
-            border-top: var(--glass-border);
-            padding: var(--mobile-space-3xl) 0;
-            backdrop-filter: var(--glass-blur);
-        }
-
-        @media (min-width: 769px) {
-            .championship-footer {
-                padding: var(--space-4xl) 0;
-            }
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--mobile-space-lg);
-            text-align: center;
-        }
-
-        @media (min-width: 769px) {
-            .footer-content {
-                padding: 0 var(--space-xl);
-            }
-        }
-
-        .footer-brand {
-            margin-bottom: var(--mobile-space-xl);
-            background: var(--gradient-glass);
-            backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 16px;
-            padding: var(--mobile-space-xl);
-            display: inline-block;
-            box-shadow: var(--glass-shadow);
-        }
-
-        @media (min-width: 769px) {
-            .footer-brand {
-                margin-bottom: var(--space-2xl);
-                border-radius: 20px;
-                padding: var(--space-2xl);
-            }
-        }
-
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 900;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: var(--mobile-space-sm);
-        }
-
-        @media (min-width: 769px) {
-            .footer-logo {
-                font-size: 2.5rem;
-            }
-        }
-
-        .footer-tagline {
-            font-family: var(--font-korean);
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-        }
-
-        @media (min-width: 769px) {
-            .footer-tagline {
-                font-size: 0.9rem;
-                letter-spacing: 0.2em;
-            }
-        }
-
-        .footer-text {
-            font-family: var(--font-korean);
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        @media (min-width: 769px) {
-            .footer-text {
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Enhanced Animation Classes */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s var(--ease-out-quart);
-        }
-
-        @media (min-width: 769px) {
-            .fade-up {
-                transform: translateY(40px);
-            }
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scale-up {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.6s var(--ease-out-quart);
-        }
-
-        @media (min-width: 769px) {
-            .scale-up {
-                transform: scale(0.9);
-            }
-        }
-
-        .scale-up.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .slide-in {
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.7s var(--ease-out-quart);
-        }
-
-        @media (min-width: 769px) {
-            .slide-in {
-                transform: translateX(-30px);
-            }
-        }
-
-        .slide-in.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Stadium Effect Particles */
-        .stadium-particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--championship-gold);
-            border-radius: 50%;
-            opacity: 0;
-            animation: particleFloat 4s infinite ease-in-out;
-        }
-
-        @media (min-width: 769px) {
-            .stadium-particle {
-                width: 3px;
-                height: 3px;
-            }
-        }
-
-        @keyframes particleFloat {
-            0%, 100% { 
-                opacity: 0; 
-                transform: translateY(0) scale(0.5); 
-            }
-            50% { 
-                opacity: 0.8; 
-                transform: translateY(-100px) scale(1); 
-            }
-        }
-
-        @media (min-width: 769px) {
-            @keyframes particleFloat {
-                0%, 100% { 
-                    opacity: 0; 
-                    transform: translateY(0) scale(0.5); 
-                }
-                50% { 
-                    opacity: 0.8; 
-                    transform: translateY(-150px) scale(1); 
-                }
-            }
-        }
-
-        /* Touch Optimizations */
-        @media (hover: none) {
-            .action-portal:hover,
-            .match-universe:hover,
-            .stat-card:hover {
-                transform: none;
-            }
-            
-            .action-portal:active {
-                transform: scale(0.98);
-            }
-            
-            .match-universe:active {
-                transform: scale(0.98);
-            }
-            
-            .stat-card:active {
-                transform: scale(0.98);
-            }
-        }
-
-        /* Improved readability on small screens */
-        @media (max-width: 480px) {
-            .arena-subtitle {
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
-            
-            .portal-description,
-            .match-description,
-            .section-description {
-                font-size: 0.8rem;
-                line-height: 1.5;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Stadium Cursors - Desktop Only -->
     <div class="stadium-cursor"></div>
     <div class="cursor-aura"></div>
 
     <!-- Championship Portal with Uniform Diagonal -->
     <div class="championship-portal" id="portal">
-        <div class="portal-content">
-            <div class="portal-logo">24FC</div>
-            <div class="portal-subtitle">Always Ready</div>
-            <div class="portal-tagline">24시 항시대기 • 언제나 준비된 팀</div>
-            <div class="portal-progress">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
+      <div class="portal-content">
+        <div class="portal-logo">24HD</div>
+        <div class="portal-subtitle">Always Ready</div>
+        <div class="portal-tagline">24시 항시대기 • 언제나 준비된 팀</div>
+        <div class="portal-progress">
+          <div class="progress-fill" id="progressFill"></div>
         </div>
+      </div>
     </div>
 
     <!-- Mobile-First Glassmorphism Navigation -->
     <nav class="stadium-nav" id="nav">
-        <div class="nav-container">
-            <a href="#" class="team-brand">
-                <div class="brand-shield">24</div>
-                <div class="brand-text">
-                    <span class="brand-title">24FC</span>
-                    <span class="brand-subtitle">항시대기</span>
-                </div>
+      <div class="nav-container">
+        <a href="#" class="team-brand">
+          <div class="brand-shield">
+            <img
+              src="images/logo/24HD_logo.png"
+              alt="24HD Logo"
+              class="brand-logo"
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">24HD</span>
+            <span class="brand-subtitle">항시대기</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="#results" class="nav-link">
+              <span>🏆</span>
+              경기 결과
             </a>
+          </li>
+          <li>
+            <a href="#highlights" class="nav-link">
+              <span>🎬</span>
+              경기 영상
+            </a>
+          </li>
+          <li>
+            <a href="#squad" class="nav-link">
+              <span>⚽</span>
+              팀 구성
+            </a>
+          </li>
+          <li>
+            <a href="#news" class="nav-link">
+              <span>📰</span>
+              팀 소식
+            </a>
+          </li>
+        </ul>
 
-            <ul class="nav-menu">
-                <li>
-                    <a href="#results" class="nav-link">
-                        <span>🏆</span>
-                        경기 결과
-                    </a>
-                </li>
-                <li>
-                    <a href="#highlights" class="nav-link">
-                        <span>🎬</span>
-                        경기 영상
-                    </a>
-                </li>
-                <li>
-                    <a href="#squad" class="nav-link">
-                        <span>⚽</span>
-                        팀 구성
-                    </a>
-                </li>
-                <li>
-                    <a href="#news" class="nav-link">
-                        <span>📰</span>
-                        팀 소식
-                    </a>
-                </li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="#" class="nav-btn btn-secondary">로그인</a>
-                <a href="#" class="nav-btn btn-primary">팀 가입</a>
-            </div>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-            </button>
+        <div class="nav-actions">
+          <a href="#" class="nav-btn btn-secondary">로그인</a>
+          <a href="#" class="nav-btn btn-primary">팀 가입</a>
         </div>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
     </nav>
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-        <ul class="mobile-nav-links">
-            <li>
-                <a href="#results">
-                    <span>🏆</span>
-                    경기 결과
-                </a>
-            </li>
-            <li>
-                <a href="#highlights">
-                    <span>🎬</span>
-                    경기 영상
-                </a>
-            </li>
-            <li>
-                <a href="#squad">
-                    <span>⚽</span>
-                    팀 구성
-                </a>
-            </li>
-            <li>
-                <a href="#news">
-                    <span>📰</span>
-                    팀 소식
-                </a>
-            </li>
-        </ul>
-        
-        <div class="mobile-nav-actions">
-            <a href="#" class="nav-btn btn-secondary">로그인</a>
-            <a href="#" class="nav-btn btn-primary">팀 가입</a>
-        </div>
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="#results">
+            <span>🏆</span>
+            경기 결과
+          </a>
+        </li>
+        <li>
+          <a href="#highlights">
+            <span>🎬</span>
+            경기 영상
+          </a>
+        </li>
+        <li>
+          <a href="#squad">
+            <span>⚽</span>
+            팀 구성
+          </a>
+        </li>
+        <li>
+          <a href="#news">
+            <span>📰</span>
+            팀 소식
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-actions">
+        <a href="#" class="nav-btn btn-secondary">로그인</a>
+        <a href="#" class="nav-btn btn-primary">팀 가입</a>
+      </div>
     </div>
 
     <!-- Epic Championship Arena -->
     <section class="championship-arena" id="arena">
-        <div class="stadium-atmosphere"></div>
-        
-        <div class="arena-content">
-            <div class="championship-badge fade-up">
-                <span>⚡</span>
-                Championship Level
-            </div>
-            
-            <h1 class="arena-title fade-up">
-                <span class="title-highlight">24FC</span><br>
-                Always Ready
-            </h1>
-            
-            <p class="arena-subtitle fade-up">
-                언제나 준비된 전사들의 무대에서 펼쳐지는 진정한 챔피언십의 순간들
-            </p>
+      <div class="stadium-atmosphere"></div>
 
-            <div class="stadium-stats fade-up">
-                <div class="stat-card">
-                    <span class="stat-number">24</span>
-                    <span class="stat-label">Hours</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">365</span>
-                    <span class="stat-label">Days</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">∞</span>
-                    <span class="stat-label">Passion</span>
-                </div>
-            </div>
-
-            <div class="stadium-interface fade-up">
-                <div class="action-portal" onclick="navigateToResults()">
-                    <span class="portal-icon">🎯</span>
-                    <h3 class="portal-title">경기 결과</h3>
-                    <p class="portal-description">우리의 전투 기록과 승리의 순간들을 확인하세요</p>
-                    <button class="portal-action">
-                        <span>결과 보기</span>
-                        <span>→</span>
-                    </button>
-                </div>
-
-                <div class="action-portal" onclick="navigateToHighlights()">
-                    <span class="portal-icon">🎬</span>
-                    <h3 class="portal-title">경기 하이라이트</h3>
-                    <p class="portal-description">최고의 순간들을 영상으로 다시 경험하세요</p>
-                    <button class="portal-action">
-                        <span>영상 보기</span>
-                        <span>→</span>
-                    </button>
-                </div>
-            </div>
+      <div class="arena-content">
+        <div class="championship-badge fade-up">
+          <span>⚡</span>
+          Championship Level
         </div>
-    </section>
 
-    <!-- Match Results Universe -->
-    <section class="content-universe" id="results">
-        <div class="universe-container">
-            <div class="section-portal">
-                <div class="section-badge fade-up">
-                    <span>🏅</span>
-                    Latest Performance
-                </div>
-                <h2 class="section-title fade-up">Recent Battles</h2>
-                <p class="section-description fade-up">
-                    모든 경기가 챔피언십이다. 모든 순간이 우리의 전설을 만든다.
-                </p>
-            </div>
-
-            <div class="match-galaxy">
-                <div class="match-universe scale-up">
-                    <div class="match-header">
-                        <div class="match-date">Dec 15, 2024</div>
-                        <div class="match-status">승리</div>
-                    </div>
-                    <div class="match-teams">24FC vs 라이벌 유나이티드</div>
-                    <div class="match-description">
-                        전술적 완벽함의 마스터클래스. 우리의 항상 준비된 철학이 가장 중요한 순간에 빛을 발했다.
-                    </div>
-                </div>
-
-                <div class="match-universe scale-up">
-                    <div class="match-header">
-                        <div class="match-date">Dec 22, 2024</div>
-                        <div class="match-status">예정</div>
-                    </div>
-                    <div class="match-teams">24FC vs 챔피언십 엘리트</div>
-                    <div class="match-description">
-                        궁극의 시험이 기다리고 있다. 전설이 만들어지고 챔피언들이 운명과 마주하는 곳.
-                    </div>
-                </div>
-
-                <div class="match-universe scale-up">
-                    <div class="match-header">
-                        <div class="match-date">Dec 29, 2024</div>
-                        <div class="match-status">결승전</div>
-                    </div>
-                    <div class="match-teams">24FC vs 레거시 FC</div>
-                    <div class="match-description">
-                        역사가 만들어지는 순간. 한 시즌의 헌신과 챔피언 정신의 집대성이 펼쳐진다.
-                    </div>
-                </div>
-            </div>
+        <div class="hero-logo-container fade-up">
+          <img
+            src="images/logo/24HD_logo.png"
+            alt="24HD Team Logo"
+            class="hero-logo"
+          />
         </div>
+
+        <h1 class="arena-title fade-up">
+          <span class="title-highlight">24시 항시대기</span><br />
+          <!-- Always Ready -->
+        </h1>
+
+        <p class="arena-subtitle fade-up">
+휘문고 119기 그리고 그 이상         </p>
+
+        <div class="stadium-stats fade-up">
+          <div class="stat-card">
+            <span class="stat-number">24</span>
+            <span class="stat-label">Hours</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">365</span>
+            <span class="stat-label">Days</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Passion</span>
+          </div>
+        </div>
+
+        <div class="stadium-interface fade-up">
+          <div class="action-portal" onclick="navigateToResults()">
+            <span class="portal-icon">🏆</span>
+            <h3 class="portal-title">경기 결과</h3>
+            <p class="portal-description">승부의 기록, 영광의 순간들</p>
+            <button class="portal-action">
+              <span>VIEW</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="action-portal" onclick="navigateToHighlights()">
+            <span class="portal-icon">🎬</span>
+            <h3 class="portal-title">하이라이트</h3>
+            <p class="portal-description">최고의 플레이, 감동의 순간들</p>
+            <button class="portal-action">
+              <span>WATCH</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="action-portal" onclick="navigateToUniforms()">
+            <span class="portal-icon">👕</span>
+            <h3 class="portal-title">유니폼 신청</h3>
+            <p class="portal-description">프리미엄 팀 저지 주문하기</p>
+            <button class="portal-action">
+              <span>ORDER</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Championship Footer -->
     <footer class="championship-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">24FC</div>
-                <div class="footer-tagline">Always Ready • Always Champions</div>
-            </div>
-            <div class="footer-text">
-                &copy; 2024 24FC. 진정한 챔피언들을 위해, 챔피언들에 의해 만들어졌습니다.
-            </div>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">24HD</div>
+          <div class="footer-tagline">Always Ready • Always Champions</div>
         </div>
+        <div class="footer-text">
+          &copy; 2024 24HD. 진정한 챔피언들을 위해, 챔피언들에 의해
+          만들어졌습니다.
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Premium Stadium Experience - Enhanced Cursor Always Active
-        document.addEventListener('DOMContentLoaded', function() {
-            // Enhanced Cursor System - Always Active on Desktop
-            const cursor = document.querySelector('.stadium-cursor');
-            const aura = document.querySelector('.cursor-aura');
-            
-            if (cursor && aura) {
-                document.addEventListener('mousemove', (e) => {
-                    requestAnimationFrame(() => {
-                        cursor.style.left = e.clientX + 'px';
-                        cursor.style.top = e.clientY + 'px';
-                        
-                        setTimeout(() => {
-                            aura.style.left = (e.clientX - 15) + 'px';
-                            aura.style.top = (e.clientY - 15) + 'px';
-                        }, 50);
-                    });
-                });
+      // Premium Stadium Experience - Enhanced Cursor Always Active
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced Cursor System - Always Active on Desktop
+        const cursor = document.querySelector(".stadium-cursor");
+        const aura = document.querySelector(".cursor-aura");
 
-                // Enhanced cursor interactions
-                document.querySelectorAll('.action-portal, .match-universe, .stat-card, .nav-btn').forEach(element => {
-                    element.addEventListener('mouseenter', function() {
-                        cursor.style.transform = 'scale(2)';
-                        aura.style.transform = 'scale(1.5)';
-                        cursor.style.background = 'var(--golden-bright)';
-                        cursor.style.boxShadow = '0 0 30px var(--championship-gold)';
-                    });
+        if (cursor && aura) {
+          document.addEventListener("mousemove", (e) => {
+            requestAnimationFrame(() => {
+              cursor.style.left = e.clientX + "px";
+              cursor.style.top = e.clientY + "px";
 
-                    element.addEventListener('mouseleave', function() {
-                        cursor.style.transform = 'scale(1)';
-                        aura.style.transform = 'scale(1)';
-                        cursor.style.background = 'var(--golden-bright)';
-                        cursor.style.boxShadow = '0 0 20px var(--championship-gold)';
-                    });
-                });
-            }
-
-            // Mobile Detection
-            const isMobile = window.innerWidth <= 768;
-
-            // Mobile Menu Toggle
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-            
-            if (mobileMenuToggle && mobileMenuOverlay) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    mobileMenuOverlay.classList.toggle('active');
-                    document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
-                });
-                
-                // Close mobile menu when clicking on links
-                const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mobileMenuToggle.classList.remove('active');
-                        mobileMenuOverlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                });
-            }
-
-            // Championship Portal Sequence
-            const portal = document.getElementById('portal');
-            const progressFill = document.getElementById('progressFill');
-            
-            // Enhanced progress animation
-            setTimeout(() => {
-                progressFill.style.width = '100%';
-            }, 1000);
-
-            // Stadium entrance with particles
-            setTimeout(() => {
-                if (!isMobile) {
-                    createStadiumParticles();
-                }
-                portal.style.transition = 'all 2s cubic-bezier(0.19, 1, 0.22, 1)';
-                portal.style.opacity = '0';
-                portal.style.transform = 'scale(1.3)';
-                
-                setTimeout(() => {
-                    portal.style.visibility = 'hidden';
-                }, 2000);
-            }, 3500);
-
-            // Enhanced Arena Entrance
-            setTimeout(() => {
-                const elements = document.querySelectorAll('.fade-up');
-                elements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('visible');
-                    }, index * 200);
-                });
-            }, 5500);
-
-            // Stadium particle system - Desktop Only
-            function createStadiumParticles() {
-                if (isMobile) return;
-                
-                for (let i = 0; i < 15; i++) {
-                    setTimeout(() => {
-                        const particle = document.createElement('div');
-                        particle.className = 'stadium-particle';
-                        particle.style.left = Math.random() * window.innerWidth + 'px';
-                        particle.style.animationDelay = Math.random() * 4 + 's';
-                        document.querySelector('.championship-arena').appendChild(particle);
-                        
-                        setTimeout(() => {
-                            particle.remove();
-                        }, 4000);
-                    }, i * 200);
-                }
-            }
-
-            // Navigation effects
-            const nav = document.getElementById('nav');
-            let lastScrollY = window.scrollY;
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-                
-                // Hide nav on scroll down, show on scroll up (mobile)
-                if (isMobile) {
-                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                        nav.style.transform = 'translateY(-100%)';
-                    } else {
-                        nav.style.transform = 'translateY(0)';
-                    }
-                    lastScrollY = window.scrollY;
-                }
-            }, { passive: true });
-
-            // Enhanced scroll animations with Intersection Observer
-            const observerOptions = {
-                threshold: isMobile ? 0.05 : 0.1,
-                rootMargin: isMobile ? '0px 0px -30px 0px' : '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.scale-up, .slide-in').forEach(el => {
-                observer.observe(el);
+              setTimeout(() => {
+                aura.style.left = e.clientX - 15 + "px";
+                aura.style.top = e.clientY - 15 + "px";
+              }, 50);
             });
+          });
 
-            // Enhanced interactions with touch support
-            document.querySelectorAll('.action-portal, .match-universe, .stat-card').forEach(element => {
-                // Mouse events for desktop
-                element.addEventListener('mouseenter', function() {
-                    if (!isMobile) {
-                        this.style.transform = this.classList.contains('action-portal') 
-                            ? 'translateY(-10px) scale(1.05)' 
-                            : 'translateY(-8px) scale(1.02)';
-                    }
-                });
+          // Enhanced cursor interactions
+          document
+            .querySelectorAll(
+              ".action-portal, .stat-card, .nav-btn"
+            )
+            .forEach((element) => {
+              element.addEventListener("mouseenter", function () {
+                cursor.style.transform = "scale(2)";
+                aura.style.transform = "scale(1.5)";
+                cursor.style.background = "var(--golden-bright)";
+                cursor.style.boxShadow = "0 0 30px var(--championship-gold)";
+              });
 
-                element.addEventListener('mouseleave', function() {
-                    if (!isMobile) {
-                        this.style.transform = 'translateY(0) scale(1)';
-                    }
-                });
-                
-                // Touch events for mobile
-                element.addEventListener('touchstart', function() {
-                    if (isMobile) {
-                        this.style.transform = 'scale(0.98)';
-                    }
-                }, { passive: true });
-                
-                element.addEventListener('touchend', function() {
-                    if (isMobile) {
-                        this.style.transform = 'scale(1)';
-                    }
-                }, { passive: true });
+              element.addEventListener("mouseleave", function () {
+                cursor.style.transform = "scale(1)";
+                aura.style.transform = "scale(1)";
+                cursor.style.background = "var(--golden-bright)";
+                cursor.style.boxShadow = "0 0 20px var(--championship-gold)";
+              });
             });
+        }
 
-            // Smooth scroll with mobile optimization
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const offset = isMobile ? 70 : 90;
-                        const targetPosition = target.offsetTop - offset;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        // Mobile Detection
+        const isMobile = window.innerWidth <= 768;
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+
+        if (mobileMenuToggle && mobileMenuOverlay) {
+          mobileMenuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mobileMenuOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileMenuOverlay.classList.contains(
+              "active"
+            )
+              ? "hidden"
+              : "";
+          });
+
+          // Close mobile menu when clicking on links
+          const mobileNavLinks = document.querySelectorAll(
+            ".mobile-nav-links a"
+          );
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenuToggle.classList.remove("active");
+              mobileMenuOverlay.classList.remove("active");
+              document.body.style.overflow = "";
             });
+          });
+        }
 
-            // Create ambient particles periodically - Desktop Only
-            if (!isMobile) {
-                setInterval(createStadiumParticles, 15000);
+        // Championship Portal Sequence
+        const portal = document.getElementById("portal");
+        const progressFill = document.getElementById("progressFill");
+
+        // Enhanced progress animation
+        setTimeout(() => {
+          progressFill.style.width = "100%";
+        }, 1000);
+
+        // Stadium entrance with particles
+        setTimeout(() => {
+          if (!isMobile) {
+            createStadiumParticles();
+          }
+          portal.style.transition = "all 2s cubic-bezier(0.19, 1, 0.22, 1)";
+          portal.style.opacity = "0";
+          portal.style.transform = "scale(1.3)";
+
+          setTimeout(() => {
+            portal.style.visibility = "hidden";
+          }, 2000);
+        }, 3500);
+
+        // Enhanced Arena Entrance
+        setTimeout(() => {
+          const elements = document.querySelectorAll(".fade-up");
+          elements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add("visible");
+            }, index * 200);
+          });
+        }, 5500);
+
+        // Stadium particle system - Desktop Only
+        function createStadiumParticles() {
+          if (isMobile) return;
+
+          for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+              const particle = document.createElement("div");
+              particle.className = "stadium-particle";
+              particle.style.left = Math.random() * window.innerWidth + "px";
+              particle.style.animationDelay = Math.random() * 4 + "s";
+              document
+                .querySelector(".championship-arena")
+                .appendChild(particle);
+
+              setTimeout(() => {
+                particle.remove();
+              }, 4000);
+            }, i * 200);
+          }
+        }
+
+        // Navigation effects
+        const nav = document.getElementById("nav");
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.scrollY > 100) {
+              nav.classList.add("scrolled");
+            } else {
+              nav.classList.remove("scrolled");
             }
-            
-            // Performance optimizations for mobile
+
+            // Hide nav on scroll down, show on scroll up (mobile)
             if (isMobile) {
-                // Reduce animation complexity
-                document.documentElement.style.setProperty('--ease-out-quart', 'ease-out');
-                document.documentElement.style.setProperty('--ease-out-expo', 'ease-out');
-                
-                // Optimize touch scrolling
-                document.body.style.webkitOverflowScrolling = 'touch';
+              if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                nav.style.transform = "translateY(-100%)";
+              } else {
+                nav.style.transform = "translateY(0)";
+              }
+              lastScrollY = window.scrollY;
             }
-        });
+          },
+          { passive: true }
+        );
 
-        // Navigation functions with mobile optimization
-        function navigateToResults() {
-            const isMobile = window.innerWidth <= 768;
-            
-            if (!isMobile) {
-                createTransitionEffect();
-            }
-            
-            setTimeout(() => {
-                document.querySelector('#results').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }, isMobile ? 100 : 500);
+        // Enhanced interactions with touch support
+        document
+          .querySelectorAll(".action-portal, .stat-card")
+          .forEach((element) => {
+            // Mouse events for desktop
+            element.addEventListener("mouseenter", function () {
+              if (!isMobile) {
+                this.style.transform = this.classList.contains("action-portal")
+                  ? "translateY(-12px) scale(1.03)"
+                  : "translateY(-8px) scale(1.02)";
+              }
+            });
+
+            element.addEventListener("mouseleave", function () {
+              if (!isMobile) {
+                this.style.transform = "translateY(0) scale(1)";
+              }
+            });
+
+            // Touch events for mobile
+            element.addEventListener(
+              "touchstart",
+              function () {
+                if (isMobile) {
+                  this.style.transform = "scale(0.98)";
+                }
+              },
+              { passive: true }
+            );
+
+            element.addEventListener(
+              "touchend",
+              function () {
+                if (isMobile) {
+                  this.style.transform = "scale(1)";
+                }
+              },
+              { passive: true }
+            );
+          });
+
+        // Create ambient particles periodically - Desktop Only
+        if (!isMobile) {
+          setInterval(createStadiumParticles, 15000);
         }
 
-        function navigateToHighlights() {
-            const isMobile = window.innerWidth <= 768;
-            
-            if (!isMobile) {
-                createTransitionEffect();
-            }
-            
-            setTimeout(() => {
-                // 실제로는 highlights 페이지로 이동
-                console.log('Navigate to highlights page');
-            }, isMobile ? 100 : 500);
-        }
+        // Performance optimizations for mobile
+        if (isMobile) {
+          // Reduce animation complexity
+          document.documentElement.style.setProperty(
+            "--ease-out-quart",
+            "ease-out"
+          );
+          document.documentElement.style.setProperty(
+            "--ease-out-expo",
+            "ease-out"
+          );
 
-        function createTransitionEffect() {
-            const effect = document.createElement('div');
-            effect.style.cssText = `
+          // Optimize touch scrolling
+          document.body.style.webkitOverflowScrolling = "touch";
+        }
+      });
+
+      // Navigation functions with mobile optimization
+      function navigateToResults() {
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+          createTransitionEffect();
+        }
+        
+        setTimeout(
+          () => {
+            // 경기 결과 페이지로 이동
+            window.location.href = 'matches.html';
+          },
+          isMobile ? 100 : 500
+        );
+      }
+
+      function navigateToHighlights() {
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+          createTransitionEffect();
+        }
+        
+        setTimeout(
+          () => {
+            // 하이라이트 페이지로 이동
+            window.location.href = 'highlights.html';
+          },
+          isMobile ? 100 : 500
+        );
+      }
+
+      function navigateToUniforms() {
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!isMobile) {
+          createTransitionEffect();
+        }
+        
+        setTimeout(
+          () => {
+            // 유니폼 신청 페이지로 이동
+            window.location.href = 'store.html';
+          },
+          isMobile ? 100 : 500
+        );
+      }
+
+      function createTransitionEffect() {
+        const effect = document.createElement("div");
+        effect.style.cssText = `
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -1976,40 +1915,41 @@
                 transition: opacity 0.5s ease;
                 pointer-events: none;
             `;
-            document.body.appendChild(effect);
-            
-            setTimeout(() => {
-                effect.style.opacity = '1';
-            }, 10);
-            
-            setTimeout(() => {
-                effect.style.opacity = '0';
-                setTimeout(() => effect.remove(), 500);
-            }, 1000);
-        }
+        document.body.appendChild(effect);
 
-        // Handle orientation change on mobile
-        window.addEventListener('orientationchange', function() {
-            setTimeout(() => {
-                // Recalculate viewport height for mobile
-                const vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-                
-                // Close mobile menu if open
-                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-                const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-                
-                if (mobileMenuToggle && mobileMenuOverlay) {
-                    mobileMenuToggle.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            }, 100);
-        });
+        setTimeout(() => {
+          effect.style.opacity = "1";
+        }, 10);
 
-        // Initial viewport height calculation for mobile
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        setTimeout(() => {
+          effect.style.opacity = "0";
+          setTimeout(() => effect.remove(), 500);
+        }, 1000);
+      }
+
+      // Handle orientation change on mobile
+      window.addEventListener("orientationchange", function () {
+        setTimeout(() => {
+          // Recalculate viewport height for mobile
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+          // Close mobile menu if open
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const mobileMenuOverlay =
+            document.getElementById("mobileMenuOverlay");
+
+          if (mobileMenuToggle && mobileMenuOverlay) {
+            mobileMenuToggle.classList.remove("active");
+            mobileMenuOverlay.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }, 100);
+      });
+
+      // Initial viewport height calculation for mobile
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
     </script>
-</body>
+  </body>
 </html>
