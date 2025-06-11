@@ -1,164 +1,2140 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2424 | Matches</title>
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-</head>
-<body>
-    <header id="main-header">
-        <nav id="main-nav">
-            <div class="container">
-                <a href="index.html" class="logo">2424</a>
-                <button class="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
-                <div class="nav-links">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="has-dropdown">
-                            <a href="about.html">About</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="about.html#team-history">Team History</a></li>
-                                <li><a href="about.html#our-values">Our Values</a></li>
-                                <li><a href="about.html#player-profiles">Player Profiles</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="matches.html" class="active">Matches</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="matches.html#schedule">Schedule</a></li>
-                                <li><a href="matches.html#results">Results</a></li>
-                                <li><a href="matches.html#gallery">Photo Gallery</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="store.html">Uniforms</a></li>
-                        <li><a href="join.html">Join Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="nav-buttons">
-                    <a href="#" class="btn btn-signin">Sign In</a>
-                    <a href="#" class="btn btn-getstarted">Get Started</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24HD | 경기 결과 - Always Ready</title>
 
-    <main>
-       <section id="page-header" class="bg-light">
-           <div class="container">
-               <h1>Match Day</h1>
-               <p>Relive the moments and check out our recent results.</p>
-           </div>
-       </section>
+    <!-- Premium Korean + English Typography -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-       <section id="match-scoreboard" class="page-section">
-           <div class="container">
-               <h2>Recent Results</h2>
-               <div class="scoreboard">
-                   <!-- Match Result Card 1 -->
-                   <div class="match-card animate-on-scroll">
-                       <div class="match-card-header">
-                           <h3>Team 2424 vs Opponent Alpha</h3>
-                           <p class="match-date">October 26, 2023</p>
-                       </div>
-                       <div class="match-card-body">
-                           <span class="score team-2424-score">3</span>
-                           <span class="score-separator">-</span>
-                           <span class="score opponent-score">2</span>
-                           <p class="match-status win">WIN</p>
-                       </div>
-                       <div class="match-card-footer">
-                           <a href="#" class="btn btn-small btn-outline">Match Details</a>
-                       </div>
-                   </div>
+    <!-- GSAP & Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-                   <!-- Match Result Card 2 -->
-                   <div class="match-card animate-on-scroll">
-                       <div class="match-card-header">
-                           <h3>Team 2424 vs Opponent Beta</h3>
-                           <p class="match-date">October 19, 2023</p>
-                       </div>
-                       <div class="match-card-body">
-                           <span class="score team-2424-score">1</span>
-                           <span class="score-separator">-</span>
-                           <span class="score opponent-score">1</span>
-                           <p class="match-status draw">DRAW</p>
-                       </div>
-                       <div class="match-card-footer">
-                           <a href="#" class="btn btn-small btn-outline">Match Details</a>
-                       </div>
-                   </div>
+    <style>
+      /* Championship Premium Variables */
+      :root {
+        /* Team Colors - Based on Uniform */
+        --midnight-black: #0a0a0a;
+        --pure-black: #000000;
+        --stadium-black: #1a1a1a;
+        --championship-gold: #c19b3a;
+        --golden-accent: #d4af37;
+        --golden-bright: #f4d03f;
+        --neon-gold: #ffeb3b;
+        --platinum-white: #ffffff;
+        --glass-white: rgba(255, 255, 255, 0.1);
+        --glass-strong: rgba(255, 255, 255, 0.2);
 
-                   <!-- Match Result Card 3 -->
-                   <div class="match-card animate-on-scroll">
-                       <div class="match-card-header">
-                           <h3>Team 2424 vs Opponent Gamma</h3>
-                           <p class="match-date">October 12, 2023</p>
-                       </div>
-                       <div class="match-card-body">
-                           <span class="score team-2424-score">0</span>
-                           <span class="score-separator">-</span>
-                           <span class="score opponent-score">2</span>
-                           <p class="match-status loss">LOSS</p>
-                       </div>
-                       <div class="match-card-footer">
-                           <a href="#" class="btn btn-small btn-outline">Match Details</a>
-                       </div>
-                   </div>
-                   <!-- More match cards can be added here -->
-               </div>
-           </div>
-       </section>
+        /* Result Status Colors */
+        --victory-green: #00ff88;
+        --victory-green-glow: rgba(0, 255, 136, 0.3);
+        --defeat-red: #ff4757;
+        --defeat-red-glow: rgba(255, 71, 87, 0.3);
+        --draw-blue: #3742fa;
+        --draw-blue-glow: rgba(55, 66, 250, 0.3);
 
-       <section id="match-gallery" class="page-section bg-light">
-           <div class="container">
-               <h2>Match Day Memories</h2>
-               <div class="photo-grid">
-                   <!-- Placeholder Images for Gallery -->
-                   <div class="photo-item animate-on-scroll">
-                       <img src="https://via.placeholder.com/400x300/1E8A3E/FFFFFF?text=Match+Action+1" alt="Match Action 1">
-                   </div>
-                   <div class="photo-item animate-on-scroll">
-                       <img src="https://via.placeholder.com/400x300/0A4A1B/FFFFFF?text=Team+Huddle" alt="Team Huddle">
-                   </div>
-                   <div class="photo-item animate-on-scroll">
-                       <img src="https://via.placeholder.com/400x300/1E8A3E/FFFFFF?text=Goal+Celebration" alt="Goal Celebration">
-                   </div>
-                   <div class="photo-item animate-on-scroll">
-                       <img src="https://via.placeholder.com/400x300/0A4A1B/FFFFFF?text=Fans+Cheering" alt="Fans Cheering">
-                   </div>
-                   <div class="photo-item animate-on-scroll">
-                       <img src="https://via.placeholder.com/400x300/1E8A3E/FFFFFF?text=Post-Match" alt="Post-Match Handshakes">
-                   </div>
-                   <div class="photo-item animate-on-scroll">
-                       <img src="https://via.placeholder.com/400x300/0A4A1B/FFFFFF?text=Training+Day" alt="Training Day">
-                   </div>
-                   <!-- More photo items can be added here -->
-               </div>
-               <div class="gallery-controls" style="text-align: center; margin-top: 20px;">
-                    <!-- Carousel controls will go here later -->
-                    <p>Photo carousel functionality will be added soon.</p>
-               </div>
-           </div>
-       </section>
-    </main>
+        /* Enhanced Gradients with Diagonal Elements */
+        --gradient-primary: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 50%,
+          var(--championship-gold) 100%
+        );
+        --gradient-victory: linear-gradient(
+          135deg,
+          rgba(0, 255, 136, 0.1) 0%,
+          rgba(0, 255, 136, 0.05) 100%
+        );
+        --gradient-defeat: linear-gradient(
+          135deg,
+          rgba(255, 71, 87, 0.1) 0%,
+          rgba(255, 71, 87, 0.05) 100%
+        );
+        --gradient-draw: linear-gradient(
+          135deg,
+          rgba(55, 66, 250, 0.1) 0%,
+          rgba(55, 66, 250, 0.05) 100%
+        );
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
 
-    <footer id="main-footer">
-        <div class="container">
-            <p>&copy; 2024 Team 2424. All rights reserved.</p>
-            <!-- Social media links will go here later -->
+        /* Premium Typography */
+        --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-display: "Orbitron", "Pretendard", sans-serif;
+        --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+
+        /* Enhanced Spacing - Mobile First */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+        --space-4xl: 6rem;
+
+        /* Mobile Spacing */
+        --mobile-space-xs: 0.125rem;
+        --mobile-space-sm: 0.25rem;
+        --mobile-space-md: 0.5rem;
+        --mobile-space-lg: 1rem;
+        --mobile-space-xl: 1.5rem;
+        --mobile-space-2xl: 2rem;
+        --mobile-space-3xl: 3rem;
+
+        /* Glassmorphism Effects */
+        --glass-blur: blur(20px);
+        --glass-blur-strong: blur(40px);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+        --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+        /* Advanced Animations */
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      /* Mobile First Font Sizing */
+      @media (max-width: 480px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      body {
+        font-family: var(--font-korean);
+        background: var(--pure-black);
+        color: var(--platinum-white);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+      }
+
+      /* Enhanced Stadium Background with Uniform Diagonal */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(196, 155, 58, 0.1) 45%,
+            rgba(196, 155, 58, 0.15) 50%,
+            rgba(196, 155, 58, 0.1) 55%,
+            transparent 60%,
+            transparent 100%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            135deg,
+            var(--pure-black) 0%,
+            var(--stadium-black) 100%
+          );
+        z-index: -1;
+        animation: stadiumAmbience 20s ease-in-out infinite;
+        transform: rotate(45deg) translateX(-10%) translateY(-10%);
+      }
+
+      @keyframes stadiumAmbience {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.9; }
+      }
+
+      /* Premium Cursor System - Always Active */
+      .stadium-cursor {
+        width: 6px;
+        height: 6px;
+        background: var(--golden-bright);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 20px var(--championship-gold);
+      }
+
+      .cursor-aura {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+      }
+
+      /* Hide cursors on mobile only */
+      @media (max-width: 768px) and (hover: none) {
+        .stadium-cursor,
+        .cursor-aura {
+          display: none;
+        }
+      }
+
+      /* Mobile-First Glassmorphism Navigation */
+      .stadium-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: var(--glass-blur);
+        border-bottom: var(--glass-border);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .stadium-nav {
+          height: 90px;
+        }
+      }
+
+      .stadium-nav.scrolled {
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 1px solid var(--championship-gold);
+        backdrop-filter: var(--glass-blur-strong);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .nav-container {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .team-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        text-decoration: none;
+        color: var(--platinum-white);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .team-brand {
+          gap: var(--space-lg);
+        }
+      }
+
+      .brand-shield {
+        width: 50px;
+        height: 40px;
+        background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 4px;
+      }
+
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .brand-shield {
+          width: 60px;
+          height: 50px;
+          border-radius: 8px;
+        }
+      }
+
+      .brand-shield::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .team-brand:hover .brand-shield::before {
+        left: 100%;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--championship-gold);
+        line-height: 1;
+      }
+
+      @media (min-width: 769px) {
+        .brand-title {
+          font-size: 1.3rem;
+        }
+      }
+
+      .brand-subtitle {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media (min-width: 769px) {
+        .brand-subtitle {
+          font-size: 0.8rem;
+          letter-spacing: 0.1em;
+        }
+      }
+
+      /* Mobile Navigation Menu */
+      .nav-menu {
+        display: none;
+        list-style: none;
+        gap: var(--space-2xl);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-menu {
+          display: flex;
+        }
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: var(--space-md) var(--space-lg);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-glass);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-link:hover::before {
+        opacity: 1;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--championship-gold);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      @media (min-width: 769px) {
+        .mobile-menu-toggle {
+          display: none;
+        }
+      }
+
+      .hamburger-line {
+        width: 25px;
+        height: 2px;
+        background: var(--championship-gold);
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      /* Mobile Menu Overlay */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: var(--glass-blur-strong);
+        transform: translateX(-100%);
+        transition: transform 0.4s var(--ease-out-quart);
+        z-index: 999;
+        padding: var(--mobile-space-2xl);
+      }
+
+      .mobile-menu-overlay.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        margin-bottom: var(--mobile-space-2xl);
+      }
+
+      .mobile-nav-links li {
+        margin-bottom: var(--mobile-space-lg);
+      }
+
+      .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: var(--mobile-space-lg);
+        border-radius: 10px;
+        background: var(--gradient-glass);
+        border: var(--glass-border);
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--championship-gold);
+        background: var(--gradient-glass-strong);
+      }
+
+      /* Championship Arena Header */
+      .championship-arena {
+        position: relative;
+        min-height: 40vh;
+        background: var(--pure-black);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
+        margin-top: 70px;
+      }
+
+      @media (min-width: 769px) {
+        .championship-arena {
+          padding: var(--space-3xl) 0;
+          margin-top: 90px;
+          min-height: 50vh;
+        }
+      }
+
+      .stadium-atmosphere {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 30% 70%,
+            rgba(212, 175, 55, 0.1) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 40%
+          ),
+          linear-gradient(
+            45deg,
+            transparent 30%,
+            rgba(212, 175, 55, 0.03) 50%,
+            transparent 70%
+          );
+        animation: atmosphereFlow 20s ease-in-out infinite;
+      }
+
+      @keyframes atmosphereFlow {
+        0%, 100% { transform: translateX(0) scale(1); }
+        50% { transform: translateX(-20px) scale(1.02); }
+      }
+
+      .arena-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      .championship-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 50px;
+        margin-bottom: var(--mobile-space-xl);
+        font-family: var(--font-accent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--championship-gold);
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .championship-badge {
+          gap: var(--space-sm);
+          padding: var(--space-md) var(--space-xl);
+          margin-bottom: var(--space-2xl);
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
+        }
+      }
+
+      .arena-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 10vw, 6rem);
+        font-weight: 900;
+        line-height: 0.85;
+        margin-bottom: var(--mobile-space-lg);
+        color: var(--platinum-white);
+        position: relative;
+        letter-spacing: -0.05em;
+      }
+
+      @media (min-width: 769px) {
+        .arena-title {
+          margin-bottom: var(--space-lg);
+        }
+      }
+
+      .title-highlight {
+        background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+      }
+
+      .arena-subtitle {
+        font-family: var(--font-korean);
+        font-size: clamp(1rem, 4vw, 1.6rem);
+        font-weight: 400;
+        margin-bottom: var(--mobile-space-sm);
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        padding: 0 var(--mobile-space-md);
+      }
+
+      @media (min-width: 769px) {
+        .arena-subtitle {
+          margin-bottom: var(--space-md);
+          padding: 0;
+        }
+      }
+
+      /* Matches Container */
+      .matches-container {
+        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 769px) {
+        .matches-container {
+          padding: var(--space-3xl) var(--space-xl);
+        }
+      }
+
+      /* Season Summary Stats - Revolutionary Hexagon Neon Grid */
+      .season-summary {
+        margin-bottom: var(--mobile-space-3xl);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .season-summary {
+          margin-bottom: var(--space-4xl);
+        }
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: var(--mobile-space-xl);
+        background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+      }
+
+      @media (min-width: 769px) {
+        .section-title {
+          margin-bottom: var(--space-2xl);
+        }
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+        border-radius: 2px;
+      }
+
+      .stadium-stats {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-xl);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        perspective: 1000px;
+        padding: var(--mobile-space-xl) 0;
+      }
+
+      @media (min-width: 769px) {
+        .stadium-stats {
+          gap: var(--space-2xl);
+          margin-bottom: var(--space-xl);
+          max-width: 800px;
+          padding: var(--space-2xl) 0;
+        }
+      }
+
+      /* Hexagonal Neon Stats - Revolutionary Design */
+      .stat-hexagon {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        transition: all 0.6s var(--ease-out-expo);
+        transform-style: preserve-3d;
+      }
+
+      @media (min-width: 769px) {
+        .stat-hexagon {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      /* Hexagon Shape with CSS Clip-Path */
+      .hexagon-shape {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.2) 0%,
+          rgba(212, 175, 55, 0.3) 50%,
+          rgba(196, 155, 58, 0.2) 100%
+        );
+        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid transparent;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Animated Neon Border */
+      .hexagon-shape::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          60deg,
+          transparent 0%,
+          var(--neon-gold) 25%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 75%,
+          transparent 100%
+        );
+        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        z-index: -1;
+        opacity: 0;
+        animation: neonFlow 3s ease-in-out infinite;
+        transition: opacity 0.4s ease;
+      }
+
+      @keyframes neonFlow {
+        0%, 100% {
+          background-position: 0% 50%;
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          background-position: 100% 50%;
+          filter: hue-rotate(45deg);
+        }
+      }
+
+      .stat-hexagon:hover .hexagon-shape::before {
+        opacity: 1;
+      }
+
+      /* Enhanced Hover Effect */
+      .stat-hexagon:hover {
+        transform: translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1);
+      }
+
+      .stat-hexagon:hover .hexagon-shape {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.4) 0%,
+          rgba(212, 175, 55, 0.5) 50%,
+          rgba(196, 155, 58, 0.4) 100%
+        );
+        box-shadow: 
+          0 20px 40px rgba(255, 235, 59, 0.3),
+          inset 0 0 20px rgba(255, 235, 59, 0.2);
+      }
+
+      .hex-stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 900;
+        color: var(--neon-gold);
+        line-height: 1;
+        margin-bottom: 2px;
+        text-shadow: 
+          0 0 10px var(--neon-gold),
+          0 0 20px rgba(255, 235, 59, 0.5);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-number {
+        transform: scale(1.1);
+        text-shadow: 
+          0 0 15px var(--neon-gold),
+          0 0 30px rgba(255, 235, 59, 0.8),
+          0 0 45px rgba(255, 235, 59, 0.4);
+      }
+
+      .hex-stat-label {
+        font-family: var(--font-korean);
+        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-label {
+        color: var(--neon-gold);
+        text-shadow: 0 0 8px rgba(255, 235, 59, 0.6);
+      }
+
+      /* Match Cards Grid */
+      .matches-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--mobile-space-xl);
+        margin-bottom: var(--mobile-space-3xl);
+      }
+
+      @media (min-width: 769px) {
+        .matches-grid {
+          grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+          gap: var(--space-2xl);
+        }
+      }
+
+      /* Revolutionary Match Card Design */
+      .match-card {
+        position: relative;
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 24px;
+        padding: var(--mobile-space-xl);
+        box-shadow: var(--glass-shadow);
+        transition: all 0.6s var(--ease-out-expo);
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .match-card {
+          padding: var(--space-2xl);
+          border-radius: 32px;
+        }
+      }
+
+      /* Match Result Status Glow */
+      .match-card.victory {
+        border-color: var(--victory-green);
+        box-shadow: 
+          var(--glass-shadow),
+          0 0 30px var(--victory-green-glow);
+      }
+
+      .match-card.defeat {
+        border-color: var(--defeat-red);
+        box-shadow: 
+          var(--glass-shadow),
+          0 0 30px var(--defeat-red-glow);
+      }
+
+      .match-card.draw {
+        border-color: var(--draw-blue);
+        box-shadow: 
+          var(--glass-shadow),
+          0 0 30px var(--draw-blue-glow);
+      }
+
+      .match-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        backdrop-filter: var(--glass-blur-strong);
+      }
+
+      /* Diagonal Stripe Background for Uniform Effect */
+      .match-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 30%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          rgba(196, 155, 58, 0.1) 40%,
+          rgba(196, 155, 58, 0.2) 50%,
+          rgba(196, 155, 58, 0.1) 60%,
+          transparent 100%
+        );
+        transform: rotate(15deg);
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      /* Match Header */
+      .match-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--mobile-space-lg);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-header {
+          margin-bottom: var(--space-xl);
+        }
+      }
+
+      .match-date {
+        font-family: var(--font-accent);
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.1);
+        padding: var(--mobile-space-sm) var(--mobile-space-md);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+      }
+
+      @media (min-width: 769px) {
+        .match-date {
+          font-size: 0.9rem;
+          padding: var(--space-sm) var(--space-lg);
+          border-radius: 16px;
+        }
+      }
+
+      .match-status {
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: var(--mobile-space-sm) var(--mobile-space-lg);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .match-status {
+          font-size: 0.9rem;
+          padding: var(--space-sm) var(--space-xl);
+        }
+      }
+
+      .match-status.victory {
+        background: var(--gradient-victory);
+        color: var(--victory-green);
+        box-shadow: 0 0 20px var(--victory-green-glow);
+      }
+
+      .match-status.defeat {
+        background: var(--gradient-defeat);
+        color: var(--defeat-red);
+        box-shadow: 0 0 20px var(--defeat-red-glow);
+      }
+
+      .match-status.draw {
+        background: var(--gradient-draw);
+        color: var(--draw-blue);
+        box-shadow: 0 0 20px var(--draw-blue-glow);
+      }
+
+      /* Score Display */
+      .match-score {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-xl);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-score {
+          gap: var(--space-2xl);
+          margin-bottom: var(--space-2xl);
+        }
+      }
+
+      .team-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--mobile-space-md);
+      }
+
+      .team-name {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--platinum-white);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .team-name {
+          font-size: 1.2rem;
+        }
+      }
+
+      .score-number {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 900;
+        background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        line-height: 1;
+      }
+
+      .score-vs {
+        font-family: var(--font-accent);
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 var(--mobile-space-md);
+      }
+
+      @media (min-width: 769px) {
+        .score-vs {
+          font-size: 2rem;
+          margin: 0 var(--space-lg);
+        }
+      }
+
+      /* Goal Scorers */
+      .goal-scorers {
+        margin-bottom: var(--mobile-space-xl);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .goal-scorers {
+          margin-bottom: var(--space-xl);
+        }
+      }
+
+      .goal-scorers h4 {
+        font-family: var(--font-accent);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--championship-gold);
+        margin-bottom: var(--mobile-space-md);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media (min-width: 769px) {
+        .goal-scorers h4 {
+          font-size: 1.1rem;
+          margin-bottom: var(--space-md);
+        }
+      }
+
+      .scorers-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--mobile-space-sm);
+      }
+
+      @media (min-width: 769px) {
+        .scorers-list {
+          gap: var(--space-sm);
+        }
+      }
+
+      .scorer-chip {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--platinum-white);
+        padding: var(--mobile-space-sm) var(--mobile-space-md);
+        border-radius: 16px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .scorer-chip {
+          padding: var(--space-sm) var(--space-lg);
+          font-size: 0.9rem;
+          border-radius: 20px;
+        }
+      }
+
+      .scorer-chip:hover {
+        background: rgba(212, 175, 55, 0.2);
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
+
+      /* Match Actions */
+      .match-actions {
+        display: flex;
+        gap: var(--mobile-space-md);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-actions {
+          gap: var(--space-lg);
+        }
+      }
+
+      .action-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        color: var(--platinum-white);
+        text-decoration: none;
+        border-radius: 16px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: var(--glass-border);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s var(--ease-out-back);
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .action-btn {
+          padding: var(--space-lg) var(--space-xl);
+          border-radius: 20px;
+          font-size: 1rem;
+        }
+      }
+
+      .action-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.2),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .action-btn:hover::before {
+        left: 100%;
+      }
+
+      .action-btn:hover {
+        color: var(--championship-gold);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      /* Gallery Section */
+      .match-gallery {
+        margin-top: var(--mobile-space-2xl);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-gallery {
+          margin-top: var(--space-2xl);
+        }
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--mobile-space-md);
+        margin-top: var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-lg);
+          margin-top: var(--space-xl);
+        }
+      }
+
+      .gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.4s ease;
+      }
+
+      @media (min-width: 769px) {
+        .gallery-item {
+          border-radius: 20px;
+        }
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05) rotate(1deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          rgba(212, 175, 55, 0.1) 50%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+      }
+
+      .gallery-item:hover::before {
+        opacity: 1;
+      }
+
+      /* Enhanced Animation Classes */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .fade-up {
+          transform: translateY(40px);
+        }
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Championship Footer */
+      .championship-footer {
+        background: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 100%
+        );
+        border-top: var(--glass-border);
+        padding: var(--mobile-space-2xl) 0;
+        backdrop-filter: var(--glass-blur);
+        margin-top: var(--mobile-space-xl);
+      }
+
+      @media (min-width: 769px) {
+        .championship-footer {
+          padding: var(--space-3xl) 0;
+          margin-top: var(--space-2xl);
+        }
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .footer-content {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .footer-brand {
+        margin-bottom: var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 16px;
+        padding: var(--mobile-space-lg);
+        display: inline-block;
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .footer-brand {
+          margin-bottom: var(--space-xl);
+          border-radius: 20px;
+          padding: var(--space-xl);
+        }
+      }
+
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--mobile-space-xs);
+      }
+
+      @media (min-width: 769px) {
+        .footer-logo {
+          font-size: 2.2rem;
+        }
+      }
+
+      .footer-tagline {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      @media (min-width: 769px) {
+        .footer-tagline {
+          font-size: 0.8rem;
+          letter-spacing: 0.15em;
+        }
+      }
+
+      .footer-text {
+        font-family: var(--font-korean);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (min-width: 769px) {
+        .footer-text {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Touch Optimizations */
+      @media (hover: none) {
+        .stat-hexagon:hover,
+        .match-card:hover,
+        .action-btn:hover,
+        .gallery-item:hover {
+          transform: none;
+        }
+
+        .stat-hexagon:active {
+          transform: scale(0.95);
+        }
+
+        .action-btn:active {
+          transform: scale(0.95);
+        }
+      }
+
+      /* Improved readability on small screens */
+      @media (max-width: 480px) {
+        .arena-subtitle {
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+
+        .team-name {
+          font-size: 0.9rem;
+        }
+
+        .scorer-chip {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stadium Cursors - Desktop Only -->
+    <div class="stadium-cursor"></div>
+    <div class="cursor-aura"></div>
+
+    <!-- Mobile-First Glassmorphism Navigation -->
+    <nav class="stadium-nav" id="nav">
+      <div class="nav-container">
+        <a href="index.html" class="team-brand">
+          <div class="brand-shield">
+            <img
+              src="images/logo/24HD_logo.png"
+              alt="24HD Logo"
+              class="brand-logo"
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">24HD</span>
+            <span class="brand-subtitle">항시대기</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html" class="nav-link">
+              <span>🏠</span>
+              홈
+            </a>
+          </li>
+          <li>
+            <a href="matches.html" class="nav-link active">
+              <span>🏆</span>
+              경기 결과
+            </a>
+          </li>
+          <li>
+            <a href="#highlights" class="nav-link">
+              <span>🎬</span>
+              경기 영상
+            </a>
+          </li>
+          <li>
+            <a href="#squad" class="nav-link">
+              <span>⚽</span>
+              팀 구성
+            </a>
+          </li>
+          <li>
+            <a href="store.html" class="nav-link">
+              <span>👕</span>
+              유니폼
+            </a>
+          </li>
+        </ul>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="index.html">
+            <span>🏠</span>
+            홈
+          </a>
+        </li>
+        <li>
+          <a href="matches.html">
+            <span>🏆</span>
+            경기 결과
+          </a>
+        </li>
+        <li>
+          <a href="#highlights">
+            <span>🎬</span>
+            경기 영상
+          </a>
+        </li>
+        <li>
+          <a href="#squad">
+            <span>⚽</span>
+            팀 구성
+          </a>
+        </li>
+        <li>
+          <a href="store.html">
+            <span>👕</span>
+            유니폼
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Championship Arena Header -->
+    <section class="championship-arena" id="arena">
+      <div class="stadium-atmosphere"></div>
+
+      <div class="arena-content">
+        <div class="championship-badge fade-up">
+          <span>⚽</span>
+          Match Archives
         </div>
+
+        <h1 class="arena-title fade-up">
+          <span class="title-highlight">경기 기록</span>
+        </h1>
+
+        <p class="arena-subtitle fade-up">
+          24시 항시대기의 모든 순간들
+        </p>
+      </div>
+    </section>
+
+    <!-- Matches Container -->
+    <div class="matches-container">
+      <!-- Season Summary Stats -->
+      <section class="season-summary">
+        <h2 class="section-title fade-up">시즌 요약</h2>
+        
+        <!-- 🔥 REVOLUTIONARY HEXAGON NEON GRID -->
+        <div class="stadium-stats fade-up">
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">8</span>
+              <span class="hex-stat-label">경기</span>
+            </div>
+          </div>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">5</span>
+              <span class="hex-stat-label">승리</span>
+            </div>
+          </div>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">2</span>
+              <span class="hex-stat-label">무승부</span>
+            </div>
+          </div>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">1</span>
+              <span class="hex-stat-label">패배</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Matches Grid -->
+      <section class="matches-grid">
+        <!-- Match Card 1 - Victory -->
+        <div class="match-card victory fade-up">
+          <div class="match-header">
+            <div class="match-date">2024.12.15</div>
+            <div class="match-status victory">승리</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">3</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">라이거 FC</div>
+              <div class="score-number">1</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">김민준 2골</span>
+              <span class="scorer-chip">박서현 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a href="https://youtube.com/watch?v=example1" class="action-btn" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match1')">
+              <span>📸</span>
+              사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match1" style="display: none;">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=1" alt="경기 사진 1">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=2" alt="경기 사진 2">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=3" alt="경기 사진 3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 2 - Victory -->
+        <div class="match-card victory fade-up">
+          <div class="match-header">
+            <div class="match-date">2024.12.08</div>
+            <div class="match-status victory">승리</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">2</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">선더볼트</div>
+              <div class="score-number">0</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">이도현 1골</span>
+              <span class="scorer-chip">최지우 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a href="https://youtube.com/watch?v=example2" class="action-btn" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match2')">
+              <span>📸</span>
+              사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match2" style="display: none;">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=4" alt="경기 사진 1">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=5" alt="경기 사진 2">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=6" alt="경기 사진 3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 3 - Draw -->
+        <div class="match-card draw fade-up">
+          <div class="match-header">
+            <div class="match-date">2024.12.01</div>
+            <div class="match-status draw">무승부</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">1</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">블루 웨이브</div>
+              <div class="score-number">1</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">정하은 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a href="https://youtube.com/watch?v=example3" class="action-btn" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match3')">
+              <span>📸</span>
+              사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match3" style="display: none;">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=7" alt="경기 사진 1">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=8" alt="경기 사진 2">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=9" alt="경기 사진 3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 4 - Victory -->
+        <div class="match-card victory fade-up">
+          <div class="match-header">
+            <div class="match-date">2024.11.24</div>
+            <div class="match-status victory">승리</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">4</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">그린 타이거스</div>
+              <div class="score-number">2</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">김민준 2골</span>
+              <span class="scorer-chip">박서현 1골</span>
+              <span class="scorer-chip">이도현 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a href="https://youtube.com/watch?v=example4" class="action-btn" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match4')">
+              <span>📸</span>
+              사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match4" style="display: none;">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=10" alt="경기 사진 1">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=11" alt="경기 사진 2">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=12" alt="경기 사진 3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 5 - Defeat -->
+        <div class="match-card defeat fade-up">
+          <div class="match-header">
+            <div class="match-date">2024.11.17</div>
+            <div class="match-status defeat">패배</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">0</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">레드 이글스</div>
+              <div class="score-number">2</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">득점 없음</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a href="https://youtube.com/watch?v=example5" class="action-btn" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match5')">
+              <span>📸</span>
+              사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match5" style="display: none;">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=13" alt="경기 사진 1">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=14" alt="경기 사진 2">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=15" alt="경기 사진 3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 6 - Victory -->
+        <div class="match-card victory fade-up">
+          <div class="match-header">
+            <div class="match-date">2024.11.10</div>
+            <div class="match-status victory">승리</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">3</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">골든 스타즈</div>
+              <div class="score-number">1</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">최지우 2골</span>
+              <span class="scorer-chip">정하은 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a href="https://youtube.com/watch?v=example6" class="action-btn" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match6')">
+              <span>📸</span>
+              사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match6" style="display: none;">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=16" alt="경기 사진 1">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=17" alt="경기 사진 2">
+              </div>
+              <div class="gallery-item">
+                <img src="https://picsum.photos/400/400?random=18" alt="경기 사진 3">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Championship Footer -->
+    <footer class="championship-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">24HD</div>
+          <div class="footer-tagline">Always Ready • Always Champions</div>
+        </div>
+        <div class="footer-text">
+          &copy; 2024 24HD. 진정한 챔피언들을 위해, 챔피언들에 의해
+          만들어졌습니다.
+        </div>
+      </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/matches.js" defer></script>
-    <script src="js/animations.js" defer></script>
-</body>
+    <script>
+      // Premium Stadium Experience - Enhanced Cursor Always Active
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced Cursor System - Always Active on Desktop
+        const cursor = document.querySelector(".stadium-cursor");
+        const aura = document.querySelector(".cursor-aura");
+
+        if (cursor && aura) {
+          document.addEventListener("mousemove", (e) => {
+            requestAnimationFrame(() => {
+              cursor.style.left = e.clientX + "px";
+              cursor.style.top = e.clientY + "px";
+
+              setTimeout(() => {
+                aura.style.left = e.clientX - 15 + "px";
+                aura.style.top = e.clientY - 15 + "px";
+              }, 50);
+            });
+          });
+
+          // Enhanced cursor interactions
+          document
+            .querySelectorAll(
+              ".stat-hexagon, .action-btn, .match-card, .gallery-item"
+            )
+            .forEach((element) => {
+              element.addEventListener("mouseenter", function () {
+                cursor.style.transform = "scale(2)";
+                aura.style.transform = "scale(1.5)";
+                cursor.style.background = "var(--golden-bright)";
+                cursor.style.boxShadow = "0 0 30px var(--championship-gold)";
+              });
+
+              element.addEventListener("mouseleave", function () {
+                cursor.style.transform = "scale(1)";
+                aura.style.transform = "scale(1)";
+                cursor.style.background = "var(--golden-bright)";
+                cursor.style.boxShadow = "0 0 20px var(--championship-gold)";
+              });
+            });
+        }
+
+        // Mobile Detection
+        const isMobile = window.innerWidth <= 768;
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+
+        if (mobileMenuToggle && mobileMenuOverlay) {
+          mobileMenuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mobileMenuOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileMenuOverlay.classList.contains(
+              "active"
+            )
+              ? "hidden"
+              : "";
+          });
+
+          // Close mobile menu when clicking on links
+          const mobileNavLinks = document.querySelectorAll(
+            ".mobile-nav-links a"
+          );
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenuToggle.classList.remove("active");
+              mobileMenuOverlay.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Enhanced Arena Entrance
+        setTimeout(() => {
+          const elements = document.querySelectorAll(".fade-up");
+          elements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add("visible");
+            }, index * 200);
+          });
+        }, 500);
+
+        // Navigation effects
+        const nav = document.getElementById("nav");
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.scrollY > 100) {
+              nav.classList.add("scrolled");
+            } else {
+              nav.classList.remove("scrolled");
+            }
+
+            // Hide nav on scroll down, show on scroll up (mobile)
+            if (isMobile) {
+              if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                nav.style.transform = "translateY(-100%)";
+              } else {
+                nav.style.transform = "translateY(0)";
+              }
+              lastScrollY = window.scrollY;
+            }
+          },
+          { passive: true }
+        );
+
+        // Enhanced interactions with touch support
+        document
+          .querySelectorAll(".stat-hexagon, .match-card, .action-btn")
+          .forEach((element) => {
+            // Touch events for mobile
+            element.addEventListener(
+              "touchstart",
+              function () {
+                if (isMobile) {
+                  this.style.transform = "scale(0.95)";
+                }
+              },
+              { passive: true }
+            );
+
+            element.addEventListener(
+              "touchend",
+              function () {
+                if (isMobile) {
+                  this.style.transform = "scale(1)";
+                }
+              },
+              { passive: true }
+            );
+          });
+
+        // Enhanced 3D Tilt Effects for Hexagons - Desktop Only
+        if (!isMobile) {
+          document.querySelectorAll('.stat-hexagon').forEach(hexagon => {
+            hexagon.addEventListener('mousemove', (e) => {
+              const rect = hexagon.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / 6;
+              const rotateY = (centerX - x) / 6;
+              
+              hexagon.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            });
+
+            hexagon.addEventListener('mouseleave', () => {
+              hexagon.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+          });
+        }
+      });
+
+      // Gallery Toggle Function
+      function openGallery(matchId) {
+        const gallery = document.getElementById(`gallery-${matchId}`);
+        if (gallery.style.display === 'none' || gallery.style.display === '') {
+          gallery.style.display = 'block';
+          gallery.style.animation = 'fadeInUp 0.5s ease-out forwards';
+        } else {
+          gallery.style.animation = 'fadeOutDown 0.5s ease-in forwards';
+          setTimeout(() => {
+            gallery.style.display = 'none';
+          }, 500);
+        }
+      }
+
+      // Add fade animations
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeOutDown {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Handle orientation change on mobile
+      window.addEventListener("orientationchange", function () {
+        setTimeout(() => {
+          // Recalculate viewport height for mobile
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+          // Close mobile menu if open
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const mobileMenuOverlay =
+            document.getElementById("mobileMenuOverlay");
+
+          if (mobileMenuToggle && mobileMenuOverlay) {
+            mobileMenuToggle.classList.remove("active");
+            mobileMenuOverlay.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }, 100);
+      });
+
+      // Initial viewport height calculation for mobile
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    </script>
+  </body>
 </html>
