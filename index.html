@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>24HD | 24시 항시대기 - Always Ready</title>
 
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="24HD" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <!-- Premium Korean + English Typography -->
     <link
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
@@ -789,7 +797,6 @@
         .hero-logo {
           width: 100px;
           height: 200px;
-       
         }
       }
 
@@ -891,7 +898,14 @@
           rgba(212, 175, 55, 0.3) 50%,
           rgba(196, 155, 58, 0.2) 100%
         );
-        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 50%,
+          70% 100%,
+          30% 100%,
+          0% 50%
+        );
         position: relative;
         display: flex;
         flex-direction: column;
@@ -919,7 +933,14 @@
           var(--golden-bright) 75%,
           transparent 100%
         );
-        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 50%,
+          70% 100%,
+          30% 100%,
+          0% 50%
+        );
         z-index: -1;
         opacity: 0;
         animation: neonFlow 3s ease-in-out infinite;
@@ -927,7 +948,8 @@
       }
 
       @keyframes neonFlow {
-        0%, 100% {
+        0%,
+        100% {
           background-position: 0% 50%;
           filter: hue-rotate(0deg);
         }
@@ -963,7 +985,8 @@
       }
 
       @keyframes hexagonPulse {
-        0%, 100% {
+        0%,
+        100% {
           opacity: 0;
           transform: translate(-50%, -50%) scale(0.8);
         }
@@ -989,8 +1012,7 @@
           rgba(212, 175, 55, 0.5) 50%,
           rgba(196, 155, 58, 0.4) 100%
         );
-        box-shadow: 
-          0 20px 40px rgba(255, 235, 59, 0.3),
+        box-shadow: 0 20px 40px rgba(255, 235, 59, 0.3),
           inset 0 0 20px rgba(255, 235, 59, 0.2);
       }
 
@@ -1001,18 +1023,14 @@
         color: var(--neon-gold);
         line-height: 1;
         margin-bottom: 2px;
-        text-shadow: 
-          0 0 10px var(--neon-gold),
-          0 0 20px rgba(255, 235, 59, 0.5);
+        text-shadow: 0 0 10px var(--neon-gold), 0 0 20px rgba(255, 235, 59, 0.5);
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         transition: all 0.3s ease;
       }
 
       .stat-hexagon:hover .hex-stat-number {
         transform: scale(1.1);
-        text-shadow: 
-          0 0 15px var(--neon-gold),
-          0 0 30px rgba(255, 235, 59, 0.8),
+        text-shadow: 0 0 15px var(--neon-gold), 0 0 30px rgba(255, 235, 59, 0.8),
           0 0 45px rgba(255, 235, 59, 0.4);
       }
 
@@ -1081,17 +1099,16 @@
         position: relative;
         overflow: hidden;
         transition: all 0.5s var(--ease-out-quart);
-        
+
         /* Bubble Reflection Effect */
-        box-shadow: 
-          inset 0 0 30px rgba(255, 255, 255, 0.1),
-          0 8px 32px rgba(0, 0, 0, 0.3),
-          0 0 0 1px rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.1),
+          0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
       }
 
       /* Floating Animation */
       @keyframes bubbleFloat {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0px) rotate(0deg);
         }
         33% {
@@ -1165,10 +1182,8 @@
           rgba(212, 175, 55, 0.2) 100%
         );
         border-color: rgba(212, 175, 55, 0.4);
-        box-shadow: 
-          inset 0 0 40px rgba(255, 255, 255, 0.2),
-          0 20px 60px rgba(212, 175, 55, 0.3),
-          0 0 0 2px rgba(212, 175, 55, 0.2);
+        box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.2),
+          0 20px 60px rgba(212, 175, 55, 0.3), 0 0 0 2px rgba(212, 175, 55, 0.2);
       }
 
       .bubble-icon {
@@ -1532,9 +1547,7 @@
           <!-- Always Ready -->
         </h1>
 
-        <p class="arena-subtitle fade-up">
-          휘문고 119기 그리고 그 이상
-        </p>
+        <p class="arena-subtitle fade-up">휘문고 119기 그리고 그 이상</p>
 
         <!-- 🔥 REVOLUTIONARY HEXAGON NEON GRID -->
         <div class="stadium-stats fade-up">
@@ -1620,9 +1633,7 @@
 
           // Enhanced cursor interactions
           document
-            .querySelectorAll(
-              ".bubble-portal, .stat-hexagon, .nav-btn"
-            )
+            .querySelectorAll(".bubble-portal, .stat-hexagon, .nav-btn")
             .forEach((element) => {
               element.addEventListener("mouseenter", function () {
                 cursor.style.transform = "scale(2)";
@@ -1815,8 +1826,8 @@
 
         // Enhanced 3D Tilt Effects for Hexagons - Desktop Only
         if (!isMobile) {
-          document.querySelectorAll('.stat-hexagon').forEach(hexagon => {
-            hexagon.addEventListener('mousemove', (e) => {
+          document.querySelectorAll(".stat-hexagon").forEach((hexagon) => {
+            hexagon.addEventListener("mousemove", (e) => {
               const rect = hexagon.getBoundingClientRect();
               const x = e.clientX - rect.left;
               const y = e.clientY - rect.top;
@@ -1824,18 +1835,19 @@
               const centerY = rect.height / 2;
               const rotateX = (y - centerY) / 6;
               const rotateY = (centerX - x) / 6;
-              
+
               hexagon.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
             });
 
-            hexagon.addEventListener('mouseleave', () => {
-              hexagon.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+            hexagon.addEventListener("mouseleave", () => {
+              hexagon.style.transform =
+                "translateY(0) rotateX(0deg) rotateY(0deg) scale(1)";
             });
           });
 
           // Enhanced 3D Tilt Effects for Bubble Portals - Desktop Only
-          document.querySelectorAll('.bubble-portal').forEach(bubble => {
-            bubble.addEventListener('mousemove', (e) => {
+          document.querySelectorAll(".bubble-portal").forEach((bubble) => {
+            bubble.addEventListener("mousemove", (e) => {
               const rect = bubble.getBoundingClientRect();
               const x = e.clientX - rect.left;
               const y = e.clientY - rect.top;
@@ -1843,12 +1855,13 @@
               const centerY = rect.height / 2;
               const rotateX = (y - centerY) / 10;
               const rotateY = (centerX - x) / 10;
-              
+
               bubble.style.transform = `translateY(-20px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
             });
 
-            bubble.addEventListener('mouseleave', () => {
-              bubble.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+            bubble.addEventListener("mouseleave", () => {
+              bubble.style.transform =
+                "translateY(0) rotateX(0deg) rotateY(0deg) scale(1)";
             });
           });
         }
@@ -1857,15 +1870,15 @@
       // Navigation functions with mobile optimization
       function navigateToResults() {
         const isMobile = window.innerWidth <= 768;
-        
+
         if (!isMobile) {
           createTransitionEffect();
         }
-        
+
         setTimeout(
           () => {
             // 경기 결과 페이지로 이동
-            window.location.href = 'matches.html';
+            window.location.href = "matches.html";
           },
           isMobile ? 100 : 500
         );
@@ -1873,15 +1886,15 @@
 
       function navigateToHighlights() {
         const isMobile = window.innerWidth <= 768;
-        
+
         if (!isMobile) {
           createTransitionEffect();
         }
-        
+
         setTimeout(
           () => {
             // 하이라이트 페이지로 이동
-            window.location.href = 'highlights.html';
+            window.location.href = "highlights.html";
           },
           isMobile ? 100 : 500
         );
@@ -1889,15 +1902,15 @@
 
       function navigateToUniforms() {
         const isMobile = window.innerWidth <= 768;
-        
+
         if (!isMobile) {
           createTransitionEffect();
         }
-        
+
         setTimeout(
           () => {
             // 유니폼 신청 페이지로 이동
-            window.location.href = 'store.html';
+            window.location.href = "store.html";
           },
           isMobile ? 100 : 500
         );
