@@ -1,129 +1,1737 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2424 | Uniform Store</title>
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-</head>
-<body class="store-page"> <!-- Add class for page-specific dark theme -->
-    <header id="main-header">
-        <nav id="main-nav">
-            <div class="container">
-                <a href="index.html" class="logo">2424</a>
-                <button class="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
-                <div class="nav-links">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="has-dropdown">
-                            <a href="about.html">About</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="about.html#team-history">Team History</a></li>
-                                <li><a href="about.html#our-values">Our Values</a></li>
-                                <li><a href="about.html#player-profiles">Player Profiles</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="matches.html">Matches</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="matches.html#schedule">Schedule</a></li>
-                                <li><a href="matches.html#results">Results</a></li>
-                                <li><a href="matches.html#gallery">Photo Gallery</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="store.html" class="active">Uniforms</a></li>
-                        <li><a href="join.html">Join Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="nav-buttons">
-                    <a href="#" class="btn btn-signin">Sign In</a>
-                    <a href="#" class="btn btn-getstarted">Get Started</a>
-                </div>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24HD | 유니폼 신청 - Locker Room</title>
+
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="24HD" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Premium Korean + English Typography -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP & Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      /* 라커룸 테마 Variables */
+      :root {
+        /* Locker Room Color System */
+        --locker-dark: #0f0f0f;
+        --locker-charcoal: #1a1a1a;
+        --locker-steel: #2c2c2c;
+        --metal-chrome: #c0c0c0;
+        --metal-warm: #76cd43;
+        --wood-accent: #8b4513;
+        --industrial-blue: #2c3e50;
+        --championship-gold: #c19b3a;
+        --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+
+        /* Metallic Gradients */
+        --gold-metallic: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+        --chrome-metallic: linear-gradient(
+          135deg,
+          #e8e8e8 0%,
+          #a0a0a0 50%,
+          #c0c0c0 100%
+        );
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        --copper-warm: linear-gradient(135deg, #b87333 0%, #8b4513 100%);
+        --steel-gradient: linear-gradient(135deg, #4a4a4a 0%, #2c2c2c 100%);
+
+        /* Glass & Neo Effects */
+        --glass-dark: rgba(255, 255, 255, 0.05);
+        --glass-strong: rgba(255, 255, 255, 0.12);
+        --neo-light: rgba(255, 255, 255, 0.1);
+        --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+        /* Typography */
+        --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-display: "Orbitron", "Pretendard", sans-serif;
+        --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+
+        /* 8pt Grid System */
+        --space-xs: 0.5rem; /* 8px */
+        --space-sm: 1rem; /* 16px */
+        --space-md: 1.5rem; /* 24px */
+        --space-lg: 2rem; /* 32px */
+        --space-xl: 3rem; /* 48px */
+        --space-2xl: 4rem; /* 64px */
+        --space-3xl: 6rem; /* 96px */
+
+        /* Mobile Spacing */
+        --mobile-space-xs: 0.25rem;
+        --mobile-space-sm: 0.5rem;
+        --mobile-space-md: 1rem;
+        --mobile-space-lg: 1.5rem;
+        --mobile-space-xl: 2rem;
+        --mobile-space-2xl: 3rem;
+
+        /* Effects */
+        --blur-glass: blur(20px);
+        --blur-strong: blur(40px);
+        --shadow-neo: 20px 20px 60px var(--neo-shadow),
+          -20px -20px 60px var(--neo-light);
+        --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+        /* Animations */
+        --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --ease-industrial: cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      @media (max-width: 480px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      body {
+        font-family: var(--font-korean);
+        background: var(--locker-dark);
+        color: var(--metal-chrome);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+      }
+
+      /* Industrial Background Pattern */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(192, 192, 192, 0.03) 45%,
+            rgba(192, 192, 192, 0.08) 50%,
+            rgba(192, 192, 192, 0.03) 55%,
+            transparent 60%,
+            transparent 100%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(184, 115, 51, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(44, 62, 80, 0.05) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            135deg,
+            var(--locker-dark) 0%,
+            var(--locker-charcoal) 100%
+          );
+        z-index: -1;
+        animation: industrialFlow 25s ease-in-out infinite;
+        transform: rotate(15deg) translateX(-5%) translateY(-5%);
+      }
+
+      @keyframes industrialFlow {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+
+      /* Custom Cursor */
+      .locker-cursor {
+        width: 8px;
+        height: 8px;
+        background: var(--gold-metallic);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      }
+
+      .cursor-aura {
+        width: 35px;
+        height: 35px;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(2px);
+      }
+
+      @media (max-width: 768px) and (hover: none) {
+        .locker-cursor,
+        .cursor-aura {
+          display: none;
+        }
+      }
+
+      /* Navigation - Industrial Dark Theme */
+      .locker-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: rgba(15, 15, 15, 0.9);
+        backdrop-filter: var(--blur-glass);
+        border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-smooth);
+      }
+
+      .locker-nav.scrolled {
+        background: rgba(15, 15, 15, 0.95);
+        border-bottom: 1px solid var(--metal-warm);
+        backdrop-filter: var(--blur-strong);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .nav-container {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .team-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        text-decoration: none;
+        color: var(--metal-chrome);
+        transition: all 0.3s ease;
+      }
+
+      .brand-shield {
+        width: 55px;
+        height: 45px;
+        background: var(--chrome-metallic);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 4px;
+        box-shadow: var(--shadow-neo);
+      }
+
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%);
+        transition: all 0.3s ease;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-title {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 1200;
+        color: var(--metal-warm);
+        line-height: 1;
+      }
+
+      .brand-subtitle {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(192, 192, 192, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .nav-menu {
+        display: none;
+        list-style: none;
+        gap: var(--space-lg);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-menu {
+          display: flex;
+        }
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--metal-chrome);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: var(--space-md) var(--space-lg);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--glass-strong);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-link:hover::before,
+      .nav-link.active::before {
+        opacity: 1;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--metal-warm);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(184, 115, 51, 0.3);
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      @media (min-width: 769px) {
+        .mobile-menu-toggle {
+          display: none;
+        }
+      }
+
+      .hamburger-line {
+        width: 28px;
+        height: 3px;
+        background: var(--metal-warm);
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(15, 15, 15, 0.98);
+        backdrop-filter: var(--blur-strong);
+        transform: translateX(-100%);
+        transition: transform 0.4s var(--ease-smooth);
+        z-index: 999;
+        padding: var(--mobile-space-2xl);
+      }
+
+      .mobile-menu-overlay.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        margin-bottom: var(--mobile-space-2xl);
+      }
+
+      .mobile-nav-links li {
+        margin-bottom: var(--mobile-space-lg);
+      }
+
+      .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        color: var(--metal-chrome);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: var(--mobile-space-lg);
+        border-radius: 12px;
+        background: var(--glass-dark);
+        border: 1px solid rgba(192, 192, 192, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--metal-warm);
+        background: var(--glass-strong);
+      }
+
+      .nav-actions {
+        display: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-actions {
+          display: flex;
+        }
+      }
+
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-space-md);
+      }
+
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--mobile-space-lg);
+        font-size: 1rem;
+      }
+
+      .nav-btn {
+        padding: var(--space-md) var(--space-xl);
+        border: 1px solid rgba(192, 192, 192, 0.2);
+        background: var(--glass-dark);
+        color: var(--metal-chrome);
+        font-family: var(--font-korean);
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 12px;
+        backdrop-filter: var(--blur-glass);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary {
+        background: var(--gold-metallic);
+        color: var(--locker-dark);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: var(--glass-strong);
+        color: var(--metal-warm);
+        transform: translateY(-2px);
+      }
+
+      /* Main Content Area */
+      .locker-main {
+        margin-top: 80px;
+        min-height: calc(100vh - 80px);
+      }
+
+      /* Hero Section - Locker Room Entrance */
+      .locker-hero {
+        position: relative;
+        min-height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 15, 15, 0.9) 0%,
+          rgba(26, 26, 26, 0.8) 100%
+        );
+        overflow: hidden;
+        padding: var(--mobile-space-md) var(--mobile-space-md);
+      }
+
+      @media (min-width: 769px) {
+        .locker-hero {
+          min-height: 50vh;
+          padding: var(--space-3xl) 0;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+      }
+      .locker-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-sm) var(--mobile-space-md);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--blur-glass);
+        border: var(--glass-border);
+        border-radius: 50px;
+        margin-bottom: var(--mobile-space-xl);
+        font-family: var(--font-accent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--championship-gold);
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .locker-badge {
+          gap: var(--space-sm);
+          padding: var(--space-md) var(--space-xl);
+          margin-bottom: var(--space-2xl);
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
+        }
+      }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 900;
+        line-height: 0.9;
+        margin-bottom: var(--mobile-space-2xl);
+        color: var(--metal-chrome);
+        position: relative;
+        letter-spacing: -0.02em;
+      }
+
+      .title-highlight {
+        background: var(--gold-metallic);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        margin-bottom: var(--mobile-space-2xl);
+      }
+
+      .hero-subtitle {
+        font-family: var(--font-korean);
+        font-size: clamp(1rem, 3vw, 1.4rem);
+        font-weight: 400;
+        margin-bottom: var(--mobile-space-xl);
+        color: rgba(192, 192, 192, 0.8);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      /* Product Showcase Section */
+      .product-showcase {
+        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 769px) {
+        .product-showcase {
+          padding: var(--space-3xl) var(--space-xl);
+        }
+      }
+
+      /* 3D Main Display */
+      .main-uniform-display {
+        position: relative;
+        margin-bottom: var(--mobile-space-2xl);
+        background: var(--glass-dark);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(192, 192, 192, 0.1);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow-glass);
+      }
+
+      .uniform-3d-container {
+        position: relative;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+
+      @media (min-width: 769px) {
+        .uniform-3d-container {
+          height: 70vh;
+        }
+      }
+
+      .uniform-3d-model {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        max-width: 80vw;
+        max-height: 50vh;
+        transition: all 0.6s var(--ease-smooth);
+        transform-style: preserve-3d;
+        cursor: grab;
+      }
+
+      @media (min-width: 769px) {
+        .uniform-3d-model {
+          width: 400px;
+          height: 500px;
+        }
+      }
+
+      .uniform-3d-model:active {
+        cursor: grabbing;
+      }
+
+      .uniform-3d-model.rotating {
+        animation: autoRotate 15s linear infinite;
+      }
+
+      @keyframes autoRotate {
+        from {
+          transform: rotateY(0deg);
+        }
+        to {
+          transform: rotateY(360deg);
+        }
+      }
+
+      .uniform-image-3d {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease;
+      }
+
+      .uniform-3d-model:hover .uniform-image-3d {
+        transform: scale(1.05);
+        box-shadow: 0 25px 80px rgba(255, 215, 0, 0.2);
+      }
+
+      /* Control Panel */
+      .uniform-controls {
+        position: static;
+
+        display: flex;
+        justify-content: center; 
+        gap: var(--mobile-space-md);
+        background: var(--glass-strong);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(192, 192, 192, 0.2);
+        border-radius: 10px;
+        padding: var(--mobile-space-md);
+        margin: var(--mobile-space-lg) auto 0 auto; 
+      }
+
+      .control-btn {
+        padding: var(--mobile-space-sm) var(--mobile-space-lg);
+        background: transparent;
+        border: 1px solid rgba(192, 192, 192, 0.2);
+        color: var(--metal-chrome);
+        font-family: var(--font-korean);
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .control-btn.active,
+      .control-btn:hover {
+        background: var(--gold-metallic);
+        color: var(--locker-dark);
+        border-color: rgba(255, 215, 0, 0.5);
+        transform: translateY(-2px);
+      }
+
+      /* Reversible Feature */
+      .reversible-feature {
+        text-align: center;
+        margin-bottom: var(--mobile-space-2xl);
+        padding: var(--mobile-space-xl);
+        background: var(--glass-dark);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(184, 115, 51, 0.2);
+        border-radius: 20px;
+        box-shadow: var(--shadow-glass);
+      }
+
+      .reversible-icon {
+        display: flex;
+        justify-content: center;
+        margin-bottom: var(--mobile-space-lg);
+        perspective: 1000px;
+      }
+
+      .reversible-cube {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: cubeRotate 4s ease-in-out infinite;
+        cursor: pointer;
+        transition: animation-play-state 0.3s ease;
+      }
+
+      .reversible-cube:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes cubeRotate {
+        0%,
+        25% {
+          transform: rotateY(0deg);
+        }
+        50%,
+        75% {
+          transform: rotateY(180deg);
+        }
+        100% {
+          transform: rotateY(360deg);
+        }
+      }
+
+      .cube-face {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .cube-face::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gold-metallic);
+        clip-path: polygon(100% 0%, 20% 0%, 100% 80%);
+        z-index: 1;
+      }
+
+      .cube-front {
+        background: #1c1c1c;
+        border: 2px solid rgba(192, 192, 192, 0.2);
+        transform: rotateY(0deg) translateZ(40px);
+      }
+
+      .cube-front::before {
+        background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+        opacity: 0.9;
+      }
+
+      .cube-back {
+        background: #f5f5f5;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        transform: rotateY(180deg) translateZ(40px);
+      }
+
+      .cube-back::before {
+        background: linear-gradient(135deg, #b8860b 0%, #8b6914 100%);
+        opacity: 0.8;
+      }
+
+      .reversible-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        font-weight: 700;
+        color: var(--metal-chrome);
+        margin-bottom: var(--mobile-space-md);
+      }
+
+      .reversible-description {
+        font-size: 1.1rem;
+        color: rgba(192, 192, 192, 0.8);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      /* 2D Gallery Section */
+      .uniform-2d-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-2xl);
+      }
+
+      @media (min-width: 769px) {
+        .uniform-2d-gallery {
+          gap: var(--space-xl);
+        }
+      }
+
+      .gallery-item {
+        position: relative;
+        background: var(--glass-dark);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(192, 192, 192, 0.1);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s var(--ease-smooth);
+        cursor: pointer;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        border-color: rgba(184, 115, 51, 0.3);
+      }
+
+      .gallery-image {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover .gallery-image {
+        transform: scale(1.05);
+      }
+
+      .gallery-label {
+        position: static;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: linear-gradient(rgb(61, 59, 59), rgba(159, 170, 76, 0.311));
+        color: white;
+        padding: var(--mobile-space-sm) var(--mobile-space-sm);
+        font-family: var(--font-display);
+        font-weight: 600;
+        text-align: center;
+      }
+
+      /* Action Section */
+      .uniform-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-2xl);
+      }
+
+      @media (min-width: 768px) {
+        .uniform-actions {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-xl);
+        }
+      }
+
+      .action-card {
+        background: var(--glass-strong);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(192, 192, 192, 0.2);
+        border-radius: 20px;
+        padding: var(--mobile-space-lg);
+        text-align: center;
+        transition: all 0.4s var(--ease-smooth);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .action-card {
+          padding: var(--mobile-space-xl);
+        }
+      }
+
+      .action-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 215, 0, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .action-card:hover::before {
+        left: 100%;
+      }
+
+      .action-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(184, 115, 51, 0.3);
+        border-color: rgba(184, 115, 51, 0.4);
+      }
+
+      .action-icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--mobile-space-md);
+        background: var(--gold-metallic);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      @media (min-width: 769px) {
+        .action-icon {
+          font-size: 3rem;
+          margin-bottom: var(--mobile-space-lg);
+        }
+      }
+
+      .action-title {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--metal-chrome);
+        margin-bottom: var(--mobile-space-sm);
+      }
+
+      @media (min-width: 769px) {
+        .action-title {
+          font-size: 1.4rem;
+          margin-bottom: var(--mobile-space-md);
+        }
+      }
+
+      .action-description {
+        color: rgba(192, 192, 192, 0.8);
+        margin-bottom: var(--mobile-space-md);
+        line-height: 1.5;
+        font-size: 0.9rem;
+      }
+
+      @media (min-width: 769px) {
+        .action-description {
+          margin-bottom: var(--mobile-space-lg);
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+      }
+
+      .action-btn {
+        padding: var(--mobile-space-lg) var(--mobile-space-xl);
+        background: var(--gold-metallic);
+        color: var(--locker-dark);
+        border: none;
+        border-radius: 50px;
+        font-family: var(--font-korean);
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s var(--ease-bounce);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 15, 15, 0.95);
+        backdrop-filter: var(--blur-strong);
+        z-index: 10000;
+        padding: var(--mobile-space-lg);
+      }
+
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: modalFadeIn 0.3s ease-out;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .modal-content {
+        background: var(--glass-strong);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(192, 192, 192, 0.2);
+        border-radius: 24px;
+        padding: var(--mobile-space-2xl);
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: var(--mobile-space-lg);
+        right: var(--mobile-space-lg);
+        background: none;
+        border: none;
+        color: var(--metal-chrome);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: var(--mobile-space-sm);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(90deg);
+      }
+
+      .size-chart {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .size-chart img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+      }
+
+      /* Footer */
+      .locker-footer {
+        background: linear-gradient(
+          135deg,
+          var(--locker-dark) 0%,
+          var(--locker-charcoal) 100%
+        );
+        border-top: 1px solid rgba(192, 192, 192, 0.1);
+        padding: var(--mobile-space-2xl) 0;
+        margin-top: var(--mobile-space-2xl);
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+        text-align: center;
+      }
+
+      .footer-brand {
+        margin-bottom: var(--mobile-space-lg);
+        background: var(--glass-strong);
+        backdrop-filter: var(--blur-glass);
+        border: 1px solid rgba(192, 192, 192, 0.1);
+        border-radius: 16px;
+        padding: var(--mobile-space-lg);
+        display: inline-block;
+        box-shadow: var(--shadow-glass);
+      }
+
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: var(--gold-metallic);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--mobile-space-xs);
+      }
+
+      .footer-tagline {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(192, 192, 192, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .footer-text {
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        color: rgba(192, 192, 192, 0.5);
+      }
+
+      /* Animation Classes */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-smooth);
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Touch Optimizations */
+      @media (hover: none) {
+        .uniform-3d-model:hover .uniform-image-3d,
+        .gallery-item:hover,
+        .action-card:hover {
+          transform: none;
+        }
+
+        .uniform-3d-model:active .uniform-image-3d {
+          transform: scale(0.95);
+        }
+
+        .gallery-item:active,
+        .action-card:active {
+          transform: scale(0.98);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Custom Cursors -->
+    <div class="locker-cursor"></div>
+    <div class="cursor-aura"></div>
+
+    <!-- Industrial Navigation -->
+    <nav class="locker-nav" id="nav">
+      <div class="nav-container">
+        <a href="index.html" class="team-brand">
+          <div class="brand-shield">
+            <img
+              src="images/logo/24HD_logo.png"
+              alt="24HD Logo"
+              class="brand-logo"
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">24HD</span>
+            <span class="brand-subtitle">항시대기</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="matches.html" class="nav-link">
+              <span>🏆</span>
+              경기 결과
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+              class="nav-link"
+              target="_blank"
+            >
+              <span>🎬</span>
+              경기 영상
+            </a>
+          </li>
+          <li>
+            <a href="#squad" class="nav-link">
+              <span>⚽</span>
+              팀 구성
+            </a>
+          </li>
+          <li>
+            <a href="uniform.html" class="nav-link active">
+              <span>👕</span>
+              유니폼 신청
+            </a>
+          </li>
+          <li>
+            <a href="#news" class="nav-link">
+              <span>📰</span>
+              팀 소식
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#" class="nav-btn btn-secondary">로그인</a>
+          <a href="#" class="nav-btn btn-primary">팀 가입</a>
+        </div>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="matches.html">
+            <span>🏆</span>
+            경기 결과
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x">
+            <span>🎬</span>
+            경기 영상
+          </a>
+        </li>
+        <li>
+          <a href="#squad">
+            <span>⚽</span>
+            스쿼드 구성
+          </a>
+        </li>
+        <li>
+          <a href="uniform.html">
+            <span>👕</span>
+            유니폼 신청
+          </a>
+        </li>
+        <li>
+          <a href="#news">
+            <span>📰</span>
+            팀 소식
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-actions">
+        <a href="#" class="nav-btn btn-secondary">로그인</a>
+        <a href="#" class="nav-btn btn-primary">팀 가입</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="locker-main">
+      <!-- Hero Section -->
+      <section class="locker-hero" id="hero">
+        <div class="hero-content">
+          <div class="locker-badge fade-up">
+            <span>👕</span>
+            Official Gear
+          </div>
+
+          <h1 class="hero-title fade-up">
+            <span class="title-highlight">24시 항시대기</span><br />
+            <div style="margin-top: 1rem">공식 유니폼</div>
+          </h1>
+
+          <p class="hero-subtitle fade-up">
+            프리미엄 양면 유니폼 • 완벽한 경기 준비
+          </p>
+        </div>
+      </section>
+
+      <!-- Product Showcase -->
+      <section class="product-showcase" id="showcase">
+        <!-- 3D Main Display -->
+        <div class="main-uniform-display fade-up">
+          <div class="uniform-3d-container">
+            <div class="uniform-3d-model rotating" id="uniform3D">
+              <img
+                src="images/24HD ESSENTIALS/3d_kit.PNG"
+                alt="24HD 유니폼 3D 모델"
+                class="uniform-image-3d"
+                id="uniform3DImage"
+              />
             </div>
-        </nav>
-    </header>
+          </div>
+          <div class="uniform-controls">
+            <button class="control-btn active" onclick="showView('3d')">
+              3D 뷰
+            </button>
+            <button class="control-btn" onclick="showView('front')">
+              앞면
+            </button>
+            <button class="control-btn" onclick="showView('back')">뒷면</button>
+          </div>
+        </div>
 
-    <main>
-        <section id="store-header" class="text-center">
-            <div class="container">
-                <h1>The Locker Room</h1>
-                <p>Premium gear for the discerning fan. Experience the 2424 style.</p>
+        <!-- Reversible Feature -->
+        <div class="reversible-feature fade-up">
+          <div class="reversible-icon">
+            <div class="reversible-cube">
+              <div class="cube-face cube-front"></div>
+              <div class="cube-face cube-back"></div>
             </div>
-        </section>
+          </div>
+          <h2 class="reversible-title">Reversible Design</h2>
+          <p class="reversible-description">
+            하나의 유니폼으로 두 가지 스타일. 경기 상황에 맞춰 즉석에서 변경
+            가능한 혁신적인 양면 디자인.
+          </p>
+        </div>
 
-        <section id="uniform-showcase" class="page-section">
-            <div class="container">
-                <div class="uniform-grid">
-                    <!-- Uniform Product Card 1: Home Kit -->
-                    <div class="uniform-card animate-on-scroll">
-                        <div class="uniform-image-wrapper">
-                            <img src="https://via.placeholder.com/400x500/0A4A1B/FFFFFF?text=Home+Jersey" alt="Team 2424 Home Jersey" class="uniform-image">
-                            <!-- <div class="uniform-texture-overlay concrete"></div> -->
-                        </div>
-                        <div class="uniform-info">
-                            <h3 class="uniform-name">2424 Home Kit</h3>
-                            <p class="uniform-price">$79.99</p>
-                            <div class="color-options">
-                                <span class="color-dot active" style="background-color: var(--primary-green);" data-image="https://via.placeholder.com/400x500/0A4A1B/FFFFFF?text=Home+Jersey"></span>
-                                <!-- Add more color dots if variants exist -->
-                            </div>
-                            <button class="btn btn-store">View Details</button>
-                        </div>
-                    </div>
+        <!-- 2D Gallery -->
+        <div class="uniform-2d-gallery fade-up">
+          <div class="gallery-item" onclick="openImageModal('front')">
+            <img
+              src="images/24HD ESSENTIALS/2d_kit_black.PNG"
+              alt="24HD 유니폼 앞면"
+              class="gallery-image"
+            />
+            <div class="gallery-label">Front Design</div>
+          </div>
 
-                    <!-- Uniform Product Card 2: Away Kit -->
-                    <div class="uniform-card animate-on-scroll">
-                        <div class="uniform-image-wrapper">
-                            <img src="https://via.placeholder.com/400x500/FFFFFF/0A4A1B?text=Away+Jersey" alt="Team 2424 Away Jersey" class="uniform-image">
-                            <!-- <div class="uniform-texture-overlay metal"></div> -->
-                        </div>
-                        <div class="uniform-info">
-                            <h3 class="uniform-name">2424 Away Kit</h3>
-                            <p class="uniform-price">$79.99</p>
-                            <div class="color-options">
-                                 <span class="color-dot active" style="background-color: var(--crisp-white);" data-image="https://via.placeholder.com/400x500/FFFFFF/0A4A1B?text=Away+Jersey"></span>
-                            </div>
-                            <button class="btn btn-store">View Details</button>
-                        </div>
-                    </div>
+          <div class="gallery-item" onclick="openImageModal('back')">
+            <img
+              src="images/24HD ESSENTIALS/2d_kit_white.PNG"
+              alt="24HD 유니폼 뒷면"
+              class="gallery-image"
+            />
+            <div class="gallery-label">Back Design</div>
+          </div>
+        </div>
 
-                    <!-- Uniform Product Card 3: Third Kit -->
-                    <div class="uniform-card animate-on-scroll">
-                        <div class="uniform-image-wrapper">
-                            <img src="https://via.placeholder.com/400x500/333333/FFD700?text=Third+Kit" alt="Team 2424 Third Kit" class="uniform-image">
-                            <!-- <div class="uniform-texture-overlay wood"></div> -->
-                        </div>
-                        <div class="uniform-info">
-                            <h3 class="uniform-name">2424 Third Kit</h3>
-                            <p class="uniform-price">$85.00</p>
-                            <div class="color-options">
-                                <span class="color-dot active" style="background-color: var(--dark-gray);" data-image="https://via.placeholder.com/400x500/333333/FFD700?text=Third+Kit"></span>
-                            </div>
-                            <button class="btn btn-store">View Details</button>
-                        </div>
-                    </div>
-                    <!-- More uniform cards can be added here -->
-                </div>
-            </div>
-        </section>
+        <!-- Action Section -->
+        <div class="uniform-actions fade-up">
+          <div class="action-card" onclick="openSizeChart()">
+            <div class="action-icon">📏</div>
+            <h3 class="action-title">사이즈 확인</h3>
+            <p class="action-description">
+              정확한 사이즈 차트를 확인하여 완벽한 핏을 찾아보세요
+            </p>
+            <button class="action-btn">사이즈 차트 보기</button>
+          </div>
+
+          <div class="action-card" onclick="openOrderForm()">
+            <div class="action-icon">📝</div>
+            <h3 class="action-title">유니폼 신청</h3>
+            <p class="action-description">
+              간편한 온라인 신청으로 24HD 공식 유니폼을 주문하세요
+            </p>
+            <button class="action-btn">신청서 작성</button>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer id="main-footer">
-         <!-- Footer remains the same, but might need style tweaks for dark theme -->
-        <div class="container">
-            <p>&copy; 2024 Team 2424. All rights reserved.</p>
+    <!-- Size Chart Modal -->
+    <div class="modal" id="sizeModal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('sizeModal')">
+          &times;
+        </button>
+        <h2
+          style="
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--metal-chrome);
+          "
+        >
+          사이즈 차트
+        </h2>
+        <div class="size-chart">
+          <img
+            src="images/24HD ESSENTIALS/sizesheet.jpg"
+            alt="24HD 유니폼 사이즈 차트"
+          />
         </div>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('imageModal')">
+          &times;
+        </button>
+        <div style="text-align: center">
+          <img
+            id="modalImage"
+            src=""
+            alt=""
+            style="max-width: 100%; height: auto; border-radius: 12px"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="locker-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">24HD</div>
+          <div class="footer-tagline">24시 항시대기 • 공식 웹페이지</div>
+        </div>
+        <div class="footer-text">
+          &copy; 2025 24HD. All rights reserved. For the driven.
+        </div>
+      </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/store.js" defer></script>
-    <script src="js/animations.js" defer></script>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced Cursor System
+        const cursor = document.querySelector(".locker-cursor");
+        const aura = document.querySelector(".cursor-aura");
+
+        if (cursor && aura) {
+          document.addEventListener("mousemove", (e) => {
+            requestAnimationFrame(() => {
+              cursor.style.left = e.clientX + "px";
+              cursor.style.top = e.clientY + "px";
+
+              setTimeout(() => {
+                aura.style.left = e.clientX - 17.5 + "px";
+                aura.style.top = e.clientY - 17.5 + "px";
+              }, 50);
+            });
+          });
+
+          // Enhanced cursor interactions
+          document
+            .querySelectorAll(
+              ".action-card, .gallery-item, .control-btn, .action-btn, .reversible-cube"
+            )
+            .forEach((element) => {
+              element.addEventListener("mouseenter", function () {
+                cursor.style.transform = "scale(2)";
+                aura.style.transform = "scale(1.5)";
+                cursor.style.background =
+                  "linear-gradient(135deg, #FFD700, #B8860B)";
+              });
+
+              element.addEventListener("mouseleave", function () {
+                cursor.style.transform = "scale(1)";
+                aura.style.transform = "scale(1)";
+                cursor.style.background =
+                  "linear-gradient(135deg, #FFD700, #B8860B)";
+              });
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+
+        if (mobileMenuToggle && mobileMenuOverlay) {
+          mobileMenuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mobileMenuOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileMenuOverlay.classList.contains(
+              "active"
+            )
+              ? "hidden"
+              : "";
+          });
+
+          // Close mobile menu when clicking on links
+          const mobileNavLinks = document.querySelectorAll(
+            ".mobile-nav-links a"
+          );
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenuToggle.classList.remove("active");
+              mobileMenuOverlay.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Scroll animations
+        setTimeout(() => {
+          const elements = document.querySelectorAll(".fade-up");
+          elements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add("visible");
+            }, index * 200);
+          });
+        }, 500);
+
+        // Navigation effects
+        const nav = document.getElementById("nav");
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.scrollY > 100) {
+              nav.classList.add("scrolled");
+            } else {
+              nav.classList.remove("scrolled");
+            }
+          },
+          { passive: true }
+        );
+
+        // 3D Model Interaction
+        const uniform3D = document.getElementById("uniform3D");
+        let isRotating = true;
+        let rotationY = 0;
+        let isDragging = false;
+
+        uniform3D.addEventListener("mousedown", (e) => {
+          isDragging = true;
+          isRotating = false;
+          uniform3D.classList.remove("rotating");
+          uniform3D.style.cursor = "grabbing";
+          e.preventDefault();
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          if (isDragging) {
+            const deltaX = e.movementX;
+            rotationY += deltaX * 0.5;
+            uniform3D.style.transform = `rotateY(${rotationY}deg)`;
+          }
+        });
+
+        document.addEventListener("mouseup", () => {
+          if (isDragging) {
+            isDragging = false;
+            uniform3D.style.cursor = "grab";
+
+            // Resume rotation after 3 seconds
+            setTimeout(() => {
+              if (!isDragging) {
+                isRotating = true;
+                uniform3D.classList.add("rotating");
+              }
+            }, 3000);
+          }
+        });
+
+        // Touch events for mobile
+        let touchStartX = 0;
+
+        uniform3D.addEventListener(
+          "touchstart",
+          (e) => {
+            isDragging = true;
+            isRotating = false;
+            uniform3D.classList.remove("rotating");
+            touchStartX = e.touches[0].clientX;
+            e.preventDefault();
+          },
+          { passive: false }
+        );
+
+        uniform3D.addEventListener(
+          "touchmove",
+          (e) => {
+            if (isDragging) {
+              const touchCurrentX = e.touches[0].clientX;
+              const deltaX = touchCurrentX - touchStartX;
+              rotationY += deltaX * 0.3;
+              uniform3D.style.transform = `rotateY(${rotationY}deg)`;
+              touchStartX = touchCurrentX;
+            }
+            e.preventDefault();
+          },
+          { passive: false }
+        );
+
+        uniform3D.addEventListener("touchend", () => {
+          if (isDragging) {
+            isDragging = false;
+
+            setTimeout(() => {
+              if (!isDragging) {
+                isRotating = true;
+                uniform3D.classList.add("rotating");
+              }
+            }, 3000);
+          }
+        });
+
+        // Reversible Cube Interaction
+        const reversibleCube = document.querySelector(".reversible-cube");
+        if (reversibleCube) {
+          reversibleCube.addEventListener("click", () => {
+            reversibleCube.style.animationPlayState =
+              reversibleCube.style.animationPlayState === "paused"
+                ? "running"
+                : "paused";
+          });
+        }
+      });
+
+      // View Control Functions
+      function showView(view) {
+        const uniform3D = document.getElementById("uniform3D");
+        const uniformImage = document.getElementById("uniform3DImage");
+        const controlBtns = document.querySelectorAll(".control-btn");
+
+        // Update active button
+        controlBtns.forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
+
+        if (view === "3d") {
+          uniformImage.src = "images/24HD ESSENTIALS/3d_kit.PNG";
+          uniform3D.classList.add("rotating");
+        } else if (view === "front") {
+          uniformImage.src = "images/24HD ESSENTIALS/2d_kit_black.PNG";
+          uniform3D.classList.remove("rotating");
+          uniform3D.style.transform = "rotateY(0deg)";
+        } else if (view === "back") {
+          uniformImage.src = "images/24HD ESSENTIALS/2d_kit_white.PNG";
+          uniform3D.classList.remove("rotating");
+          uniform3D.style.transform = "rotateY(180deg)";
+        }
+      }
+
+      // Modal Functions
+      function openSizeChart() {
+        const modal = document.getElementById("sizeModal");
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function openImageModal(type) {
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+
+        if (type === "front") {
+          modalImage.src = "images/24HD ESSENTIALS/2d_kit_black.PNG";
+          modalImage.alt = "24HD 유니폼 앞면 상세";
+        } else if (type === "back") {
+          modalImage.src = "images/24HD ESSENTIALS/2d_kit_white.PNG";
+          modalImage.alt = "24HD 유니폼 뒷면 상세";
+        }
+
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      function openOrderForm() {
+        window.open(
+          "https://docs.google.com/forms/d/e/1FAIpQLSf5gwJiPymFx6k5t2Q-kdVFdF-58r6d35Saz9Mwhy-pq20oJg/viewform?usp=header"
+        );
+      }
+
+      // Click outside to close modal
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("modal")) {
+          e.target.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Escape key to close modal
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const activeModal = document.querySelector(".modal.active");
+          if (activeModal) {
+            activeModal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+
+      // Handle orientation change on mobile
+      window.addEventListener("orientationchange", function () {
+        setTimeout(() => {
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+          // Close mobile menu if open
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const mobileMenuOverlay =
+            document.getElementById("mobileMenuOverlay");
+
+          if (mobileMenuToggle && mobileMenuOverlay) {
+            mobileMenuToggle.classList.remove("active");
+            mobileMenuOverlay.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }, 100);
+      });
+
+      // Initial viewport height calculation for mobile
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    </script>
+  </body>
 </html>
