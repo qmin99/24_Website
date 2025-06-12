@@ -338,7 +338,7 @@
         box-shadow: 0 0 10px var(--championship-gold);
       }
 
-        /* Hide cursors on mobile only */
+      /* Hide cursors on mobile only */
       @media (max-width: 768px) and (hover: none) {
         .stadium-cursor,
         .cursor-aura {
@@ -1085,6 +1085,8 @@
         cursor: pointer;
         transition: all 0.6s var(--ease-out-expo);
         transform-style: preserve-3d;
+        text-decoration: none;
+        color: inherit;
       }
 
       .bubble-shape {
@@ -1456,16 +1458,15 @@
             <span class="brand-subtitle">항시대기</span>
           </div>
         </a>
-
         <ul class="nav-menu">
           <li>
-            <a href="#results" class="nav-link">
+            <a href="matches.html" class="nav-link">
               <span>🏆</span>
               경기 결과
             </a>
           </li>
           <li>
-            <a href="#highlights" class="nav-link">
+            <a href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x" class="nav-link" target="_blank">
               <span>🎬</span>
               경기 영상
             </a>
@@ -1474,6 +1475,12 @@
             <a href="#squad" class="nav-link">
               <span>⚽</span>
               팀 구성
+            </a>
+          </li>
+          <li>
+            <a href="uniform.html" class="nav-link">
+              <span>👕</span>
+              유니폼 신청
             </a>
           </li>
           <li>
@@ -1501,13 +1508,13 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
       <ul class="mobile-nav-links">
         <li>
-          <a href="#results">
+          <a href="matches.html">
             <span>🏆</span>
             경기 결과
           </a>
         </li>
         <li>
-          <a href="#highlights">
+          <a href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x">
             <span>🎬</span>
             경기 영상
           </a>
@@ -1515,7 +1522,13 @@
         <li>
           <a href="#squad">
             <span>⚽</span>
-            팀 구성
+            스쿼드 구성
+          </a>
+        </li>
+        <li>
+          <a href="uniform.html">
+            <span>👕</span>
+            유니폼 신청
           </a>
         </li>
         <li>
@@ -1588,12 +1601,16 @@
             </div>
           </div>
 
-          <div class="bubble-portal" onclick="navigateToHighlights()">
+          <a
+            href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+            class="bubble-portal"
+            target="_blank"
+          >
             <div class="bubble-shape">
               <span class="bubble-icon">🎬</span>
               <h3 class="bubble-title">하이라이트</h3>
             </div>
-          </div>
+          </a>
 
           <div class="bubble-portal" onclick="navigateToUniforms()">
             <div class="bubble-shape">
@@ -2035,7 +2052,7 @@
 
         setTimeout(
           () => {
-            window.location.href = "store.html";
+            window.location.href = "uniform.html";
           },
           isMobile ? 100 : 500
         );

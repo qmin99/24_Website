@@ -57,11 +57,21 @@
         --draw-blue: #3742fa;
         --draw-blue-glow: rgba(55, 66, 250, 0.3);
 
-        --gradient-primary: linear-gradient(
+        --gradient-neon: linear-gradient(
+          45deg,
+          var(--neon-gold) 0%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 100%
+        );
+        --gradient-gold: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        --gradient-glass: linear-gradient(
           135deg,
-          var(--pure-black) 0%,
-          var(--stadium-black) 50%,
-          var(--championship-gold) 100%
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
         );
         --gradient-victory: linear-gradient(
           135deg,
@@ -78,11 +88,7 @@
           rgba(55, 66, 250, 0.1) 0%,
           rgba(55, 66, 250, 0.05) 100%
         );
-        --gradient-glass: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0.05) 100%
-        );
+       
         --gradient-glass-strong: linear-gradient(
           135deg,
           rgba(255, 255, 255, 0.15) 0%,
@@ -508,6 +514,72 @@
         background: var(--gradient-glass-strong);
       }
 
+      .nav-actions {
+        display: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-actions {
+          display: flex;
+        }
+      }
+
+      .nav-btn {
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        border: var(--glass-border);
+        background: var(--gradient-glass);
+        color: var(--platinum-white);
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 8px;
+        backdrop-filter: var(--glass-blur);
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .nav-btn {
+          padding: var(--space-md) var(--space-xl);
+          font-size: 0.85rem;
+          border-radius: 12px;
+        }
+      }
+
+      .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--pure-black);
+        border: 1px solid var(--championship-gold);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: var(--gradient-glass-strong);
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
+
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-space-md);
+      }
+
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--mobile-space-lg);
+        font-size: 1rem;
+      }
       .championship-arena {
         position: relative;
         min-height: 70vh;
@@ -1449,12 +1521,24 @@
         transform: scale(1.1);
         transition: transform 0.3s ease;
       }
+
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-space-md);
+      }
+
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--mobile-space-lg);
+        font-size: 1rem;
+      }
     </style>
   </head>
   <body>
     <div class="stadium-cursor"></div>
     <div class="cursor-aura"></div>
-
     <nav class="stadium-nav" id="nav">
       <div class="nav-container">
         <a href="index.html" class="team-brand">
@@ -1470,26 +1554,47 @@
             <span class="brand-subtitle">항시대기</span>
           </div>
         </a>
-
         <ul class="nav-menu">
           <li>
-            <a href="index.html" class="nav-link"><span>🏠</span>홈</a>
+            <a href="matches.html" class="nav-link">
+              <span>🏆</span>
+              경기 결과
+            </a>
           </li>
           <li>
-            <a href="matches.html" class="nav-link active"
-              ><span>🏆</span>경기 결과</a
+            <a
+              href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+              class="nav-link"
+              target="_blank"
             >
+              <span>🎬</span>
+              경기 영상
+            </a>
           </li>
           <li>
-            <a href="#highlights" class="nav-link"><span>🎬</span>경기 영상</a>
+            <a href="#squad" class="nav-link">
+              <span>⚽</span>
+              팀 구성
+            </a>
           </li>
           <li>
-            <a href="#squad" class="nav-link"><span>⚽</span>팀 구성</a>
+            <a href="uniform.html" class="nav-link">
+              <span>👕</span>
+              유니폼 신청
+            </a>
           </li>
           <li>
-            <a href="store.html" class="nav-link"><span>👕</span>유니폼</a>
+            <a href="#news" class="nav-link">
+              <span>📰</span>
+              팀 소식
+            </a>
           </li>
         </ul>
+
+        <div class="nav-actions">
+          <a href="#" class="nav-btn btn-secondary">로그인</a>
+          <a href="#" class="nav-btn btn-primary">팀 가입</a>
+        </div>
 
         <button class="mobile-menu-toggle" id="mobileMenuToggle">
           <div class="hamburger-line"></div>
@@ -1499,24 +1604,45 @@
       </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay">
       <ul class="mobile-nav-links">
         <li>
-          <a href="index.html"><span>🏠</span>홈</a>
+          <a href="matches.html">
+            <span>🏆</span>
+            경기 결과
+          </a>
         </li>
         <li>
-          <a href="matches.html"><span>🏆</span>경기 결과</a>
+          <a href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4xhighlights">
+            <span>🎬</span>
+            경기 영상
+          </a>
         </li>
         <li>
-          <a href="#highlights"><span>🎬</span>경기 영상</a>
+          <a href="#squad">
+            <span>⚽</span>
+            스쿼드 구성
+          </a>
         </li>
         <li>
-          <a href="#squad"><span>⚽</span>팀 구성</a>
+          <a href="uniform.html">
+            <span>👕</span>
+            유니폼 신청
+          </a>
         </li>
         <li>
-          <a href="store.html"><span>👕</span>유니폼</a>
+          <a href="#news">
+            <span>📰</span>
+            팀 소식
+          </a>
         </li>
       </ul>
+
+      <div class="mobile-nav-actions">
+        <a href="#" class="nav-btn btn-secondary">로그인</a>
+        <a href="#" class="nav-btn btn-primary">팀 가입</a>
+      </div>
     </div>
 
     <section class="championship-arena" id="arena">
