@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24HD Portal | 정회원 전용 - Premium Access</title>
+
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="24HD Portal" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Premium Typography -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP & Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      /* 🚀 IMMERSIVE PORTAL VARIABLES */
+      :root {
+        /* Cyberpunk Portal Colors */
+        --void-black: #000000;
+        --deep-space: #0a0a0f;
+        --portal-blue: #00d4ff;
+        --neon-cyan: #00ffff;
+        --electric-gold: #ffd700;
+        --quantum-purple: #8a2be2;
+        --plasma-pink: #ff00ff;
+        --pure-white: #ffffff;
+        --ghost-white: rgba(255, 255, 255, 0.1);
+        --glass-strong: rgba(255, 255, 255, 0.15);
+        --success-green: #00ff88;
+        --royal-gold: #d4af37;
+        --soft-gray: #6c757d;
+        --light-gray: #e9ecef;
+
+        /* Holographic Gradients */
+        --gradient-portal: linear-gradient(
+          135deg,
+          #000014 0%,
+          #001a2e 50%,
+          #003366 100%
+        );
+        --gradient-neon: linear-gradient(
+          45deg,
+          #00d4ff 0%,
+          #00ffff 50%,
+          #ffd700 100%
+        );
+        --gradient-gold: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+        --gradient-cyber: linear-gradient(
+          135deg,
+          #8a2be2 0%,
+          #ff00ff 50%,
+          #00d4ff 100%
+        );
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(0, 212, 255, 0.1) 100%
+        );
+
+        /* Typography */
+        --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-display: "Orbitron", "Pretendard", sans-serif;
+        --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+        --font-modern: "Inter", "Pretendard", sans-serif;
+
+        /* Spacing */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+
+        /* Effects */
+        --neon-glow: 0 0 20px currentColor, 0 0 40px currentColor,
+          0 0 60px currentColor;
+        --portal-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        --cyber-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+
+        /* Animations */
+        --ease-cyber: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --ease-portal: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: var(--font-modern);
+        background: var(--void-black);
+        color: var(--pure-white);
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      /* 🌌 IMMERSIVE PORTAL BACKGROUND */
+      .portal-universe {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-portal);
+        z-index: -3;
+      }
+
+      .portal-universe::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(0, 212, 255, 0.1) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 215, 0, 0.08) 0%,
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 60% 20%,
+            rgba(138, 43, 226, 0.06) 0%,
+            transparent 25%
+          );
+        animation: cosmicFlow 30s ease-in-out infinite;
+      }
+
+      @keyframes cosmicFlow {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(-20px, -10px) scale(1.02);
+        }
+        66% {
+          transform: translate(20px, 10px) scale(0.98);
+        }
+      }
+
+      /* ✨ FLOATING PARTICLES */
+      .particle {
+        position: fixed;
+        width: 2px;
+        height: 2px;
+        background: var(--portal-blue);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -2;
+        animation: particleFloat 8s infinite linear;
+        box-shadow: 0 0 6px currentColor;
+      }
+
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) translateX(0) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+          transform: translateY(90vh) translateX(10px) scale(1);
+        }
+        90% {
+          opacity: 1;
+          transform: translateY(10vh) translateX(-10px) scale(1);
+        }
+        100% {
+          transform: translateY(0) translateX(0) scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* 🎮 HOLOGRAPHIC CURSOR */
+      .cyber-cursor {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--portal-blue);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        background: radial-gradient(
+          circle,
+          rgba(0, 212, 255, 0.2) 0%,
+          transparent 70%
+        );
+        box-shadow: 0 0 20px var(--portal-blue);
+      }
+
+      .cursor-trail {
+        width: 6px;
+        height: 6px;
+        background: var(--electric-gold);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px var(--electric-gold);
+      }
+
+      @media (max-width: 768px) and (hover: none) {
+        .cyber-cursor,
+        .cursor-trail {
+          display: none;
+        }
+      }
+
+      /* 🚀 NAVIGATION */
+      .portal-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-cyber);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--space-xl);
+      }
+
+      .brand-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-lg);
+        text-decoration: none;
+        color: var(--pure-white);
+      }
+
+      .brand-shield {
+        width: 50px;
+        height: 45px;
+        background: var(--gradient-gold);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        box-shadow: var(--portal-shadow);
+      }
+
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--electric-gold);
+        line-height: 1;
+        text-shadow: var(--neon-glow);
+      }
+
+      .brand-subtitle {
+        font-size: 0.8rem;
+        color: var(--portal-blue);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* 🌊 FULLSCREEN PORTAL CONTAINER */
+      .portal-container {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        margin-top: 80px;
+      }
+
+      .portal-sections {
+        height: 100%;
+        display: flex;
+        transition: transform 0.8s var(--ease-portal);
+      }
+
+      .portal-section {
+        width: 100vw;
+        height: 100%;
+        flex-shrink: 0;
+        position: relative;
+        overflow-y: auto;
+      }
+
+      /* 🔙 HOLOGRAPHIC BACK BUTTON */
+      .back-button {
+        position: absolute;
+        top: var(--space-xl);
+        left: var(--space-xl);
+        z-index: 100;
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 212, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 2px solid var(--portal-blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.4s var(--ease-portal);
+        color: var(--portal-blue);
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-shadow: var(--neon-glow);
+      }
+
+      .back-button:hover {
+        transform: scale(1.1) rotate(-10deg);
+        background: rgba(0, 212, 255, 0.2);
+        box-shadow: var(--portal-shadow);
+      }
+
+      /* 🌟 IMMERSIVE HERO PORTAL */
+      .hero-portal {
+        bottom:75px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        padding: var(--space-sm);
+        perspective: 1000px;
+      }
+
+      /* 🔮 HOLOGRAPHIC ENTRANCE */
+      .portal-entrance {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at center,
+          rgba(0, 212, 255, 0.1) 0%,
+          rgba(0, 212, 255, 0.05) 30%,
+          transparent 70%
+        );
+        border: 2px solid rgba(0, 212, 255, 0.3);
+        animation: portalPulse 4s ease-in-out infinite;
+        z-index: -1;
+      }
+      @media (max-width: 768px) {
+        /* 🔮 HOLOGRAPHIC ENTRANCE */
+        .portal-entrance {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 200px;
+          height: 250px;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle at center,
+            rgba(0, 212, 255, 0.1) 0%,
+            rgba(0, 212, 255, 0.05) 30%,
+            transparent 70%
+          );
+          border: 2px solid rgba(0, 212, 255, 0.3);
+          animation: portalPulse 4s ease-in-out infinite;
+          z-index: -1;
+        }
+      }
+      @keyframes portalPulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1) rotate(0deg);
+          border-color: rgba(0, 212, 255, 0.3);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.1) rotate(180deg);
+          border-color: rgba(255, 215, 0, 0.5);
+        }
+      }
+
+      .portal-entrance::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        height: 60%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 215, 0, 0.15) 0%,
+          rgba(0, 212, 255, 0.1) 50%,
+          transparent 80%
+        );
+        animation: portalCore 6s ease-in-out infinite reverse;
+      }
+
+      @keyframes portalCore {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* 👑 MASSIVE PREMIUM HEADER */
+      .premium-header {
+        position: relative;
+        z-index: 10;
+        margin-bottom: var(--space-3xl);
+      }
+
+      .portal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm) var(--space-xl);
+        background: rgba(0, 212, 255, 0.1);
+        border: 2px solid var(--portal-blue);
+        border-radius: 50px;
+        margin-bottom: var(--space-xl);
+        font-family: var(--font-accent);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--portal-blue);
+        box-shadow: var(--portal-shadow);
+        backdrop-filter: blur(10px);
+        text-shadow: var(--neon-glow);
+      }
+
+      .portal-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 900;
+        line-height: 0.9;
+        margin-bottom: var(--space-lg);
+        background: var(--gradient-neon);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+        animation: titleGlow 3s ease-in-out infinite alternate;
+        letter-spacing: -0.02em;
+      }
+      @media (max-width: 768px) {
+        /* 👑 MASSIVE PREMIUM HEADER */
+        .premium-header {
+          position: relative;
+          z-index: 10;
+          margin-bottom: var(--space-sm);
+          
+        }
+
+        .portal-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--space-sm);
+          padding: var(--space-sm) var(--space-sm);
+          background: rgba(0, 212, 255, 0.1);
+          border: 2px solid var(--portal-blue);
+          border-radius: 50px;
+          margin-bottom: var(--space-md);
+          font-family: var(--font-accent);
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: var(--portal-blue);
+          box-shadow: var(--portal-shadow);
+          backdrop-filter: blur(10px);
+          text-shadow: var(--neon-glow);
+          margin-top: var(--space-sm);
+        }
+
+        .portal-title {
+          font-family: var(--font-display);
+          font-size: clamp(3rem, 12vw, 8rem);
+          font-weight: 900;
+          line-height: 1.2;
+          margin-bottom: var(--space-lg);
+          background: var(--gradient-neon);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+          animation: titleGlow 3s ease-in-out infinite alternate;
+          letter-spacing: -0.02em;
+        }
+      }
+      @keyframes titleGlow {
+        0% {
+          filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+        }
+        100% {
+          filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.7));
+        }
+      }
+
+      .portal-subtitle {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: var(--space-xl);
+        font-weight: 400;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .portal-widgets {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--space-lg);
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 5;
+        perspective: 1000px;
+      }
+
+      .portal-widget {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 16px;
+        padding: var(--space-md);
+        cursor: pointer;
+        transition: all 0.6s var(--ease-portal);
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        animation: widgetFloat 6s ease-in-out infinite;
+        height: 100px;
+        width: 270px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+      @media (max-width: 768px) {
+
+      .portal-widget {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 16px;
+        padding: var(--space-md);
+        cursor: pointer;
+        transition: all 0.6s var(--ease-portal);
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        animation: widgetFloat 6s ease-in-out infinite;
+        height: 60px;
+        width: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+      .portal-widgets {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--space-xs);
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 5;
+        perspective: 1000px;
+      }
+
+    }
+      .portal-widget:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .portal-widget:nth-child(2) {
+        animation-delay: 1s;
+      }
+      .portal-widget:nth-child(3) {
+        animation-delay: 2s;
+      }
+      .portal-widget:nth-child(4) {
+        animation-delay: 3s;
+      }
+
+      @keyframes widgetFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotateX(0) rotateY(0);
+        }
+        50% {
+          transform: translateY(-6px) rotateX(1deg) rotateY(1deg);
+        }
+      }
+
+      .portal-widget:hover {
+        transform: translateY(-12px) scale(1.04) rotateX(4deg) rotateY(4deg);
+        border-color: var(--electric-gold);
+        box-shadow: var(--cyber-shadow);
+      }
+
+      .portal-widget::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 212, 255, 0.1),
+          transparent
+        );
+        transition: left 0.8s ease;
+      }
+
+      .portal-widget:hover::before {
+        left: 100%;
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .widget-icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-sm);
+        background: var(--gradient-cyber);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+        animation: iconPulse 2s ease-in-out infinite;
+      }
+
+      .widget-title {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--pure-white);
+        margin-bottom: var(--space-sm);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .widget-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: var(--space-lg);
+      }
+
+      .widget-status {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-size: 0.9rem;
+        color: var(--success-green);
+        font-weight: 600;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--success-green);
+        border-radius: 50%;
+        animation: statusPulse 2s infinite;
+        box-shadow: 0 0 10px var(--success-green);
+      }
+      @media (max-width: 768px) {
+
+      .widget-icon {
+        font-size: 2.0rem;
+        margin-right: var(--space-md);
+        background: var(--gradient-cyber);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+        animation: iconPulse 2s ease-in-out infinite;
+      }
+
+      .widget-title {
+        font-family: var(--font-display);
+        font-size: 1.0rem;
+        font-weight: 700;
+        color: var(--pure-white);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .widget-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: var(--space-xs);
+      }
+
+      .widget-status {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        font-size: 0.7rem;
+        color: var(--success-green);
+        font-weight: 600;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--success-green);
+        border-radius: 50%;
+        animation: statusPulse 2s infinite;
+        box-shadow: 0 0 10px var(--success-green);
+      }
+    }
+      @keyframes statusPulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2);
+        }
+      }
+
+      /* 🎯 QUANTUM TAB NAVIGATION */
+      .quantum-tabs {
+        position: fixed;
+        bottom: var(--space-x);
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: var(--space-md);
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 50px;
+        padding: var(--space-md);
+        z-index: 1000;
+        box-shadow: var(--portal-shadow);
+      }
+
+      .quantum-tab {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: transparent;
+        border: 2px solid rgba(0, 212, 255, 0.3);
+        color: var(--portal-blue);
+        cursor: pointer;
+        transition: all 0.4s var(--ease-portal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .quantum-tab::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-neon);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 50%;
+      }
+
+      .quantum-tab:hover::before,
+      .quantum-tab.active::before {
+        opacity: 0.2;
+      }
+
+      .quantum-tab:hover,
+      .quantum-tab.active {
+        border-color: var(--electric-gold);
+        color: var(--electric-gold);
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+
+      /* 👑 MVP VOTING SECTION */
+      .voting-section {
+        background: linear-gradient(
+          135deg,
+          var(--deep-space) 0%,
+          var(--void-black) 100%
+        );
+        position: relative;
+        padding: var(--space-xl);
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .voting-content {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: 0 auto;
+        padding-top: var(--space-3xl);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: var(--space-2xl);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: var(--space-md);
+        background: var(--gradient-neon);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: var(--space-lg);
+      }
+
+      .voting-period {
+        display: inline-block;
+        padding: var(--space-sm) var(--space-lg);
+        background: var(--gradient-gold);
+        color: var(--void-black);
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: var(--portal-shadow);
+      }
+
+      /* 🗳️ COMPACT VOTING CONTAINER */
+      .voting-container {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 20px;
+        padding: var(--space-xl);
+        margin-top: var(--space-lg);
+        box-shadow: var(--glass-shadow);
+      }
+
+      .voting-question {
+        font-family: var(--font-accent);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--pure-white);
+        margin-bottom: var(--space-lg);
+        text-align: center;
+        position: relative;
+      }
+
+      .voting-question::before {
+        content: "🏆";
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+      }
+
+      .voting-options {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .voting-option {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        transition: all 0.4s var(--ease-cyber);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .voting-option:hover {
+        transform: translateY(-2px);
+        border-color: var(--electric-gold);
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+      }
+
+      .voting-option.selected {
+        border-color: var(--electric-gold);
+        background: rgba(255, 215, 0, 0.1);
+      }
+
+      .voting-option::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 212, 255, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .voting-option:hover::before {
+        left: 100%;
+      }
+
+      .option-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gradient-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--void-black);
+        font-weight: 900;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        flex-shrink: 0;
+      }
+
+      .option-info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .option-name {
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--pure-white);
+      }
+
+      .option-position {
+        font-size: 0.75rem;
+        color: var(--portal-blue);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .option-progress {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        min-width: 120px;
+      }
+
+      .progress-bar {
+        flex-grow: 1;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+        max-width: 80px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--gradient-gold);
+        border-radius: 3px;
+        transition: width 0.6s var(--ease-cyber);
+        position: relative;
+      }
+
+      .vote-count {
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--pure-white);
+        min-width: 35px;
+        text-align: right;
+      }
+
+      .check-indicator {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--success-green);
+        color: var(--pure-white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.3s var(--ease-portal);
+        flex-shrink: 0;
+        box-shadow: 0 0 15px var(--success-green);
+      }
+
+      .voting-option.selected .check-indicator {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* 📊 OTHER SECTIONS */
+      .tactics-section,
+      .features-section,
+      .analytics-section {
+        background: linear-gradient(
+          135deg,
+          var(--deep-space) 0%,
+          var(--void-black) 100%
+        );
+        padding: var(--space-xl);
+        height: 100%;
+        overflow-y: auto;
+        position: relative;
+      }
+
+      .section-content {
+        padding-top: var(--space-3xl);
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Tactics Section */
+      .tactics-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+        margin-top: var(--space-xl);
+      }
+
+      @media (min-width: 768px) {
+        .tactics-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .formation-display {
+        background: linear-gradient(135deg, #1a5d2e 0%, #0d4d1a 100%);
+        border-radius: 20px;
+        padding: var(--space-2xl);
+        position: relative;
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--electric-gold);
+        overflow: hidden;
+        box-shadow: var(--cyber-shadow);
+      }
+
+      .formation-display::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent 48%,
+            rgba(255, 215, 0, 0.1) 50%,
+            transparent 52%
+          ),
+          linear-gradient(
+            0deg,
+            transparent 48%,
+            rgba(255, 215, 0, 0.1) 50%,
+            transparent 52%
+          );
+        pointer-events: none;
+      }
+
+      .formation-text {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        color: var(--electric-gold);
+        text-shadow: var(--neon-glow);
+        z-index: 2;
+        position: relative;
+      }
+
+      .tactics-info {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: var(--space-2xl);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        box-shadow: var(--glass-shadow);
+      }
+
+      .tactics-info h3 {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        color: var(--electric-gold);
+        margin-bottom: var(--space-lg);
+        text-shadow: var(--neon-glow);
+      }
+
+      .tactics-list {
+        list-style: none;
+      }
+
+      .tactics-list li {
+        padding: var(--space-md) 0;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        color: var(--pure-white);
+        font-size: 1rem;
+        position: relative;
+        padding-left: var(--space-xl);
+      }
+
+      .tactics-list li::before {
+        content: "⚽";
+        position: absolute;
+        left: 0;
+        color: var(--electric-gold);
+        font-size: 1.2rem;
+      }
+
+      .tactics-list li:last-child {
+        border-bottom: none;
+      }
+
+      /* Feature Cards */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-xl);
+        margin-top: var(--space-xl);
+      }
+
+      .feature-card {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: var(--space-2xl);
+        transition: all 0.5s var(--ease-portal);
+        cursor: pointer;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        box-shadow: var(--glass-shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 212, 255, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--electric-gold);
+        box-shadow: var(--cyber-shadow);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-lg);
+        background: var(--gradient-cyber);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+      }
+
+      .feature-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--pure-white);
+        margin-bottom: var(--space-md);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .feature-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: var(--space-lg);
+      }
+
+      .feature-btn {
+        width: 100%;
+        padding: var(--space-md) var(--space-lg);
+        background: transparent;
+        color: var(--portal-blue);
+        border: 2px solid var(--portal-blue);
+        border-radius: 30px;
+        font-family: var(--font-korean);
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .feature-btn:hover {
+        background: var(--gradient-gold);
+        color: var(--void-black);
+        border-color: var(--electric-gold);
+        transform: translateY(-2px);
+        box-shadow: var(--portal-shadow);
+      }
+
+      /* Mobile Optimizations */
+      @media (max-width: 768px) {
+        .portal-title {
+          font-size: clamp(2.5rem, 10vw, 4rem);
+        }
+
+        .portal-widgets {
+          grid-template-columns: 1fr;
+          gap: var(--space-lg);
+          padding: 0 var(--space-md);
+        }
+
+        .voting-content {
+          padding-top: var(--space-2xl);
+        }
+
+        .quantum-tabs {
+          bottom: 5px;
+          padding: var(--space-sm);
+        }
+
+        .quantum-tab {
+          width: 45px;
+          height: 45px;
+          font-size: 1rem;
+        }
+
+        .back-button {
+          top: var(--space-lg);
+          left: var(--space-lg);
+          width: 50px;
+          height: 50px;
+          font-size: 1.2rem;
+        }
+      }
+
+      /* Hide scrollbars */
+      .portal-section::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .portal-section::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .portal-section::-webkit-scrollbar-thumb {
+        background: var(--portal-blue);
+        border-radius: 3px;
+      }
+
+      .portal-section::-webkit-scrollbar-thumb:hover {
+        background: var(--electric-gold);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 🌌 IMMERSIVE PORTAL UNIVERSE -->
+    <div class="portal-universe"></div>
+
+    <!-- ✨ FLOATING PARTICLES -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- 🎮 HOLOGRAPHIC CURSORS -->
+    <div class="cyber-cursor"></div>
+    <div class="cursor-trail"></div>
+
+    <!-- 🚀 PORTAL NAVIGATION -->
+    <nav class="portal-nav">
+      <div class="nav-container">
+        <a href="index.html" class="brand-link">
+          <div class="brand-shield">
+            <img
+              src="images/logo/24HD_logo.png"
+              alt="24HD Logo"
+              class="brand-logo"
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">24HD</span>
+            <span class="brand-subtitle">Premium Access</span>
+          </div>
+        </a>
+      </div>
+    </nav>
+
+    <!-- 🌊 IMMERSIVE PORTAL CONTAINER -->
+    <div class="portal-container">
+      <div class="portal-sections" id="portalSections">
+        <!-- 🌟 HERO PORTAL ENTRANCE -->
+        <section class="portal-section hero-portal" id="hero">
+          <div class="portal-entrance"></div>
+
+          <div class="premium-header">
+            <div class="portal-badge">
+              <span>👑</span>
+              Premium Members Only
+            </div>
+
+            <h1 class="portal-title">정회원 포탈</h1>
+
+            <p class="portal-subtitle">24시 항시대기 정회원 독점 포탈</p>
+          </div>
+
+          <!-- 🎮 FLOATING PORTAL WIDGETS -->
+          <div class="portal-widgets">
+            <div class="portal-widget" onclick="navigateToSection(1)">
+              <div class="widget-icon">👑</div>
+              <div class="widget-title">MVP 투표</div>
+              <div class="widget-description">이달의 박카스맨 투표하기</div>
+              <div class="widget-status">
+                <div class="status-dot"></div>
+                <span>투표 진행 중</span>
+              </div>
+            </div>
+
+            <div class="portal-widget" onclick="navigateToSection(2)">
+              <div class="widget-icon">⚽</div>
+              <div class="widget-title">전술 보드</div>
+              <div class="widget-description">이번 주 경기 전략 확인</div>
+              <div class="widget-status">
+                <div class="status-dot"></div>
+                <span>업데이트됨</span>
+              </div>
+            </div>
+
+            <div class="portal-widget" onclick="navigateToSection(3)">
+              <div class="widget-icon">🎯</div>
+              <div class="widget-title">프리미엄</div>
+              <div class="widget-description">독점 서비스 이용하기</div>
+              <div class="widget-status">
+                <div class="status-dot"></div>
+                <span>사용 가능</span>
+              </div>
+            </div>
+
+            <div class="portal-widget" onclick="navigateToSection(4)">
+              <div class="widget-icon">📊</div>
+              <div class="widget-title">통계 분석</div>
+              <div class="widget-description">실시간 팀 성과 데이터</div>
+              <div class="widget-status">
+                <div class="status-dot"></div>
+                <span>실시간</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 👑 MVP VOTING SECTION -->
+        <section class="portal-section voting-section" id="voting">
+          <div class="back-button" onclick="navigateToSection(0)">←</div>
+
+          <div class="voting-content">
+            <div class="section-header">
+              <h2 class="section-title">이달의 박카스맨</h2>
+              <p class="section-subtitle">
+                가장 활약이 돋보인 선수에게 투표하세요
+              </p>
+              <div class="voting-period">투표 마감: 12월 31일 23:59</div>
+            </div>
+
+            <!-- 🗳️ COMPACT VOTING CONTAINER -->
+            <div class="voting-container">
+              <div class="voting-question">이번 달 최고의 선수는?</div>
+
+              <div class="voting-options">
+                <div
+                  class="voting-option"
+                  onclick="selectVote(this, 'kim', 22)"
+                >
+                  <div class="option-avatar">김</div>
+                  <div class="option-info">
+                    <div class="option-name">김영훈</div>
+                    <div class="option-position">Forward</div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 35%"></div>
+                    </div>
+                    <div class="vote-count">22명</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div
+                  class="voting-option"
+                  onclick="selectVote(this, 'lee', 28)"
+                >
+                  <div class="option-avatar">이</div>
+                  <div class="option-info">
+                    <div class="option-name">이원준</div>
+                    <div class="option-position">Midfielder</div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 44%"></div>
+                    </div>
+                    <div class="vote-count">28명</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div
+                  class="voting-option"
+                  onclick="selectVote(this, 'cho', 15)"
+                >
+                  <div class="option-avatar">조</div>
+                  <div class="option-info">
+                    <div class="option-name">조한준</div>
+                    <div class="option-position">Defender</div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 24%"></div>
+                    </div>
+                    <div class="vote-count">15명</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div
+                  class="voting-option"
+                  onclick="selectVote(this, 'park', 18)"
+                >
+                  <div class="option-avatar">박</div>
+                  <div class="option-info">
+                    <div class="option-name">박지수</div>
+                    <div class="option-position">Goalkeeper</div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 28%"></div>
+                    </div>
+                    <div class="vote-count">18명</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div
+                  class="voting-option"
+                  onclick="selectVote(this, 'choi', 12)"
+                >
+                  <div class="option-avatar">최</div>
+                  <div class="option-info">
+                    <div class="option-name">최윤혁</div>
+                    <div class="option-position">Forward</div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 19%"></div>
+                    </div>
+                    <div class="vote-count">12명</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div class="voting-option" onclick="selectVote(this, 'nam', 8)">
+                  <div class="option-avatar">남</div>
+                  <div class="option-info">
+                    <div class="option-name">남재영</div>
+                    <div class="option-position">Defender</div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 13%"></div>
+                    </div>
+                    <div class="vote-count">8명</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ⚽ TACTICS SECTION -->
+        <section class="portal-section tactics-section" id="tactics">
+          <div class="back-button" onclick="navigateToSection(0)">←</div>
+
+          <div class="section-content">
+            <div class="section-header">
+              <h2 class="section-title">이번 주 전술 보드</h2>
+              <p class="section-subtitle">
+                vs 강남 FC • 12월 28일 (토) 오전 10시
+              </p>
+            </div>
+
+            <div class="tactics-grid">
+              <div class="formation-display">
+                <div class="formation-text">4-3-3</div>
+              </div>
+
+              <div class="tactics-info">
+                <h3>주요 전술 포인트</h3>
+                <ul class="tactics-list">
+                  <li>높은 압박을 통한 볼 탈취</li>
+                  <li>사이드 공격 활용한 크로스 공급</li>
+                  <li>중앙 미드필더진의 패스 플레이</li>
+                  <li>세트피스 상황 집중 마크</li>
+                  <li>빠른 역습 전개</li>
+                  <li>골키퍼 빌드업 적극 활용</li>
+                  <li>상대 주력 선수 견제</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 🎯 PREMIUM FEATURES SECTION -->
+        <section class="portal-section features-section" id="features">
+          <div class="back-button" onclick="navigateToSection(0)">←</div>
+
+          <div class="section-content">
+            <div class="section-header">
+              <h2 class="section-title">프리미엄 서비스</h2>
+              <p class="section-subtitle">정회원만의 독점 기능들</p>
+            </div>
+
+            <div class="features-grid">
+              <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3 class="feature-title">개인 경기 분석</h3>
+                <p class="feature-description">
+                  AI 기반 개인 플레이 분석 리포트와 성장 포인트 제안
+                </p>
+                <button class="feature-btn">분석 보기</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">맞춤 훈련 프로그램</h3>
+                <p class="feature-description">
+                  포지션별 맞춤 훈련 메뉴와 개인 피드백 시스템
+                </p>
+                <button class="feature-btn">프로그램 확인</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">💬</span>
+                <h3 class="feature-title">정회원 채팅방</h3>
+                <p class="feature-description">
+                  정회원만의 독점 소통 공간과 실시간 경기 토론
+                </p>
+                <button class="feature-btn">채팅방 입장</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">🏆</span>
+                <h3 class="feature-title">독점 하이라이트</h3>
+                <p class="feature-description">
+                  정회원 전용 경기 하이라이트와 비하인드 영상
+                </p>
+                <button class="feature-btn">영상 보기</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">🎁</span>
+                <h3 class="feature-title">멤버십 혜택</h3>
+                <p class="feature-description">
+                  유니폼 할인, 우선 예약권 및 특별 이벤트 참여
+                </p>
+                <button class="feature-btn">혜택 확인</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3 class="feature-title">모바일 앱</h3>
+                <p class="feature-description">
+                  언제 어디서나 접속 가능한 전용 모바일 애플리케이션
+                </p>
+                <button class="feature-btn">앱 다운로드</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 📈 ANALYTICS DASHBOARD SECTION -->
+        <section class="portal-section analytics-section" id="analytics">
+          <div class="back-button" onclick="navigateToSection(0)">←</div>
+
+          <div class="section-content">
+            <div class="section-header">
+              <h2 class="section-title">팀 성과 대시보드</h2>
+              <p class="section-subtitle">실시간 팀 통계와 분석 데이터</p>
+            </div>
+
+            <div class="features-grid">
+              <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">경기 예측 AI</h3>
+                <p class="feature-description">
+                  상대팀 분석을 통한 경기 결과 예측 시스템
+                </p>
+                <button class="feature-btn">예측 보기</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">📈</span>
+                <h3 class="feature-title">성장 트래킹</h3>
+                <p class="feature-description">
+                  개인별 실력 향상 추이와 목표 달성률 분석
+                </p>
+                <button class="feature-btn">분석 리포트</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">🏃‍♂️</span>
+                <h3 class="feature-title">피트니스 데이터</h3>
+                <p class="feature-description">
+                  경기 중 활동량, 스프린트, 체력 소모 분석
+                </p>
+                <button class="feature-btn">데이터 확인</button>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3 class="feature-title">팀 통계</h3>
+                <p class="feature-description">
+                  승률 87% • 총 득점 42골 • 실점 15골
+                </p>
+                <button class="feature-btn">상세 통계</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- 🎯 QUANTUM TAB NAVIGATION -->
+    <div class="quantum-tabs">
+      <button
+        class="quantum-tab active"
+        onclick="navigateToSection(0)"
+        title="홈"
+      >
+        🏠
+      </button>
+      <button
+        class="quantum-tab"
+        onclick="navigateToSection(1)"
+        title="MVP 투표"
+      >
+        👑
+      </button>
+      <button
+        class="quantum-tab"
+        onclick="navigateToSection(2)"
+        title="전술 보드"
+      >
+        ⚽
+      </button>
+      <button
+        class="quantum-tab"
+        onclick="navigateToSection(3)"
+        title="프리미엄"
+      >
+        🎯
+      </button>
+      <button class="quantum-tab" onclick="navigateToSection(4)" title="통계">
+        📊
+      </button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 🎮 HOLOGRAPHIC CURSOR SYSTEM
+        const cursor = document.querySelector(".cyber-cursor");
+        const trail = document.querySelector(".cursor-trail");
+
+        if (cursor && trail) {
+          document.addEventListener("mousemove", (e) => {
+            requestAnimationFrame(() => {
+              cursor.style.left = e.clientX - 10 + "px";
+              cursor.style.top = e.clientY - 10 + "px";
+
+              setTimeout(() => {
+                trail.style.left = e.clientX - 3 + "px";
+                trail.style.top = e.clientY - 3 + "px";
+              }, 100);
+            });
+          });
+
+          // Enhanced cursor interactions
+          document
+            .querySelectorAll(
+              ".portal-widget, .voting-option, .feature-card, .quantum-tab, .back-button"
+            )
+            .forEach((element) => {
+              element.addEventListener("mouseenter", function () {
+                cursor.style.transform = "scale(1.5)";
+                cursor.style.borderColor = "var(--electric-gold)";
+                trail.style.transform = "scale(2)";
+                trail.style.background = "var(--electric-gold)";
+              });
+
+              element.addEventListener("mouseleave", function () {
+                cursor.style.transform = "scale(1)";
+                cursor.style.borderColor = "var(--portal-blue)";
+                trail.style.transform = "scale(1)";
+                trail.style.background = "var(--electric-gold)";
+              });
+            });
+        }
+
+        // ✨ FLOATING PARTICLES SYSTEM
+        function createParticle() {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "vw";
+          particle.style.animationDuration = Math.random() * 3 + 5 + "s";
+          particle.style.opacity = Math.random() * 0.7 + 0.3;
+
+          const colors = [
+            "var(--portal-blue)",
+            "var(--electric-gold)",
+            "var(--neon-cyan)",
+          ];
+          particle.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          document.body.appendChild(particle);
+
+          setTimeout(() => {
+            particle.remove();
+          }, 8000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // 🚀 PORTAL ENTRANCE ANIMATION
+        setTimeout(() => {
+          document.querySelector(".portal-entrance").style.animation =
+            "portalPulse 4s ease-in-out infinite";
+        }, 1000);
+
+        // 🎮 WIDGET FLOATING ANIMATION
+        setTimeout(() => {
+          document
+            .querySelectorAll(".portal-widget")
+            .forEach((widget, index) => {
+              widget.style.animation = `widgetFloat ${
+                6 + index
+              }s ease-in-out infinite`;
+              widget.style.animationDelay = `${index * 0.5}s`;
+            });
+        }, 500);
+      });
+
+      // 🌊 SECTION NAVIGATION
+      let currentSection = 0;
+      const totalSections = 5;
+
+      function navigateToSection(index) {
+        if (index < 0 || index >= totalSections) return;
+
+        currentSection = index;
+        const portalSections = document.getElementById("portalSections");
+        const offset = -index * 100;
+
+        portalSections.style.transform = `translateX(${offset}vw)`;
+
+        // Update active tab
+        document.querySelectorAll(".quantum-tab").forEach((tab, i) => {
+          tab.classList.toggle("active", i === index);
+        });
+
+        // Particle burst effect on navigation
+        if (index > 0) {
+          createNavigationEffect();
+        }
+      }
+
+      function createNavigationEffect() {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(() => {
+            const particle = document.createElement("div");
+            particle.className = "particle";
+            particle.style.left = "50vw";
+            particle.style.top = "50vh";
+            particle.style.animation = `particleFloat 2s ease-out forwards`;
+            particle.style.background = "var(--electric-gold)";
+            document.body.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 2000);
+          }, i * 50);
+        }
+      }
+
+      // 👑 REVOLUTIONARY VOTING SYSTEM
+      let selectedVote = null;
+
+      function selectVote(element, candidate, voteCount) {
+        // Remove previous selection
+        document.querySelectorAll(".voting-option").forEach((option) => {
+          option.classList.remove("selected");
+        });
+
+        // Add selection to clicked option
+        element.classList.add("selected");
+        selectedVote = candidate;
+
+        // Cyber effect
+        element.style.boxShadow = "0 0 30px var(--electric-gold)";
+        setTimeout(() => {
+          element.style.boxShadow = "";
+        }, 1000);
+
+        // Show confirmation
+        setTimeout(() => {
+          alert(
+            `${
+              element.querySelector(".option-name").textContent
+            }에게 투표하였습니다! 투표해주셔서 감사합니다.`
+          );
+
+          // Update vote count (simulate real-time update)
+          const newCount = voteCount + 1;
+          const countElement = element.querySelector(".vote-count");
+          countElement.textContent = `${newCount}명`;
+
+          // Update progress bar
+          const progressBar = element.querySelector(".progress-fill");
+          const newPercentage = Math.min((newCount / 80) * 100, 100);
+          progressBar.style.width = `${newPercentage}%`;
+        }, 500);
+      }
+
+      // Feature Card Click Handlers
+      document.querySelectorAll(".feature-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const featureTitle =
+            this.parentElement.querySelector(".feature-title").textContent;
+
+          // Cyber effect
+          this.style.boxShadow = "0 0 20px var(--electric-gold)";
+          setTimeout(() => {
+            this.style.boxShadow = "";
+          }, 1000);
+
+          alert(`${featureTitle} 기능을 준비 중입니다. 곧 공개될 예정입니다!`);
+        });
+      });
+
+      // Keyboard Navigation
+      document.addEventListener("keydown", function (e) {
+        switch (e.key) {
+          case "ArrowLeft":
+            navigateToSection(Math.max(0, currentSection - 1));
+            break;
+          case "ArrowRight":
+            navigateToSection(Math.min(totalSections - 1, currentSection + 1));
+            break;
+          case "Escape":
+            navigateToSection(0);
+            break;
+          case "1":
+          case "2":
+          case "3":
+          case "4":
+          case "5":
+            navigateToSection(parseInt(e.key) - 1);
+            break;
+        }
+      });
+
+      // Mobile swipe navigation
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document.addEventListener("touchstart", function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      document.addEventListener("touchend", function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSectionSwipe();
+      });
+
+      function handleSectionSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            navigateToSection(Math.min(totalSections - 1, currentSection + 1));
+          } else {
+            navigateToSection(Math.max(0, currentSection - 1));
+          }
+        }
+      }
+
+      // Window resize handler
+      window.addEventListener("resize", function () {
+        setTimeout(() => {
+          const currentOffset = -currentSection * 100;
+          document.getElementById(
+            "portalSections"
+          ).style.transform = `translateX(${currentOffset}vw)`;
+        }, 100);
+      });
+
+      // Prevent right-click for immersive experience
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
