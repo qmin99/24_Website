@@ -1,10 +1,32 @@
-// 24HD Component Loader System
-// All-in-one component management for 24HD website
+// 24HD Component Loader System with Smart Path Detection
+// Auto-detects correct file paths based on current location
+
+class PathDetector {
+    static getBasePath() {
+        const currentPath = window.location.pathname;
+        
+        // If we're in a subfolder, go up one level
+        if (currentPath.includes('/Main-Pages/') || currentPath.includes('/js/') || currentPath.includes('/css/')) {
+            return '../';
+        }
+        
+        // If we're in root, use current directory
+        return './';
+    }
+    
+    static getComponentPath(filename) {
+        const basePath = this.getBasePath();
+        return `${basePath}${filename}`;
+    }
+}
 
 class MobileNavigationLoader {
     static async load() {
         try {
-            const response = await fetch('../Main-Components/mobile-menu.html');
+            const componentPath = PathDetector.getComponentPath('../Main-Components/mobile-menu.html');
+            console.log(`📱 Loading mobile menu from: ${componentPath}`);
+            
+            const response = await fetch(componentPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -18,7 +40,7 @@ class MobileNavigationLoader {
             if (existingOverlay) existingOverlay.remove();
             
             // Add hamburger button to navigation container
-            const navContainer = document.querySelector('.nav-container');
+            const navContainer = document.querySelector('.nav-container, .locker-nav .nav-container, nav .nav-container');
             if (navContainer) {
                 navContainer.insertAdjacentHTML('beforeend', navHTML);
             } else {
@@ -26,21 +48,84 @@ class MobileNavigationLoader {
                 document.body.insertAdjacentHTML('beforeend', navHTML);
             }
             
+            // Initialize mobile navigation after loading
+            this.initializeMobileNavigation();
+            
             console.log('📱 Mobile navigation loaded successfully');
         } catch (error) {
             console.error('❌ Mobile navigation load failed:', error);
-            // Fallback: show error message to user in development
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.warn('🚨 Development mode: ../Main-Components/mobile-menu.html not found');
-            }
         }
+    }
+    
+    static initializeMobileNavigation() {
+        // Wait a bit for DOM to update
+        setTimeout(() => {
+            const hamburger = document.getElementById('mobileMenuToggle');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            if (!hamburger || !overlay) {
+                console.error('❌ 햄버거 버튼 또는 오버레이를 찾을 수 없습니다');
+                return;
+            }
+            
+            // Toggle menu
+            hamburger.addEventListener('click', () => {
+                const isActive = hamburger.classList.toggle('active');
+                overlay.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isActive);
+                document.body.style.overflow = isActive ? 'hidden' : '';
+                
+                console.log(`📱 모바일 메뉴 ${isActive ? '열림' : '닫힘'}`);
+            });
+            
+            // Close when clicking links
+            const navLinks = overlay.querySelectorAll('.mobile-nav-links a, .mobile-nav-actions a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    this.closeMenu(hamburger, overlay);
+                });
+            });
+            
+            // Close when clicking overlay background
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeMenu(hamburger, overlay);
+                }
+            });
+            
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    this.closeMenu(hamburger, overlay);
+                }
+            });
+            
+            // Close on orientation change
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    this.closeMenu(hamburger, overlay);
+                }, 100);
+            });
+            
+            console.log('✅ 모바일 네비게이션 이벤트 초기화 완료');
+        }, 100);
+    }
+    
+    static closeMenu(hamburger, overlay) {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
     }
 }
 
 class FooterLoader {
     static async load() {
         try {
-            const response = await fetch('../Main-Components/footer.html');
+            const componentPath = PathDetector.getComponentPath('../Main-Components/footer.html');
+            console.log(`🦶 Loading footer from: ${componentPath}`);
+            
+            const response = await fetch(componentPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -57,10 +142,6 @@ class FooterLoader {
             console.log('✅ Footer loaded successfully');
         } catch (error) {
             console.error('❌ Footer load failed:', error);
-            // Fallback: show error message to user in development
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.warn('🚨 Development mode: ../Main-Components/footer.html not found');
-            }
         }
     }
 }
@@ -69,6 +150,7 @@ class FooterLoader {
 class ComponentManager {
     static async loadAll() {
         console.log('🚀 Starting component loading...');
+        console.log(`📁 Base path: ${PathDetector.getBasePath()}`);
         
         // Load components in parallel for better performance
         const promises = [
@@ -188,7 +270,8 @@ window.HD24Components = {
     ThemeManager,
     MobileNavigationLoader,
     FooterLoader,
-    PerformanceMonitor
+    PerformanceMonitor,
+    PathDetector
 };
 
-console.log('📦 24HD Component System initialized');
+console.log('📦 24HD Component System initialized with smart path detection');
