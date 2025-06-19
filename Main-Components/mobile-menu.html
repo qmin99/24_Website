@@ -1,0 +1,432 @@
+<!-- Mobile Menu Toggle Button -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false">
+  <div class="hamburger-line"></div>
+  <div class="hamburger-line"></div>
+  <div class="hamburger-line"></div>
+</button>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <ul class="mobile-nav-links">
+    <li>
+      <a href="matches.html">
+        <span>🏆</span>
+        경기 결과
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x" target="_blank">
+        <span>🎬</span>
+        경기 영상
+      </a>
+    </li>
+    <li>
+      <a href="#squad">
+        <span>⚽</span>
+        팀 구성
+      </a>
+    </li>
+    <li>
+      <a href="uniform.html">
+        <span>👕</span>
+        유니폼 신청
+      </a>
+    </li>
+    <li>
+      <a href="#news">
+        <span>📰</span>
+        팀 소식
+      </a>
+    </li>
+  </ul>
+
+  <div class="mobile-nav-actions">
+    <a href="#" class="nav-btn btn-secondary">로그인</a>
+    <a href="portal.html" class="nav-btn btn-primary">정회원 포털</a>
+  </div>
+</div>
+
+<style>
+/* Project CSS Variables */
+:root {
+    /* Colors */
+    --midnight-black: #0a0a0a;
+    --pure-black: #000000;
+    --stadium-black: #1a1a1a;
+    --championship-gold: #c19b3a;
+    --golden-accent: #d4af37;
+    --golden-bright: #f4d03f;
+    --neon-gold: #ffeb3b;
+    --platinum-white: #ffffff;
+    --glass-white: rgba(255, 255, 255, 0.1);
+    --glass-strong: rgba(255, 255, 255, 0.2);
+    
+    /* Typography */
+    --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: "Orbitron", "Pretendard", sans-serif;
+    --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+    
+    /* Mobile Spacing */
+    --mobile-space-xs: 0.125rem;
+    --mobile-space-sm: 0.25rem;
+    --mobile-space-md: 0.5rem;
+    --mobile-space-lg: 1rem;
+    --mobile-space-xl: 1.5rem;
+    --mobile-space-2xl: 2rem;
+    --mobile-space-3xl: 3rem;
+    
+    /* Desktop Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+    
+    /* Glass Effects */
+    --glass-blur: blur(20px);
+    --glass-blur-strong: blur(40px);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    
+    /* Animations */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  position: relative;
+  z-index: 1005;
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+}
+
+.hamburger-line {
+  width: 25px;
+  height: 2px;
+  background: var(--championship-gold);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Hamburger Animation */
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Page-specific hamburger colors */
+.index-theme .hamburger-line,
+.matches-theme .hamburger-line {
+  background: var(--championship-gold);
+}
+
+.uniform-theme .hamburger-line {
+  background: #23101d;
+}
+
+.portal-theme .hamburger-line {
+  background: #00d4ff;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: var(--glass-blur-strong);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-out-quart);
+  z-index: 999;
+  padding: var(--mobile-space-2xl);
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-overlay {
+    display: none !important;
+    top: 90px;
+  }
+}
+
+.mobile-menu-overlay.active {
+  transform: translateX(0);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  margin-bottom: var(--mobile-space-2xl);
+  padding: 0;
+}
+
+.mobile-nav-links li {
+  margin-bottom: var(--mobile-space-lg);
+}
+
+.mobile-nav-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--mobile-space-md);
+  color: var(--platinum-white);
+  text-decoration: none;
+  font-family: var(--font-korean);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: var(--mobile-space-lg);
+  border-radius: 10px;
+  background: var(--glass-white);
+  border: var(--glass-border);
+  transition: all 0.3s ease;
+  backdrop-filter: var(--glass-blur);
+}
+
+.mobile-nav-links a:hover {
+  color: var(--championship-gold);
+  background: var(--glass-strong);
+  transform: translateX(5px);
+}
+
+.mobile-nav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mobile-space-md);
+}
+
+.mobile-nav-actions .nav-btn {
+  width: 100%;
+  text-align: center;
+  padding: var(--mobile-space-lg);
+  font-family: var(--font-korean);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: var(--glass-blur);
+}
+
+.btn-secondary {
+  color: var(--platinum-white);
+  border: var(--glass-border);
+  background: var(--glass-white);
+}
+
+.btn-secondary:hover {
+  background: var(--glass-strong);
+  color: var(--championship-gold);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--championship-gold) 0%, var(--golden-accent) 100%);
+  color: var(--pure-black);
+  border: 1px solid var(--championship-gold);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(193, 155, 58, 0.3);
+}
+
+/* Theme variations for different pages */
+.matches-theme .mobile-menu-overlay {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+.uniform-theme .mobile-menu-overlay {
+  background: rgba(15, 15, 15, 0.98);
+}
+
+.uniform-theme .mobile-nav-links a {
+  background: rgba(192, 192, 192, 0.1);
+  border-color: rgba(192, 192, 192, 0.2);
+}
+
+.uniform-theme .mobile-nav-links a:hover {
+  color: #76cd43;
+  background: rgba(192, 192, 192, 0.15);
+}
+
+.uniform-theme .btn-secondary {
+  border-color: rgba(192, 192, 192, 0.2);
+  background: rgba(192, 192, 192, 0.1);
+}
+
+.uniform-theme .btn-secondary:hover {
+  color: #76cd43;
+  background: rgba(192, 192, 192, 0.15);
+}
+
+.uniform-theme .btn-primary {
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  color: #0f0f0f;
+  border-color: #ffd700;
+}
+
+.portal-theme .mobile-menu-overlay {
+  background: rgba(0, 0, 20, 0.98);
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.portal-theme .mobile-nav-links a {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.portal-theme .mobile-nav-links a:hover {
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.15);
+}
+
+.portal-theme .btn-secondary {
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.portal-theme .btn-secondary:hover {
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.15);
+}
+
+.portal-theme .btn-primary {
+  background: linear-gradient(45deg, #00d4ff 0%, #ffd700 100%);
+  color: #000014;
+  border-color: #00d4ff;
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-overlay {
+    padding: var(--mobile-space-lg);
+    top: 70px;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 1.1rem;
+    padding: var(--mobile-space-md);
+  }
+  
+  .mobile-nav-actions .nav-btn {
+    padding: var(--mobile-space-md);
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<script>
+// Complete Mobile Navigation Controller
+class MobileNavigationController {
+  static init() {
+    const hamburger = document.getElementById('mobileMenuToggle');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    if (!hamburger || !overlay) {
+      console.error('❌ 햄버거 버튼 또는 오버레이를 찾을 수 없습니다');
+      return;
+    }
+    
+    // Toggle menu
+    hamburger.addEventListener('click', () => {
+      const isActive = hamburger.classList.toggle('active');
+      overlay.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isActive);
+      document.body.style.overflow = isActive ? 'hidden' : '';
+      
+      console.log(`📱 모바일 메뉴 ${isActive ? '열림' : '닫힘'}`);
+    });
+    
+    // Close when clicking links
+    const navLinks = overlay.querySelectorAll('.mobile-nav-links a, .mobile-nav-actions a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        this.closeMenu(hamburger, overlay);
+      });
+    });
+    
+    // Close when clicking overlay background
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        this.closeMenu(hamburger, overlay);
+      }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        this.closeMenu(hamburger, overlay);
+      }
+    });
+    
+    // Close on orientation change
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        this.closeMenu(hamburger, overlay);
+      }, 100);
+    });
+    
+    console.log('✅ 모바일 네비게이션 초기화 완료');
+  }
+  
+  static closeMenu(hamburger, overlay) {
+    hamburger.classList.remove('active');
+    overlay.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  
+  static applyTheme() {
+    const body = document.body;
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const currentPage = window.location.pathname;
+    
+    // Clear existing theme classes
+    body.classList.remove('index-theme', 'matches-theme', 'uniform-theme', 'portal-theme');
+    
+    // Apply page-specific theme
+    if (currentPage.includes('index.html') || currentPage === '/' || currentPage === '') {
+      body.classList.add('index-theme');
+    } else if (currentPage.includes('matches.html')) {
+      body.classList.add('matches-theme');
+      if (overlay) overlay.classList.add('matches-theme');
+    } else if (currentPage.includes('uniform.html')) {
+      body.classList.add('uniform-theme');
+      if (overlay) overlay.classList.add('uniform-theme');
+    } else if (currentPage.includes('portal.html')) {
+      body.classList.add('portal-theme');
+      if (overlay) overlay.classList.add('portal-theme');
+    }
+    
+    console.log(`🎨 테마 적용: ${body.className}`);
+  }
+}
+
+// Auto-initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  MobileNavigationController.init();
+  MobileNavigationController.applyTheme();
+});
+</script>

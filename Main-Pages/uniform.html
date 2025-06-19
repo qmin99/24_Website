@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <script src="../js/components.js" defer></script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>24HD | 유니폼 신청 - Locker Room</title>
@@ -9,18 +11,18 @@
     <link
       rel="icon"
       type="image/png"
-      href="/favicon/favicon-96x96.png"
+      href="/../../favicon/favicon-96x96.png"
       sizes="96x96"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/../../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/../../favicon/favicon.ico" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
+      href="/../../favicon/apple-touch-icon.png"
     />
     <meta name="apple-mobile-web-app-title" content="24HD" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="manifest" href="/../../favicon/site.webmanifest" />
 
     <!-- Premium Korean + English Typography -->
     <link
@@ -1185,7 +1187,7 @@
         <a href="index.html" class="team-brand">
           <div class="brand-shield">
             <img
-              src="images/logo/24HD_logo.png"
+              src="../images/logo/24HD_logo.png"
               alt="24HD Logo"
               class="brand-logo"
             />
@@ -1315,7 +1317,7 @@
           <div class="uniform-3d-container">
             <div class="uniform-3d-model rotating" id="uniform3D">
               <img
-                src="images/24HD ESSENTIALS/3d_kit.PNG"
+                src="../images/24HD ESSENTIALS/3d_kit.PNG"
                 alt="24HD 유니폼 3D 모델"
                 class="uniform-image-3d"
                 id="uniform3DImage"
@@ -1352,7 +1354,7 @@
         <div class="uniform-2d-gallery fade-up">
           <div class="gallery-item" onclick="openImageModal('front')">
             <img
-              src="images/24HD ESSENTIALS/2d_kit_black.PNG"
+              src="../images/24HD ESSENTIALS/2d_kit_black.PNG"
               alt="24HD 유니폼 앞면"
               class="gallery-image"
             />
@@ -1361,7 +1363,7 @@
 
           <div class="gallery-item" onclick="openImageModal('back')">
             <img
-              src="images/24HD ESSENTIALS/2d_kit_white.PNG"
+              src="../images/24HD ESSENTIALS/2d_kit_white.PNG"
               alt="24HD 유니폼 뒷면"
               class="gallery-image"
             />
@@ -1409,7 +1411,7 @@
         </h2>
         <div class="size-chart">
           <img
-            src="images/24HD ESSENTIALS/sizesheet.jpg"
+            src="../images/24HD ESSENTIALS/sizesheet.jpg"
             alt="24HD 유니폼 사이즈 차트"
           />
         </div>
@@ -1447,6 +1449,11 @@
     </footer>
 
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    console.log('🔍 uniform.html 디버깅:');
+    console.log('Nav container 존재?', !!document.querySelector('.nav-container'));
+    console.log('Components.js 로드됨?', !!window.HD24Components);
+});
       document.addEventListener("DOMContentLoaded", function () {
         // Enhanced Cursor System
         const cursor = document.querySelector(".locker-cursor");
@@ -1642,14 +1649,14 @@
         event.target.classList.add("active");
 
         if (view === "3d") {
-          uniformImage.src = "images/24HD ESSENTIALS/3d_kit.PNG";
+          uniformImage.src = "../images/24HD ESSENTIALS/3d_kit.PNG";
           uniform3D.classList.add("rotating");
         } else if (view === "front") {
-          uniformImage.src = "images/24HD ESSENTIALS/2d_kit_black.PNG";
+          uniformImage.src = "../images/24HD ESSENTIALS/2d_kit_black.PNG";
           uniform3D.classList.remove("rotating");
           uniform3D.style.transform = "rotateY(0deg)";
         } else if (view === "back") {
-          uniformImage.src = "images/24HD ESSENTIALS/2d_kit_flipped.PNG";
+          uniformImage.src = "../images/24HD ESSENTIALS/2d_kit_flipped.PNG";
           uniform3D.classList.remove("rotating");
           uniform3D.style.transform = "rotateY(180deg)";
         }
@@ -1667,10 +1674,10 @@
         const modalImage = document.getElementById("modalImage");
 
         if (type === "front") {
-          modalImage.src = "images/24HD ESSENTIALS/2d_kit_black.PNG";
+          modalImage.src = "../images/24HD ESSENTIALS/2d_kit_black.PNG";
           modalImage.alt = "24HD 유니폼 앞면 상세";
         } else if (type === "back") {
-          modalImage.src = "images/24HD ESSENTIALS/2d_kit_white.PNG";
+          modalImage.src = "../images/24HD ESSENTIALS/2d_kit_white.PNG";
           modalImage.alt = "24HD 유니폼 뒷면 상세";
         }
 
