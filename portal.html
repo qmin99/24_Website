@@ -37,7 +37,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-      /* 🚀 IMMERSIVE PORTAL VARIABLES */
       :root {
         /* Cyberpunk Portal Colors */
         --void-black: #000000;
@@ -54,6 +53,18 @@
         --royal-gold: #d4af37;
         --soft-gray: #6c757d;
         --light-gray: #e9ecef;
+
+        /* Position Colors */
+        --forward-red: #ff4757;
+        --midfielder-blue: #00d4ff;
+        --defender-yellow: #ffa502;
+        --goalkeeper-green: #2ed573;
+
+        /* Background highlights */
+        --forward-bg: rgba(255, 71, 87, 0.1);
+        --midfielder-bg: rgba(0, 212, 255, 0.1);
+        --defender-bg: rgba(255, 165, 2, 0.1);
+        --goalkeeper-bg: rgba(46, 213, 115, 0.1);
 
         /* Holographic Gradients */
         --gradient-portal: linear-gradient(
@@ -129,7 +140,7 @@
         min-height: 100vh;
       }
 
-      /* 🌌 IMMERSIVE PORTAL BACKGROUND */
+      /* IMMERSIVE PORTAL BACKGROUND */
       .portal-universe {
         position: fixed;
         top: 0;
@@ -178,7 +189,7 @@
         }
       }
 
-      /* ✨ FLOATING PARTICLES */
+      /* FLOATING PARTICLES */
       .particle {
         position: fixed;
         width: 2px;
@@ -210,7 +221,7 @@
         }
       }
 
-      /* 🎮 HOLOGRAPHIC CURSOR */
+      /* HOLOGRAPHIC CURSOR */
       .cyber-cursor {
         width: 20px;
         height: 20px;
@@ -251,7 +262,7 @@
         }
       }
 
-      /* 🚀 NAVIGATION */
+      /* NAVIGATION */
       .portal-nav {
         position: fixed;
         top: 0;
@@ -273,6 +284,7 @@
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 var(--space-xl);
+        padding-right: 10px;
       }
 
       .brand-link {
@@ -323,7 +335,150 @@
         letter-spacing: 0.1em;
       }
 
-      /* 🌊 FULLSCREEN PORTAL CONTAINER - FIXED VIEWPORT */
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      @media (min-width: 769px) {
+        .mobile-menu-toggle {
+          display: none;
+        }
+      }
+
+      .hamburger-line {
+        width: 25px;
+        height: 2px;
+        background: var(--portal-blue);
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      /* Mobile Menu Overlay */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        transform: translateX(-100%);
+        transition: transform 0.4s var(--ease-cyber);
+        z-index: 999;
+        padding: var(--space-xl);
+      }
+
+      .mobile-menu-overlay.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        margin-bottom: var(--space-xl);
+      }
+
+      .mobile-nav-links li {
+        margin-bottom: var(--space-lg);
+      }
+
+      .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        color: var(--pure-white);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: var(--space-lg);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--portal-blue);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--space-lg);
+        font-size: 1rem;
+        border-radius: 12px;
+      }
+
+      .nav-actions {
+        display: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-actions {
+          display: flex;
+        }
+      }
+
+      .nav-btn {
+        padding: var(--space-md) var(--space-xl);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--pure-white);
+        font-family: var(--font-korean);
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--void-black);
+        border: 1px solid var(--electric-gold);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--portal-blue);
+        transform: translateY(-2px);
+      }
+
+      /* FULLSCREEN PORTAL CONTAINER - FIXED VIEWPORT */
       .portal-container {
         height: calc(
           100vh - 80px - 80px
@@ -347,7 +502,7 @@
         overflow-y: auto;
       }
 
-      /* 🔙 POSITIONED BACK BUTTON */
+      /* POSITIONED BACK BUTTON */
       .section-header-with-back {
         position: relative;
         margin-bottom: var(--space-lg);
@@ -391,7 +546,7 @@
         }
       }
 
-      /* 🌟 IMMERSIVE HERO PORTAL */
+      /* IMMERSIVE HERO PORTAL */
       .hero-portal {
         height: 100%;
         display: flex;
@@ -404,7 +559,7 @@
         perspective: 1000px;
       }
 
-      /* 🔮 HOLOGRAPHIC ENTRANCE */
+      /* HOLOGRAPHIC ENTRANCE */
       .portal-entrance {
         position: absolute;
         top: 50%;
@@ -424,7 +579,6 @@
         z-index: -1;
       }
       @media (max-width: 768px) {
-        /* 🔮 HOLOGRAPHIC ENTRANCE */
         .portal-entrance {
           position: absolute;
           top: 50%;
@@ -486,7 +640,7 @@
         }
       }
 
-      /* 👑 MASSIVE PREMIUM HEADER */
+      /* MASSIVE PREMIUM HEADER */
       .premium-header {
         position: relative;
         z-index: 10;
@@ -527,7 +681,6 @@
         letter-spacing: -0.02em;
       }
       @media (max-width: 768px) {
-        /* 👑 MASSIVE PREMIUM HEADER */
         .premium-header {
           position: relative;
           z-index: 10;
@@ -608,7 +761,6 @@
         position: relative;
         overflow: hidden;
         transform-style: preserve-3d;
-        animation: widgetFloat 6s ease-in-out infinite;
         height: 100px;
         width: 270px;
         display: flex;
@@ -622,18 +774,17 @@
           backdrop-filter: blur(20px);
           border: 1px solid rgba(0, 212, 255, 0.3);
           border-radius: 16px;
-          padding: var(--space-md);
+          padding: var(--space-sm);
           cursor: pointer;
           transition: all 0.6s var(--ease-portal);
           position: relative;
           overflow: hidden;
           transform-style: preserve-3d;
-          animation: widgetFloat 6s ease-in-out infinite;
           height: 60px;
-          width: 280px;
+          width: 290px;
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: space-evenly;
           font-size: 0.9rem;
         }
         .portal-widgets {
@@ -652,6 +803,7 @@
       }
       .portal-widget:nth-child(2) {
         animation-delay: 1s;
+        
       }
       .portal-widget:nth-child(3) {
         animation-delay: 2s;
@@ -751,7 +903,8 @@
       }
       @media (max-width: 768px) {
         .widget-icon {
-          font-size: 2rem;
+            width: 15%;   
+          font-size: 1.5rem;
           margin-right: var(--space-md);
           background: var(--gradient-cyber);
           -webkit-background-clip: text;
@@ -762,31 +915,33 @@
         }
 
         .widget-title {
+            width: 30%;   
           font-family: var(--font-display);
-          font-size: 1rem;
+          font-size: 0.8rem;
           font-weight: 700;
           color: var(--pure-white);
           text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .widget-description {
+            font-size: 0.5rem;
           color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
-          margin-bottom: var(--space-xs);
+          margin-bottom: 2px;
         }
 
         .widget-status {
           display: flex;
           align-items: center;
           gap: var(--space-sm);
-          font-size: 0.7rem;
+          font-size: 0.5rem;
           color: var(--success-green);
           font-weight: 600;
         }
 
         .status-dot {
-          width: 8px;
-          height: 8px;
+          width: 3px;
+          height: 3px;
           background: var(--success-green);
           border-radius: 50%;
           animation: statusPulse 2s infinite;
@@ -805,7 +960,7 @@
         }
       }
 
-      /* 🎯 QUANTUM TAB NAVIGATION - FIXED POSITIONING */
+      /* QUANTUM TAB NAVIGATION - FIXED POSITIONING */
       .quantum-tabs {
         position: fixed;
         bottom: var(--space-xs);
@@ -867,7 +1022,7 @@
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
       }
 
-      /* 👑 MVP VOTING SECTION - REDUCED MARGINS */
+      /* MVP VOTING SECTION - REDUCED MARGINS */
       .voting-section {
         background: linear-gradient(
           135deg,
@@ -883,7 +1038,7 @@
       .voting-content {
         position: relative;
         z-index: 2;
-        max-width: 600px;
+        max-width: 400px;
         margin: 0 auto;
         padding-top: var(--space-md);
       }
@@ -891,39 +1046,12 @@
       .section-header {
         text-align: center;
         margin-bottom: var(--space-lg);
-        padding: 0 50px; /* Add padding to account for back button space */
+        padding: 0 50px;
       }
-      @media (max-width: 400px) {
-        /* 👑 MVP VOTING SECTION - REDUCED MARGINS */
-        .voting-section {
-          background: linear-gradient(
-            135deg,
-            var(--deep-space) 0%,
-            var(--void-black) 100%
-          );
-          position: relative;
-          padding: 5px;
-          height: 100%;
-          overflow-y: auto;
-        }
 
-        .voting-content {
-          position: relative;
-          z-index: 2;
-          max-width: 600px;
-          margin: 0 auto;
-          padding-top: var(--space-md);
-        }
-
-        .section-header {
-          text-align: center;
-          margin-bottom: 0px;
-          padding: 0 50px; /* Add padding to account for back button space */
-        }
-      }
       @media (max-width: 768px) {
         .section-header {
-          padding: 0 45px; /* Adjust padding for mobile back button */
+          padding: 0 45px;
         }
       }
 
@@ -956,7 +1084,424 @@
         box-shadow: var(--portal-shadow);
       }
 
-      /* 🗳️ COMPACT VOTING CONTAINER */
+      /* PRIZE SECTION */
+      .prize-section {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(248, 250, 252, 0.95) 100%
+        );
+        border: 2px solid #e2e8f0;
+        border-radius: 16px;
+        padding: var(--space-xl);
+        margin: var(--space-lg) 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .prize-title {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: var(--space-md);
+      }
+
+      .prize-description {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-bottom: var(--space-xl);
+      }
+
+      .prize-showcase {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: var(--space-xl);
+        margin: var(--space-lg) 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f1f5f9;
+      }
+
+      .prize-image {
+        width: 130px;
+        height: 100px;
+        margin: 0 auto var(--space-md);
+        background: url("images/icons/airpodMax.jpeg") center/contain no-repeat;
+        background-color: #f8fafc;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .prize-name {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: var(--space-sm);
+      }
+
+      .prize-value {
+        font-size: 0.8rem;
+        color: #059669;
+        font-weight: 600;
+        background: rgba(16, 185, 129, 0.1);
+        padding: var(--space-xs) var(--space-md);
+        border-radius: 6px;
+        display: inline-block;
+      }
+
+      /* CLEAN VOTE BUTTON */
+      .vote-submit-btn {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 8px;
+        font-family: var(--font-korean);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        min-width: 160px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+      }
+
+      .vote-submit-btn:hover {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+      }
+
+      .vote-submit-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+      }
+
+      .vote-submit-btn:disabled {
+        background: #94a3b8;
+        color: #64748b;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: 0 2px 8px rgba(148, 163, 184, 0.2);
+      }
+
+      .vote-submit-btn.success {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+      }
+
+      /* CLEAN VOTING CONTAINER */
+      .voting-container {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: var(--space-xl);
+        margin-top: var(--space-md);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .voting-question {
+        font-family: var(--font-korean);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: var(--space-lg);
+        text-align: center;
+      }
+
+      .voting-option {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        background: #f8fafc;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        margin-bottom: var(--space-sm);
+      }
+
+      .voting-option:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .voting-option.selected {
+        border-color: #3b82f6;
+        background: rgba(59, 130, 246, 0.05);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+      }
+
+      .option-name {
+        font-family: var(--font-korean);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1e293b;
+      }
+
+      .option-position {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      /* Position colors - subtle */
+      .position-forward {
+        color: #dc2626;
+        background: rgba(220, 38, 38, 0.1);
+        width: fit-content;
+      }
+
+      .position-midfielder {
+        color: #2563eb;
+        background: rgba(37, 99, 235, 0.1);
+        width: fit-content;
+      }
+
+      .position-defender {
+        color: #d97706;
+        background: rgba(217, 119, 6, 0.1);
+        width: fit-content;
+      }
+
+      .position-goalkeeper {
+        color: #059669;
+        background: rgba(5, 150, 105, 0.1);
+        width: fit-content;
+      }
+
+      .vote-count {
+        font-family: var(--font-korean);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #64748b;
+        min-width: 35px;
+        text-align: right;
+      }
+
+      .check-indicator {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #10b981;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .voting-option.selected .check-indicator {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* CLEAN COMMENTS SECTION */
+      .comments-section {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: var(--space-xl);
+        margin-top: var(--space-xl);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .comments-title {
+        font-family: var(--font-korean);
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: var(--space-lg);
+        text-align: center;
+      }
+
+      .comment-input-container {
+        display: flex;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xl);
+      }
+
+      .comment-input {
+        flex-grow: 1;
+        background: #f8fafc;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: #1e293b;
+        font-family: var(--font-korean);
+        font-size: 0.9rem;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+
+      .comment-input::placeholder {
+        color: #9ca3af;
+      }
+
+      .comment-submit-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+      }
+
+      .comment-submit-btn:hover {
+        background: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      }
+
+      .comments-list {
+        max-height: 250px;
+        overflow-y: auto;
+      }
+
+      .comment-item {
+        background: #f8fafc;
+        border-radius: 8px;
+        padding: var(--space-md);
+        margin-bottom: var(--space-sm);
+        transition: all 0.2s ease;
+        border: 1px solid #f1f5f9;
+      }
+
+      .comment-item:hover {
+        background: #f1f5f9;
+        border-color: #e2e8f0;
+      }
+
+      .comment-author {
+        font-family: var(--font-korean);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #3b82f6;
+        margin-bottom: 4px;
+      }
+
+      .comment-text {
+        color: #374151;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .comment-time {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 4px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .comment-input::placeholder {
+        color: #64748b;
+      }
+
+      .comment-input:focus {
+        border-color: #63d5f1ce;
+        box-shadow: 0 0 20px rgba(99, 217, 241, 0.3);
+        background: rgba(255, 255, 255, 0.241);
+      }
+
+      .comment-submit-btn {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: all 0.3s var(--ease-portal);
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+      }
+
+      .comment-submit-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+      }
+
+      .comments-list {
+        max-height: 250px;
+        overflow-y: auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .comment-item {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        padding: var(--space-lg);
+        margin-bottom: var(--space-md);
+        border-left: 4px solid #6366f1;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .comment-item:hover {
+        background: rgba(255, 255, 255, 0.95);
+        border-left-color: var(--electric-gold);
+        transform: translateX(4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .comment-author {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #6366f1;
+        margin-bottom: var(--space-xs);
+      }
+
+      .comment-text {
+        color: #1e293b;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+
+      .comment-time {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-top: var(--space-xs);
+      }
+
+      /* COMPACT VOTING CONTAINER */
       .voting-container {
         background: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(20px);
@@ -965,6 +1510,9 @@
         padding: var(--space-lg);
         margin-top: var(--space-md);
         box-shadow: var(--glass-shadow);
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .voting-question {
@@ -976,8 +1524,6 @@
         text-align: center;
         position: relative;
       }
-
-     
 
       .voting-options {
         display: flex;
@@ -1057,14 +1603,35 @@
         font-size: 0.9rem;
         font-weight: 600;
         color: var(--pure-white);
+        padding-left: 7px;
       }
 
       .option-position {
         font-size: 0.7rem;
-        color: var(--portal-blue);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+      }
+
+      /* Position-specific colors */
+      .position-forward {
+        color: var(--forward-red);
+        background: var(--forward-bg);
+      }
+
+      .position-midfielder {
+        color: var(--midfielder-blue);
+        background: var(--midfielder-bg);
+      }
+
+      .position-defender {
+        color: var(--defender-yellow);
+        background: var(--defender-bg);
+      }
+
+      .position-goalkeeper {
+        color: var(--goalkeeper-green);
+        background: var(--goalkeeper-bg);
       }
 
       .option-progress {
@@ -1123,174 +1690,156 @@
         opacity: 1;
         transform: scale(1);
       }
-      @media (max-width: 400px) {
-        .voting-container {
-          background: rgba(0, 0, 0, 0.4);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(0, 212, 255, 0.3);
-          border-radius: 20px;
-          padding: var(--space-md);
-          margin-top: 0px;
-          box-shadow: var(--glass-shadow);
-        }
 
-        .voting-question {
-          font-family: var(--font-korean);
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: var(--pure-white);
-          margin-bottom: var(--space-md);
-          text-align: center;
-          position: relative;
-        }
-
-       
-        .voting-options {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-sm);
-        }
-
-        .voting-option {
-          display: flex;
-          align-items: center;
-          gap: var(--space-md);
-          padding: var(--space-sm);
-          background: rgba(0, 0, 0, 0.3);
-          border-radius: 12px;
-          border: 1px solid rgba(0, 212, 255, 0.2);
-          transition: all 0.4s var(--ease-cyber);
-          cursor: pointer;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .voting-option:hover {
-          transform: translateY(-2px);
-          border-color: var(--electric-gold);
-          box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .voting-option.selected {
-          border-color: var(--electric-gold);
-          background: rgba(255, 215, 0, 0.1);
-        }
-
-        .voting-option::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(0, 212, 255, 0.1),
-            transparent
-          );
-          transition: left 0.6s ease;
-        }
-
-        .voting-option:hover::before {
-          left: 100%;
-        }
-
-        .option-avatar {
-          width: 35px;
-          height: 35px;
-          border-radius: 50%;
-          background: var(--gradient-gold);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1rem;
-          color: var(--void-black);
-          font-weight: 900;
-          box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-          flex-shrink: 0;
-        }
-
-        .option-info {
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-
-        .option-name {
-          font-family: var(--font-display);
-          font-size: 0.7rem;
-          font-weight: 600;
-          color: var(--pure-white);
-        }
-
-        .option-position {
-          font-size: 0.5rem;
-          color: var(--portal-blue);
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .option-progress {
-          display: flex;
-          align-items: center;
-          gap: var(--space-sm);
-          min-width: 100px;
-        }
-
-        .progress-bar {
-          flex-grow: 1;
-          height: 6px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 3px;
-          overflow: hidden;
-          position: relative;
-          max-width: 70px;
-        }
-
-        .progress-fill {
-          height: 100%;
-          background: var(--gradient-gold);
-          border-radius: 3px;
-          transition: width 0.6s var(--ease-cyber);
-          position: relative;
-        }
-
-        .vote-count {
-          font-family: var(--font-display);
-          font-size: 0.6rem;
-          font-weight: 700;
-          color: var(--pure-white);
-          min-width: 30px;
-          text-align: right;
-        }
-
-        .check-indicator {
-          width: 18px;
-          height: 18px;
-          border-radius: 50%;
-          background: var(--success-green);
-          color: var(--pure-white);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.7rem;
-          font-weight: 700;
-          opacity: 0;
-          transform: scale(0);
-          transition: all 0.3s var(--ease-portal);
-          flex-shrink: 0;
-          box-shadow: 0 0 15px var(--success-green);
-        }
-
-        .voting-option.selected .check-indicator {
-          opacity: 1;
-          transform: scale(1);
-        }
+      /* VOTE SUBMIT BUTTON */
+      .vote-submit-container {
+        margin-top: var(--space-lg);
+        text-align: center;
       }
-      /* 📊 OTHER SECTIONS - REDUCED MARGINS */
+
+
+      .vote-submit-btn:disabled {
+        background: rgba(108, 117, 125, 0.5);
+        color: rgba(255, 255, 255, 0.5);
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .vote-submit-btn:not(:disabled):hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        background: linear-gradient(135deg, #ffeb3b 0%, #ffd700 100%);
+      }
+
+      .vote-submit-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .vote-submit-btn:not(:disabled):hover::before {
+        left: 100%;
+      }
+
+      /* COMMENTS SECTION */
+      .comments-section {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 20px;
+        padding: var(--space-lg);
+        margin-top: var(--space-xl);
+        box-shadow: var(--glass-shadow);
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .comments-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--electric-gold);
+        margin-bottom: var(--space-lg);
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+
+      .comment-input-container {
+        display: flex;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-lg);
+      }
+
+      .comment-input {
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 25px;
+        padding: var(--space-md) var(--space-lg);
+        color: var(--pure-white);
+        font-family: var(--font-korean);
+        font-size: 0.9rem;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .comment-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .comment-submit-btn {
+        padding-top: 4px;
+        background: var(--gradient-gold);
+        color: var(--void-black);
+        border: none;
+        border-radius: 20%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s var(--ease-portal);
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+      }
+
+      .comment-submit-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+      }
+
+      .comments-list {
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .comment-item {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        padding: var(--space-md);
+        margin-bottom: var(--space-sm);
+        border-left: 3px solid var(--portal-blue);
+        transition: all 0.3s ease;
+      }
+
+      .comment-item:hover {
+        background: rgba(0, 212, 255, 0.05);
+        border-left-color: var(--electric-gold);
+      }
+
+      .comment-author {
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--electric-gold);
+        margin-bottom: var(--space-xs);
+      }
+
+      .comment-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .comment-time {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: var(--space-xs);
+      }
+
+      /* OTHER SECTIONS - REDUCED MARGINS */
       .tactics-section,
       .features-section,
       .analytics-section {
@@ -1300,6 +1849,7 @@
           var(--void-black) 100%
         );
         padding: var(--space-md);
+        padding-top:0px;
         height: 100%;
         overflow-y: auto;
         position: relative;
@@ -1319,6 +1869,7 @@
         grid-template-columns: 1fr;
         gap: var(--space-lg);
         margin-top: var(--space-md);
+        flex-direction: column; 
       }
 
       @media (min-width: 768px) {
@@ -1328,7 +1879,9 @@
       }
 
       .formation-display {
-        background: linear-gradient(135deg, #1a5d2e 0%, #0d4d1a 100%);
+        background-image: url("images/24HD ESSENTIALS/formation.PNG");
+        background-size: cover;
+        background-position: center;
         border-radius: 20px;
         padding: var(--space-xl);
         position: relative;
@@ -1336,11 +1889,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 3px solid var(--electric-gold);
+        border: 2px  rgba(221, 221, 221, 0.534);
         overflow: hidden;
         box-shadow: var(--cyber-shadow);
       }
-
+/* 
       .formation-display::before {
         content: "";
         position: absolute;
@@ -1348,7 +1901,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
+        background: 
+        linear-gradient(
             90deg,
             transparent 48%,
             rgba(255, 215, 0, 0.1) 50%,
@@ -1361,16 +1915,19 @@
             transparent 52%
           );
         pointer-events: none;
-      }
+      } */
 
       .formation-text {
         font-family: var(--font-display);
-        font-size: clamp(2.5rem, 6vw, 4rem);
-        font-weight: 900;
+        font-size: clamp(1.6rem, 6vw, 4rem);
+        font-weight: 700;
         color: var(--electric-gold);
-        text-shadow: var(--neon-glow);
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         z-index: 2;
-        position: relative;
+        position:relative;
+        text-align: center;
+      
+        
       }
 
       .tactics-info {
@@ -1565,7 +2122,7 @@
         }
 
         .formation-text {
-          font-size: clamp(2rem, 5vw, 3rem);
+          font-size:1.5 rem;
         }
 
         .tactics-info {
@@ -1609,38 +2166,199 @@
         }
       }
       @media (max-width: 400px) {
-        .portal-title {
-          font-size: clamp(2.5rem, 10vw, 4rem);
-        }
-
-        .portal-widgets {
-          grid-template-columns: 1fr;
-          gap: var(--space-lg);
-          padding: 0 var(--space-md);
+        .voting-section {
+          background: linear-gradient(
+            135deg,
+            var(--deep-space) 0%,
+            var(--void-black) 100%
+          );
+          position: relative;
+          padding: 5px;
+          height: 100%;
+          overflow-y: auto;
         }
 
         .voting-content {
-          padding-top: 0;
+          position: relative;
+          z-index: 2;
+          max-width: 400px;
+          margin: 0 auto;
+          padding-top: var(--space-xs);
         }
 
-        .section-content {
-          padding-top: var(--space-md);
+        .section-header {
+          text-align: center;
+          margin-bottom: 0px;
+          padding: 0 50px;
+        }
+      }
+      @media (max-width: 400px) {
+        .voting-container {
+          background: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(0, 212, 255, 0.3);
+          border-radius: 20px;
+          padding: var(--space-md);
+          margin-top: 0px;
+          box-shadow: var(--glass-shadow);
         }
 
-        .quantum-tabs {
-          bottom: 12px;
+        .voting-question {
+          font-family: var(--font-korean);
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: var(--pure-white);
+          margin-bottom: var(--space-md);
+          text-align: center;
+          position: relative;
+        }
+
+        .voting-options {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-sm);
+        }
+
+        .voting-option {
+          display: flex;
+          align-items: center;
+          gap: var(--space-md);
           padding: var(--space-sm);
-          height: 65px;
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 12px;
+          border: 1px solid rgba(0, 212, 255, 0.2);
+          transition: all 0.4s var(--ease-cyber);
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
         }
 
-        .quantum-tab {
-          width: 45px;
-          height: 45px;
+        .voting-option:hover {
+          transform: translateY(-2px);
+          border-color: var(--electric-gold);
+          box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .voting-option.selected {
+          border-color: var(--electric-gold);
+          background: rgba(255, 215, 0, 0.1);
+        }
+
+        .voting-option::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 212, 255, 0.1),
+            transparent
+          );
+          transition: left 0.6s ease;
+        }
+
+        .voting-option:hover::before {
+          left: 100%;
+        }
+
+        .option-avatar {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          background: var(--gradient-gold);
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-size: 1rem;
+          color: var(--void-black);
+          font-weight: 900;
+          box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+          flex-shrink: 0;
+        }
+
+        .option-info {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .option-name {
+          font-family: var(--font-display);
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: var(--pure-white);
+        }
+
+        .option-position {
+          font-size: 0.5rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .option-progress {
+          display: flex;
+          align-items: center;
+          gap: var(--space-sm);
+          min-width: 100px;
+        }
+
+        .progress-bar {
+          flex-grow: 1;
+          height: 6px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 3px;
+          overflow: hidden;
+          position: relative;
+          max-width: 70px;
+        }
+
+        .progress-fill {
+          height: 100%;
+          background: var(--gradient-gold);
+          border-radius: 3px;
+          transition: width 0.6s var(--ease-cyber);
+          position: relative;
+        }
+
+        .vote-count {
+          font-family: var(--font-display);
+          font-size: 0.6rem;
+          font-weight: 700;
+          color: var(--pure-white);
+          min-width: 30px;
+          text-align: right;
+        }
+
+        .check-indicator {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: var(--success-green);
+          color: var(--pure-white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.7rem;
+          font-weight: 700;
+          opacity: 0;
+          transform: scale(0);
+          transition: all 0.3s var(--ease-portal);
+          flex-shrink: 0;
+          box-shadow: 0 0 15px var(--success-green);
+        }
+
+        .voting-option.selected .check-indicator {
+          opacity: 1;
+          transform: scale(1);
         }
 
         .section-title {
-          font-size: 1.3rem;
+          font-size: 1.7rem;
           margin-bottom: 2px;
         }
 
@@ -1654,56 +2372,46 @@
           border-radius: 3px;
         }
 
-        .formation-display {
-          min-height: 200px;
-          padding: var(--space-lg);
-        }
-
-        .formation-text {
-          font-size: clamp(2rem, 5vw, 3rem);
-        }
-
-        .tactics-info {
-          padding: var(--space-lg);
-        }
-
-        .tactics-info h3 {
-          font-size: 1.3rem;
-        }
-
-        .tactics-list li {
-          font-size: 0.85rem;
-          text-align: center;
-          padding: var(--space-xs) var(--space-sm);
-        }
-
-        .tactics-list li::before {
-          font-size: 0.9rem;
-          margin-left: 1.5rem;
-        }
-
-        .features-grid {
-          grid-template-columns: 1fr;
-          gap: var(--space-md);
-        }
-
-        .feature-card {
+        .prize-section {
           padding: var(--space-md);
+          margin: var(--space-md) var(--space-xl);
         }
 
-        .feature-icon {
-          font-size: 1.8rem;
+        .prize-icon {
+          font-size: 2rem;
         }
 
-        .feature-title {
+        .prize-title {
+          font-size: 1.2rem;
+        }
+
+        .prize-description {
+          font-size: 0.85rem;
+          margin-bottom: 0px;
+        }
+        .prize-showcase {
+          background: #ffffff;
+          border-radius: 12px;
+          padding: var(--space-md);
+          margin: var(--space-sm) 0;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+          border: 1px solid #4f7194d0;
+        }
+        .vote-submit-btn {
+          padding: var(--space-md) var(--space-sm);
+          font-size: 0.9rem;
+          min-width: 150px;
+        }
+
+        .comments-section {
+          padding: var(--space-md);
+          margin-top: var(--space-lg);
+        }
+
+        .comments-title {
           font-size: 1.1rem;
         }
-
-        .feature-description {
-          font-size: 0.85rem;
-        }
       }
-
       /* Hide scrollbars */
       .portal-section::-webkit-scrollbar {
         width: 6px;
@@ -1725,17 +2433,17 @@
   </head>
 
   <body>
-    <!-- 🌌 IMMERSIVE PORTAL UNIVERSE -->
+    <!-- IMMERSIVE PORTAL UNIVERSE -->
     <div class="portal-universe"></div>
 
-    <!-- ✨ FLOATING PARTICLES -->
+    <!-- FLOATING PARTICLES -->
     <div class="particles-container" id="particlesContainer"></div>
 
-    <!-- 🎮 HOLOGRAPHIC CURSORS -->
+    <!-- HOLOGRAPHIC CURSORS -->
     <div class="cyber-cursor"></div>
     <div class="cursor-trail"></div>
 
-    <!-- 🚀 PORTAL NAVIGATION -->
+    <!-- PORTAL NAVIGATION -->
     <nav class="portal-nav">
       <div class="nav-container">
         <a href="index.html" class="brand-link">
@@ -1751,13 +2459,68 @@
             <span class="brand-subtitle">Premium Access</span>
           </div>
         </a>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+
+        <div class="nav-actions">
+          <a href="#" class="nav-btn btn-secondary">로그인</a>
+          <a href="#" class="nav-btn btn-primary">팀 가입</a>
+        </div>
       </div>
     </nav>
 
-    <!-- 🌊 IMMERSIVE PORTAL CONTAINER -->
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="matches.html">
+            <span>🏆</span>
+            경기 결과
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+            target="_blank"
+          >
+            <span>🎬</span>
+            경기 영상
+          </a>
+        </li>
+        <li>
+          <a href="#squad">
+            <span>⚽</span>
+            팀 구성
+          </a>
+        </li>
+        <li>
+          <a href="uniform.html">
+            <span>👕</span>
+            유니폼 신청
+          </a>
+        </li>
+        <li>
+          <a href="#news">
+            <span>📰</span>
+            팀 소식
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-actions">
+        <a href="#" class="nav-btn btn-secondary">로그인</a>
+        <a href="#" class="nav-btn btn-primary">팀 가입</a>
+      </div>
+    </div>
+
+    <!-- IMMERSIVE PORTAL CONTAINER -->
     <div class="portal-container">
       <div class="portal-sections" id="portalSections">
-        <!-- 🌟 HERO PORTAL ENTRANCE -->
+        <!-- HERO PORTAL ENTRANCE -->
         <section class="portal-section hero-portal" id="hero">
           <div class="portal-entrance"></div>
 
@@ -1772,12 +2535,12 @@
             <p class="portal-subtitle">24시 항시대기 정회원 독점 포탈</p>
           </div>
 
-          <!-- 🎮 FLOATING PORTAL WIDGETS -->
+          <!-- FLOATING PORTAL WIDGETS -->
           <div class="portal-widgets">
             <div class="portal-widget" onclick="navigateToSection(1)">
               <div class="widget-icon">👑</div>
               <div class="widget-title">MVP 투표</div>
-              <div class="widget-description">이 달의 박카스맨 투표하기</div>
+              <div class="widget-description">투표하러 가기</div>
               <div class="widget-status">
                 <div class="status-dot"></div>
                 <span>투표 진행 중</span>
@@ -1787,7 +2550,7 @@
             <div class="portal-widget" onclick="navigateToSection(2)">
               <div class="widget-icon">⚽</div>
               <div class="widget-title">전술 보드</div>
-              <div class="widget-description">이번 주 경기 전략 확인</div>
+              <div class="widget-description">이번 주 전술 확인</div>
               <div class="widget-status">
                 <div class="status-dot"></div>
                 <span>업데이트됨</span>
@@ -1804,147 +2567,209 @@
               </div>
             </div>
 
-            <div class="portal-widget" onclick="navigateToSection(4)">
+            <!-- <div class="portal-widget" onclick="navigateToSection(4)">
               <div class="widget-icon">📊</div>
               <div class="widget-title">통계 분석</div>
-              <div class="widget-description">실시간 팀 성과 데이터</div>
+              <div class="widget-description">실시간 팀 데이터</div>
               <div class="widget-status">
                 <div class="status-dot"></div>
                 <span>실시간</span>
               </div>
             </div>
-          </div>
+          </div> -->
         </section>
 
-        <!-- 👑 MVP VOTING SECTION -->
+        <!-- MVP VOTING SECTION -->
         <section class="portal-section voting-section" id="voting">
           <div class="voting-content">
             <div class="section-header-with-back">
               <div class="back-button" onclick="navigateToSection(0)">←</div>
               <div class="section-header">
                 <h2 class="section-title">이 달의 박카스맨</h2>
-                <p class="section-subtitle">매주 투표 결과 집계 후 이 달의 박카스맨이 선정됩니다</p>
+                <p class="section-subtitle">
+                  매주 투표 결과 집계 후 이 달의 박카스맨이 선정됩니다
+                </p>
                 <div class="voting-period">투표 마감: 6월 8일 저녁</div>
               </div>
             </div>
 
-            <!-- 🗳️ COMPACT VOTING CONTAINER -->
+            <!-- PRIZE SECTION -->
+            <div class="prize-section">
+              <div class="prize-title">Prize</div>
+              <div class="prize-description">
+                MVP로 선정된 선수에게 드리는 프리미엄 상품
+              </div>
+
+              <div class="prize-showcase">
+                <div class="prize-image"></div>
+                <div class="prize-name">Apple AirPods Max</div>
+                <div class="prize-value">₩850,000 상당</div>
+              </div>
+            </div>
+
+            <!-- COMPACT VOTING CONTAINER -->
             <div class="voting-container">
               <div class="voting-question">
-                🏆  이번 주 가장 활약이 돋보인 MVP는?
+                🏆 이번 주 가장 활약이 돋보인 MVP는?
               </div>
 
               <div class="voting-options">
-                <div
-                  class="voting-option"
-                  onclick="selectVote(this, 'kim', 22)"
-                >
-                  <div class="option-avatar">김</div>
+                <div class="voting-option" data-player="dan" data-votes="5">
+                  <div class="option-avatar">단</div>
                   <div class="option-info">
-                    <div class="option-name">김영훈</div>
-                    <div class="option-position">Forward</div>
+                    <div class="option-name">단민우</div>
+                    <div class="option-position position-forward">Forward (ST)</div>
                   </div>
                   <div class="option-progress">
                     <div class="progress-bar">
-                      <div class="progress-fill" style="width: 35%"></div>
+                      <div class="progress-fill" style="width: 42%"></div>
                     </div>
-                    <div class="vote-count">22명</div>
+                    <div class="vote-count">5표</div>
                   </div>
                   <div class="check-indicator">✓</div>
                 </div>
 
-                <div
-                  class="voting-option"
-                  onclick="selectVote(this, 'lee', 28)"
-                >
-                  <div class="option-avatar">이</div>
-                  <div class="option-info">
-                    <div class="option-name">이원준</div>
-                    <div class="option-position">Midfielder</div>
-                  </div>
-                  <div class="option-progress">
-                    <div class="progress-bar">
-                      <div class="progress-fill" style="width: 44%"></div>
-                    </div>
-                    <div class="vote-count">28명</div>
-                  </div>
-                  <div class="check-indicator">✓</div>
-                </div>
-
-                <div
-                  class="voting-option"
-                  onclick="selectVote(this, 'cho', 15)"
-                >
-                  <div class="option-avatar">조</div>
-                  <div class="option-info">
-                    <div class="option-name">조한준</div>
-                    <div class="option-position">Defender</div>
-                  </div>
-                  <div class="option-progress">
-                    <div class="progress-bar">
-                      <div class="progress-fill" style="width: 24%"></div>
-                    </div>
-                    <div class="vote-count">15명</div>
-                  </div>
-                  <div class="check-indicator">✓</div>
-                </div>
-
-                <div
-                  class="voting-option"
-                  onclick="selectVote(this, 'park', 18)"
-                >
+                <div class="voting-option" data-player="jisu" data-votes="4">
                   <div class="option-avatar">박</div>
                   <div class="option-info">
                     <div class="option-name">박지수</div>
-                    <div class="option-position">Goalkeeper</div>
+                    <div class="option-position position-midfielder">
+                      Midfielder (CM)
+                    </div>
                   </div>
                   <div class="option-progress">
                     <div class="progress-bar">
-                      <div class="progress-fill" style="width: 28%"></div>
+                      <div class="progress-fill" style="width: 33%"></div>
                     </div>
-                    <div class="vote-count">18명</div>
+                    <div class="vote-count">4표</div>
                   </div>
                   <div class="check-indicator">✓</div>
                 </div>
 
-                <div
-                  class="voting-option"
-                  onclick="selectVote(this, 'choi', 12)"
-                >
+                <div class="voting-option" data-player="cho" data-votes="2">
+                  <div class="option-avatar">조</div>
+                  <div class="option-info">
+                    <div class="option-name">조한준</div>
+                    <div class="option-position position-defender">
+                      Defender (RB)
+                    </div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 17%"></div>
+                    </div>
+                    <div class="vote-count">2표</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div class="voting-option" data-player="hwang" data-votes="1">
+                  <div class="option-avatar">황</div>
+                  <div class="option-info">
+                    <div class="option-name">황준우</div>
+                    <div class="option-position position-goalkeeper">
+                      Goalkeeper (GK)
+                    </div>
+                  </div>
+                  <div class="option-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 8%"></div>
+                    </div>
+                    <div class="vote-count">1표</div>
+                  </div>
+                  <div class="check-indicator">✓</div>
+                </div>
+
+                <div class="voting-option" data-player="hyuk" data-votes="1">
                   <div class="option-avatar">최</div>
                   <div class="option-info">
                     <div class="option-name">최윤혁</div>
-                    <div class="option-position">Forward</div>
+                    <div class="option-position position-forward">Forward (RW)</div>
                   </div>
                   <div class="option-progress">
                     <div class="progress-bar">
-                      <div class="progress-fill" style="width: 19%"></div>
+                      <div class="progress-fill" style="width: 8%"></div>
                     </div>
-                    <div class="vote-count">12명</div>
+                    <div class="vote-count">1표</div>
                   </div>
                   <div class="check-indicator">✓</div>
                 </div>
 
-                <div class="voting-option" onclick="selectVote(this, 'nam', 8)">
-                  <div class="option-avatar">남</div>
+                <div class="voting-option" data-player="juwan" data-votes="1">
+                  <div class="option-avatar">김</div>
                   <div class="option-info">
-                    <div class="option-name">남재영</div>
-                    <div class="option-position">Defender</div>
+                    <div class="option-name">김주완</div>
+                    <div class="option-position position-defender">
+                      Defender (CB)
+                    </div>
                   </div>
                   <div class="option-progress">
                     <div class="progress-bar">
-                      <div class="progress-fill" style="width: 13%"></div>
+                      <div class="progress-fill" style="width: 8%"></div>
                     </div>
-                    <div class="vote-count">8명</div>
+                    <div class="vote-count">1표</div>
                   </div>
                   <div class="check-indicator">✓</div>
+                </div>
+              </div>
+
+              <div class="vote-submit-container">
+                <button
+                  class="vote-submit-btn"
+                  id="voteSubmitBtn"
+                  disabled
+                  onclick="submitVote()"
+                >
+                선수 선택
+                </button>
+              </div>
+            </div>
+
+            <!-- COMMENTS SECTION -->
+            <div class="comments-section">
+              <h3 class="comments-title">💬 응원 댓글</h3>
+
+              <div class="comment-input-container">
+                <input
+                  type="text"
+                  class="comment-input"
+                  placeholder="응원 메시지를 남겨주세요..."
+                  id="commentInput"
+                  maxlength="100"
+                />
+                <button class="comment-submit-btn" onclick="addComment()">
+                  ➤
+                </button>
+              </div>
+
+              <div class="comments-list" id="commentsList">
+                <div class="comment-item">
+                  <div class="comment-author">김정민</div>
+                  <div class="comment-text">
+                    이원준 화이팅! 오늘도 멋진 플레이 기대합니다 🔥
+                  </div>
+                  <div class="comment-time">방금 전</div>
+                </div>
+
+                <div class="comment-item">
+                  <div class="comment-author">박성호</div>
+                  <div class="comment-text">
+                    김영훈 골 넣는 모습 진짜 멋있었어요!
+                  </div>
+                  <div class="comment-time">3분 전</div>
+                </div>
+
+                <div class="comment-item">
+                  <div class="comment-author">이상현</div>
+                  <div class="comment-text">박지수 선수 세이브 미쳤다 ㄷㄷ</div>
+                  <div class="comment-time">8분 전</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ⚽ TACTICS SECTION -->
+        <!-- TACTICS SECTION -->
         <section class="portal-section tactics-section" id="tactics">
           <div class="section-content">
             <div class="section-header-with-back">
@@ -1958,10 +2783,10 @@
             </div>
 
             <div class="tactics-grid">
+                <div class="formation-text">4-1-2-3</div>
               <div class="formation-display">
-                <div class="formation-text">4-3-3</div>
-              </div>
-
+            </div>
+            
               <div class="tactics-info">
                 <h3>주요 전술 포인트</h3>
                 <ul class="tactics-list">
@@ -1978,7 +2803,7 @@
           </div>
         </section>
 
-        <!-- 🎯 PREMIUM FEATURES SECTION -->
+        <!-- PREMIUM FEATURES SECTION -->
         <section class="portal-section features-section" id="features">
           <div class="section-content">
             <div class="section-header-with-back">
@@ -2047,7 +2872,7 @@
           </div>
         </section>
 
-        <!-- 📈 ANALYTICS DASHBOARD SECTION -->
+        <!-- ANALYTICS DASHBOARD SECTION -->
         <section class="portal-section analytics-section" id="analytics">
           <div class="section-content">
             <div class="section-header-with-back">
@@ -2100,7 +2925,7 @@
       </div>
     </div>
 
-    <!-- 🎯 QUANTUM TAB NAVIGATION -->
+    <!-- QUANTUM TAB NAVIGATION -->
     <div class="quantum-tabs">
       <button
         class="quantum-tab active"
@@ -2137,7 +2962,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // 🎮 HOLOGRAPHIC CURSOR SYSTEM
+        // HOLOGRAPHIC CURSOR SYSTEM
         const cursor = document.querySelector(".cyber-cursor");
         const trail = document.querySelector(".cursor-trail");
 
@@ -2157,7 +2982,7 @@
           // Enhanced cursor interactions
           document
             .querySelectorAll(
-              ".portal-widget, .voting-option, .feature-card, .quantum-tab, .back-button"
+              ".portal-widget, .voting-option, .feature-card, .quantum-tab, .back-button, .vote-submit-btn, .comment-submit-btn"
             )
             .forEach((element) => {
               element.addEventListener("mouseenter", function () {
@@ -2176,7 +3001,7 @@
             });
         }
 
-        // ✨ FLOATING PARTICLES SYSTEM
+        // FLOATING PARTICLES SYSTEM
         function createParticle() {
           const particle = document.createElement("div");
           particle.className = "particle";
@@ -2202,26 +3027,51 @@
         // Create particles periodically
         setInterval(createParticle, 300);
 
-        // 🚀 PORTAL ENTRANCE ANIMATION
+        // PORTAL ENTRANCE ANIMATION
         setTimeout(() => {
           document.querySelector(".portal-entrance").style.animation =
             "portalPulse 4s ease-in-out infinite";
         }, 1000);
 
-        // 🎮 WIDGET FLOATING ANIMATION
-        setTimeout(() => {
-          document
-            .querySelectorAll(".portal-widget")
-            .forEach((widget, index) => {
-              widget.style.animation = `widgetFloat ${
-                6 + index
-              }s ease-in-out infinite`;
-              widget.style.animationDelay = `${index * 0.5}s`;
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+
+        if (mobileMenuToggle && mobileMenuOverlay) {
+          mobileMenuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mobileMenuOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileMenuOverlay.classList.contains(
+              "active"
+            )
+              ? "hidden"
+              : "";
+          });
+
+          // Close mobile menu when clicking on links
+          const mobileNavLinks = document.querySelectorAll(
+            ".mobile-nav-links a"
+          );
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenuToggle.classList.remove("active");
+              mobileMenuOverlay.classList.remove("active");
+              document.body.style.overflow = "";
             });
-        }, 500);
+          });
+
+          // Close when clicking overlay
+          mobileMenuOverlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+              mobileMenuToggle.classList.remove("active");
+              this.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
+        }
       });
 
-      // 🌊 SECTION NAVIGATION
+      // SECTION NAVIGATION
       let currentSection = 0;
       const totalSections = 5;
 
@@ -2261,10 +3111,10 @@
         }
       }
 
-      // 👑 REVOLUTIONARY VOTING SYSTEM
+      // ENHANCED VOTING SYSTEM
       let selectedVote = null;
 
-      function selectVote(element, candidate, voteCount) {
+      function selectVote(element) {
         // Remove previous selection
         document.querySelectorAll(".voting-option").forEach((option) => {
           option.classList.remove("selected");
@@ -2272,33 +3122,143 @@
 
         // Add selection to clicked option
         element.classList.add("selected");
-        selectedVote = candidate;
+        selectedVote = element.dataset.player;
+
+        // Enable submit button
+        const submitBtn = document.getElementById("voteSubmitBtn");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "투표하기";
+        submitBtn.style.background = "var(--gradient-gold)";
+        submitBtn.style.color = "var(--void-black)";
 
         // Cyber effect
         element.style.boxShadow = "0 0 30px var(--electric-gold)";
         setTimeout(() => {
           element.style.boxShadow = "";
         }, 1000);
+      }
 
-        // Show confirmation
+      // Add click event listeners to voting options
+      document.querySelectorAll(".voting-option").forEach((option) => {
+        option.addEventListener("click", function () {
+          selectVote(this);
+        });
+      });
+
+      function submitVote() {
+        if (!selectedVote) return;
+
+        const selectedOption = document.querySelector(
+          ".voting-option.selected"
+        );
+        const playerName =
+          selectedOption.querySelector(".option-name").textContent;
+        const currentVotes = parseInt(selectedOption.dataset.votes);
+
+        // Update vote count
+        const newCount = currentVotes + 1;
+        selectedOption.dataset.votes = newCount;
+
+        const countElement = selectedOption.querySelector(".vote-count");
+        countElement.textContent = `${newCount}명`;
+
+        // Update progress bar
+        const progressBar = selectedOption.querySelector(".progress-fill");
+        const newPercentage = Math.min((newCount / 80) * 100, 100);
+        progressBar.style.width = `${newPercentage}%`;
+
+        // Show success message
+        const submitBtn = document.getElementById("voteSubmitBtn");
+        submitBtn.textContent = "투표 완료! ✓";
+        submitBtn.disabled = true;
+        submitBtn.style.background = "var(--success-green)";
+        submitBtn.style.color = "var(--pure-white)";
+
+        // Celebration effect
+        createVoteSuccessEffect();
+
         setTimeout(() => {
           alert(
-            `${
-              element.querySelector(".option-name").textContent
-            }에게 투표하였습니다! 투표해주셔서 감사합니다.`
+            `${playerName}에게 투표하였습니다! 투표해주셔서 감사합니다. 🏆`
           );
-
-          // Update vote count (simulate real-time update)
-          const newCount = voteCount + 1;
-          const countElement = element.querySelector(".vote-count");
-          countElement.textContent = `${newCount}명`;
-
-          // Update progress bar
-          const progressBar = element.querySelector(".progress-fill");
-          const newPercentage = Math.min((newCount / 80) * 100, 100);
-          progressBar.style.width = `${newPercentage}%`;
         }, 500);
       }
+
+      function createVoteSuccessEffect() {
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => {
+            const particle = document.createElement("div");
+            particle.className = "particle";
+            particle.style.left = Math.random() * 100 + "vw";
+            particle.style.top = "60vh";
+            particle.style.background = "var(--success-green)";
+            particle.style.animation = `particleFloat 3s ease-out forwards`;
+            document.body.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 3000);
+          }, i * 100);
+        }
+      }
+
+      // COMMENTS SYSTEM
+      function addComment() {
+        const input = document.getElementById("commentInput");
+        const commentText = input.value.trim();
+
+        if (!commentText) return;
+
+        const commentsList = document.getElementById("commentsList");
+        const newComment = document.createElement("div");
+        newComment.className = "comment-item";
+
+        // Generate random user name
+        const userNames = [
+          "김민수",
+          "박지영",
+          "이상호",
+          "최유진",
+          "정태현",
+          "홍서연",
+        ];
+        const randomName =
+          userNames[Math.floor(Math.random() * userNames.length)];
+
+        newComment.innerHTML = `
+          <div class="comment-author">${randomName}</div>
+          <div class="comment-text">${commentText}</div>
+          <div class="comment-time">방금 전</div>
+        `;
+
+        // Insert at the beginning
+        commentsList.insertBefore(newComment, commentsList.firstChild);
+
+        // Clear input
+        input.value = "";
+
+        // Add glow effect
+        newComment.style.border = "1px solid var(--success-green)";
+        newComment.style.boxShadow = "0 0 15px var(--success-green)";
+
+        setTimeout(() => {
+          newComment.style.border = "";
+          newComment.style.boxShadow = "";
+        }, 2000);
+
+        // Limit to 10 comments
+        const comments = commentsList.children;
+        if (comments.length > 10) {
+          commentsList.removeChild(comments[comments.length - 1]);
+        }
+      }
+
+      // Enter key for comment submission
+      document
+        .getElementById("commentInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            addComment();
+          }
+        });
 
       // Feature Card Click Handlers
       document.querySelectorAll(".feature-btn").forEach((button) => {
