@@ -670,10 +670,11 @@
 
       .portal-title {
         font-family: var(--font-display);
-        font-size: clamp(3rem, 12vw, 8rem);
+        font-size: clamp(5rem, 12vw, 8rem);
         font-weight: 900;
         line-height: 0.9;
         margin-bottom: var(--space-lg);
+        margin-top: var(--space-md);
         background: var(--gradient-neon);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -746,6 +747,7 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: var(--space-lg);
         max-width: 1200px;
+        margin-top: 20px;
         margin: 0 auto;
         position: relative;
         z-index: 5;
@@ -805,7 +807,6 @@
       }
       .portal-widget:nth-child(2) {
         animation-delay: 1s;
-        
       }
       .portal-widget:nth-child(3) {
         animation-delay: 2s;
@@ -905,7 +906,7 @@
       }
       @media (max-width: 768px) {
         .widget-icon {
-            width: 15%;   
+          width: 15%;
           font-size: 1.5rem;
           margin-right: var(--space-md);
           background: var(--gradient-cyber);
@@ -917,7 +918,7 @@
         }
 
         .widget-title {
-            width: 30%;   
+          width: 30%;
           font-family: var(--font-display);
           font-size: 0.8rem;
           font-weight: 700;
@@ -926,7 +927,7 @@
         }
 
         .widget-description {
-            font-size: 0.5rem;
+          font-size: 0.5rem;
           color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
           margin-bottom: 2px;
@@ -1130,7 +1131,8 @@
         width: 130px;
         height: 100px;
         margin: 0 auto var(--space-md);
-        background: url("../images/icons/airpodMax.jpeg") center/contain no-repeat;
+        background: url("../images/icons/airpodMax.jpeg") center/contain
+          no-repeat;
         background-color: #f8fafc;
         border-radius: 12px;
         border: 1px solid #e2e8f0;
@@ -1699,7 +1701,6 @@
         text-align: center;
       }
 
-
       .vote-submit-btn:disabled {
         background: rgba(108, 117, 125, 0.5);
         color: rgba(255, 255, 255, 0.5);
@@ -1851,7 +1852,7 @@
           var(--void-black) 100%
         );
         padding: var(--space-md);
-        padding-top:0px;
+        padding-top: 0px;
         height: 100%;
         overflow-y: auto;
         position: relative;
@@ -1871,7 +1872,7 @@
         grid-template-columns: 1fr;
         gap: var(--space-lg);
         margin-top: var(--space-md);
-        flex-direction: column; 
+        flex-direction: column;
       }
 
       @media (min-width: 768px) {
@@ -1891,11 +1892,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px  rgba(221, 221, 221, 0.534);
+        border: 2px rgba(221, 221, 221, 0.534);
         overflow: hidden;
         box-shadow: var(--cyber-shadow);
       }
-/* 
+      /* 
       .formation-display::before {
         content: "";
         position: absolute;
@@ -1926,10 +1927,8 @@
         color: var(--electric-gold);
         text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         z-index: 2;
-        position:relative;
+        position: relative;
         text-align: center;
-      
-        
       }
 
       .tactics-info {
@@ -2124,7 +2123,7 @@
         }
 
         .formation-text {
-          font-size:1.5 rem;
+          font-size: 1.5 rem;
         }
 
         .tactics-info {
@@ -2431,6 +2430,102 @@
       .portal-section::-webkit-scrollbar-thumb:hover {
         background: var(--electric-gold);
       }
+      /* 🌌 PORTAL HERO IMAGE */
+      .portal-hero-image {
+        width: 280px;
+        height: 280px;
+        margin: var(--space-xl) auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cyber-frame {
+        padding-top: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        height: 110%;
+        position: relative;
+        background: rgba(46, 183, 201, 0.791);
+        border: 1px solid var(--royal-gold);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.3),
+          inset 0 0 20px rgba(0, 212, 255, 0.1);
+      }
+
+      .hero-image {
+        width: 80%;
+        height: 92%;
+        object-fit: cover;
+        border-radius: 18px;
+        transition: all 0.4s ease;
+        filter: brightness(0.8) contrast(1.1);
+      }
+
+      .cyber-frame:hover .hero-image {
+        transform: scale(1.05);
+        filter: brightness(1) contrast(1.2);
+      }
+
+      /* ✨ 스캔라인 효과 */
+      .scan-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--portal-blue) 50%,
+          transparent 100%
+        );
+        animation: scanMove 3s infinite ease-in-out;
+        opacity: 0.7;
+      }
+
+      @keyframes scanMove {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0;
+        }
+        50% {
+          transform: translateY(276px);
+          opacity: 1;
+        }
+      }
+
+      /* 🌟 호버 효과 */
+      .cyber-frame:hover {
+        border-color: var(--electric-gold);
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.4),
+          inset 0 0 30px rgba(255, 215, 0, 0.1);
+      }
+
+      .cyber-frame:hover .corner {
+        border-color: var(--portal-blue);
+        box-shadow: 0 0 10px var(--portal-blue);
+      }
+      @media (max-width: 768px) {
+        .portal-hero-image {
+          width: 230px;
+          height: 130px;
+          margin: var(--space-md) auto;
+          transform: scale(0.7);
+        }
+
+        .corner {
+          width: 15px;
+          height: 15px;
+        }
+
+        .scan-line {
+          animation-duration: 2s;
+        }
+      }
     </style>
   </head>
 
@@ -2462,16 +2557,12 @@
           </div>
         </a>
 
-      
-
         <div class="nav-actions">
           <a href="#" class="nav-btn btn-secondary">로그인</a>
           <a href="#" class="nav-btn btn-primary">팀 가입</a>
         </div>
       </div>
     </nav>
-
-   
 
     <!-- IMMERSIVE PORTAL CONTAINER -->
     <div class="portal-container">
@@ -2523,7 +2614,7 @@
               </div>
             </div>
 
-            <!-- <div class="portal-widget" onclick="navigateToSection(4)">
+            <div class="portal-widget" onclick="navigateToSection(4)">
               <div class="widget-icon">📊</div>
               <div class="widget-title">통계 분석</div>
               <div class="widget-description">실시간 팀 데이터</div>
@@ -2532,7 +2623,7 @@
                 <span>실시간</span>
               </div>
             </div>
-          </div> -->
+          </div>
         </section>
 
         <!-- MVP VOTING SECTION -->
@@ -2574,7 +2665,9 @@
                   <div class="option-avatar">단</div>
                   <div class="option-info">
                     <div class="option-name">단민우</div>
-                    <div class="option-position position-forward">Forward (ST)</div>
+                    <div class="option-position position-forward">
+                      Forward (ST)
+                    </div>
                   </div>
                   <div class="option-progress">
                     <div class="progress-bar">
@@ -2640,7 +2733,9 @@
                   <div class="option-avatar">최</div>
                   <div class="option-info">
                     <div class="option-name">최윤혁</div>
-                    <div class="option-position position-forward">Forward (RW)</div>
+                    <div class="option-position position-forward">
+                      Forward (RW)
+                    </div>
                   </div>
                   <div class="option-progress">
                     <div class="progress-bar">
@@ -2676,7 +2771,7 @@
                   disabled
                   onclick="submitVote()"
                 >
-                선수 선택
+                  선수 선택
                 </button>
               </div>
             </div>
@@ -2739,10 +2834,9 @@
             </div>
 
             <div class="tactics-grid">
-                <div class="formation-text">4-1-2-3</div>
-              <div class="formation-display">
-            </div>
-            
+              <div class="formation-text">4-1-2-3</div>
+              <div class="formation-display"></div>
+
               <div class="tactics-info">
                 <h3>주요 전술 포인트</h3>
                 <ul class="tactics-list">

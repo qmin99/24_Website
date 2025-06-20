@@ -253,7 +253,14 @@
   Color: White;
   box-shadow: 0 0 6px rgba(118, 205, 67, 0.3);
 }
-
+.uniform-theme .mobile-menu-toggle:hover .menu-label {
+  opacity: 1;
+  color: white;
+}
+.uniform-theme .mobile-menu-toggle.active .menu-label {
+  opacity: 0;
+  transform: scale(0.8);
+}
 .portal-theme .hamburger-line {
   background: #00d4ff;
   box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
@@ -262,9 +269,46 @@
   background: #00d4ff;
   box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
 }
+.portal-theme .mobile-menu-toggle:hover .menu-label {
+  opacity: 1;
+  color: white;
+}
+.portal-theme .mobile-menu-toggle.active .menu-label {
+  opacity: 0;
+  transform: scale(0.8);
+}
 .portal-theme .menu-label  {
   Color: White;
   box-shadow: 0 0 6px rgba(118, 205, 67, 0.3);
+}
+/* 초간단 안전한 quantum 효과 */
+.portal-theme .quantum-disappear {
+    animation: ultraSafeDisappear 0.4s ease-out forwards;
+}
+
+@keyframes ultraSafeDisappear {
+    to {
+        opacity: 0;
+        scale: 0.8;
+        filter: blur(3px);
+    }
+}
+
+.portal-theme .quantum-restore {
+    animation: ultraSafeRestore 0.5s ease-out forwards;
+}
+
+@keyframes ultraSafeRestore {
+    from {
+        opacity: 0;
+        scale: 0.8;
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+        filter: blur(0px);
+    }
 }
 /* Compact Mobile Menu Overlay */
 .mobile-menu-overlay {

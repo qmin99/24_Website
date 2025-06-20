@@ -128,87 +128,111 @@ class ComponentManager {
             console.error('💥 Some components failed to load:', error);
         }
     }
-    // Initialize mobile menu functionality
-    static initializeMobileMenu() {
-        const hamburger = document.getElementById('mobileMenuToggle');
-        const overlay = document.getElementById('mobileMenuOverlay');
+   // Initialize mobile menu functionality  
+static initializeMobileMenu() {
+    const hamburger = document.getElementById('mobileMenuToggle');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    if (!hamburger || !overlay) {
+        console.error('❌ Mobile menu elements not found');
+        return;
+    }
+    
+    // Toggle menu
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.toggle('active');
+        overlay.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
         
-        if (!hamburger || !overlay) {
-            console.error('❌ Mobile menu elements not found');
-            return;
+        // Portal 페이지에서 부드러운 quantum 효과! 🌌
+        if (document.body.classList.contains('portal-theme')) {
+            this.handleQuantumAnimation(isActive);
         }
         
-     // Toggle menu
-hamburger.addEventListener('click', () => {
-    const isActive = hamburger.classList.toggle('active');
-    overlay.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isActive);
-    document.body.style.overflow = isActive ? 'hidden' : '';
+        console.log(`📱 Mobile menu ${isActive ? 'opened' : 'closed'} - smooth quantum! ✨`);
+    });
     
-    // Portal 페이지에서 quantum tabs 멋진 제어! 🌌
-    if (document.body.classList.contains('portal-theme')) {
-        const quantumTabs = document.querySelectorAll('.quantum-tabs, [class*="quantum"], .portal-tabs, .tab-container');
-        
-        quantumTabs.forEach((tab, index) => {
+    // Close when clicking links
+    const navLinks = overlay.querySelectorAll('.mobile-nav-links a, .mobile-nav-actions a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            this.closeMobileMenu(hamburger, overlay);
+        });
+    });
+    
+    // Close when clicking overlay background
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            this.closeMobileMenu(hamburger, overlay);
+        }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            this.closeMobileMenu(hamburger, overlay);
+        }
+    });
+    
+    // Close on orientation change
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            this.closeMobileMenu(hamburger, overlay);
+        }, 100);
+    });
+    
+    console.log('✅ Mobile menu initialized with smooth quantum effects');
+}
+
+// 부드러운 quantum 애니메이션 처리 🌊
+static handleQuantumAnimation(isActive) {
+    const quantumTabs = document.querySelectorAll('.quantum-tabs, .quantum-tab');
+    
+    if (quantumTabs.length === 0) return;
+    
+    // 렌더링 최적화를 위해 requestAnimationFrame 사용
+    requestAnimationFrame(() => {
+        quantumTabs.forEach((tab) => {
+            // 기존 애니메이션 클래스 초기화
+            tab.classList.remove('quantum-disappear', 'quantum-restore');
+            tab.style.animationDelay = ''; // delay 제거로 동시 실행
+            
+            // 렌더링 최적화 힌트
+            tab.style.willChange = 'transform, opacity, filter';
+            
             if (isActive) {
-                // Quantum disappear effect! ✨
-                tab.classList.add('quantum-disappear');
-                tab.style.animationDelay = `${index * 0.1}s`;
+                // 모든 탭 동시에 사라짐 ✨
+                requestAnimationFrame(() => {
+                    tab.classList.add('quantum-disappear');
+                });
             } else {
-                // Quantum restore effect! 🔮
-                tab.classList.remove('quantum-disappear');
-                tab.classList.add('quantum-restore');
-                tab.style.animationDelay = `${index * 0.05}s`;
-                
-                // 애니메이션 완료 후 클래스 제거
-                setTimeout(() => {
-                    tab.classList.remove('quantum-restore');
-                }, 800);
+                // 모든 탭 동시에 복원 🔮
+                requestAnimationFrame(() => {
+                    tab.classList.add('quantum-restore');
+                    
+                    // 애니메이션 완료 후 정리
+                    setTimeout(() => {
+                        tab.classList.remove('quantum-restore');
+                        tab.style.willChange = 'auto'; // 메모리 절약
+                    }, 800);
+                });
             }
         });
-    }
+    });
+}
+
+static closeMobileMenu(hamburger, overlay) {
+    hamburger.classList.remove('active');
+    overlay.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
     
-    console.log(`📱 Mobile menu ${isActive ? 'opened' : 'closed'} with quantum effects! ⚡`);
-});
-        // Close when clicking links
-        const navLinks = overlay.querySelectorAll('.mobile-nav-links a, .mobile-nav-actions a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                this.closeMobileMenu(hamburger, overlay);
-            });
-        });
-        
-        // Close when clicking overlay background
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                this.closeMobileMenu(hamburger, overlay);
-            }
-        });
-        
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                this.closeMobileMenu(hamburger, overlay);
-            }
-        });
-        
-        // Close on orientation change
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                this.closeMobileMenu(hamburger, overlay);
-            }, 100);
-        });
-        
-        console.log('✅ Mobile menu initialized');
+    // Portal 페이지에서 부드러운 quantum 복원
+    if (document.body.classList.contains('portal-theme')) {
+        this.handleQuantumAnimation(false);
     }
-    
-    static closeMobileMenu(hamburger, overlay) {
-        hamburger.classList.remove('active');
-        overlay.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-    
+}
     // Utility method to reload specific component
     static async reload(componentName) {
         switch (componentName) {
