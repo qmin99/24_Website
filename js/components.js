@@ -110,7 +110,7 @@ class ComponentManager {
 
     // 현재 페이지 감지
     const currentPage = window.location.pathname.toLowerCase();
-    const isPortalPage = currentPage.includes("portal.html");
+    const isPortalPage = currentPage.includes("portal");
 
     // Load components conditionally
     const promises = [MobileNavigationLoader.load()];
@@ -282,11 +282,11 @@ class ThemeManager {
       currentPage === ""
     ) {
       body.classList.add("index-theme");
-    } else if (currentPage.includes("matches.html")) {
+    } else if (currentPage.includes("matches")) {
       body.classList.add("matches-theme");
-    } else if (currentPage.includes("uniform.html")) {
+    } else if (currentPage.includes("uniform")) {
       body.classList.add("uniform-theme");
-    } else if (currentPage.includes("portal.html")) {
+    } else if (currentPage.includes("portal")) {
       body.classList.add("portal-theme");
     }
 
