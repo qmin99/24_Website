@@ -356,25 +356,26 @@ class LinkFixer {
     console.log("🔗 Links fixed for current location");
   }
 }
-
-// Main initialization function
 async function initializeComponents() {
-  PerformanceMonitor.startTiming("component-loading");
-
-  // Apply theme first for immediate visual feedback
-  ThemeManager.applyPageTheme();
-
-  // Load all components
-  await ComponentManager.loadAll();
-
-  // Fix links after components are loaded
-  setTimeout(() => {
-    LinkFixer.fixAllLinks();
-  }, 100);
-
-  PerformanceMonitor.endTiming("component-loading");
-
-  console.log("🏁 24HD component system ready");
+    console.log('🚀 Components 초기화 시작...');
+    console.log('📍 현재 경로:', window.location.pathname);
+    
+    PerformanceMonitor.startTiming('component-loading');
+    
+    // Theme 먼저 적용
+    ThemeManager.applyPageTheme();
+    console.log('🎨 Theme 적용 완료');
+    
+    // 컴포넌트 로드
+    await ComponentManager.loadAll();
+    
+    // 다시 한번 Theme 적용 (안전장치)
+    setTimeout(() => {
+        ThemeManager.applyPageTheme();
+        console.log('🔄 Theme 재적용 완료');
+    }, 500);
+    
+    console.log('🏁 Components 초기화 완료');
 }
 
 // Auto-initialize when DOM is ready
