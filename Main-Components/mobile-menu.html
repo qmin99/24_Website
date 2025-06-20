@@ -380,6 +380,7 @@
 
   /* Menu Content Container */
   .menu-content {
+    
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -872,7 +873,31 @@
   .portal-theme .quantum-disappear {
     animation: ultraSafeDisappear 0.4s ease-out forwards;
   }
+  .portal-theme .mobile-menu-overlay {
+  /* Portal container의 overflow:hidden 무시하고 강제 스크롤 */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  z-index: 1050 !important;
+}
 
+/* 이중 보험: 컨텐츠도 스크롤 가능 */
+/* .portal-theme .menu-content {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 40px !important;
+} */
+
+/* Portal Theme 전용 사이버 스크롤바 */
+.portal-theme .mobile-menu-overlay::-webkit-scrollbar {
+  width: 6px;
+}
+
+.portal-theme .mobile-menu-overlay::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+}
   @keyframes ultraSafeDisappear {
     to {
       opacity: 0;
