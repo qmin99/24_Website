@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24HD Portal Loading</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;800&display=swap');
+        
+        :root {
+            --portal-blue: #00d4ff;
+            --electric-gold: #ffd700;
+            --void-black: #0a0a0a;
+            --cyber-purple: #8a2be2;
+            --neon-pink: #ff1493;
+            --quantum-green: #39ff14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--void-black);
+            color: white;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        #threejs-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .portal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 6s linear infinite;
+            opacity: 0.3;
+        }
+
+        .quantum-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--portal-blue);
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .loading-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: contentPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes contentPulse {
+            0% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1.05) translateY(-10px); }
+        }
+
+        .portal-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 60px;
+            position: relative;
+            animation: logoSpin 5s linear infinite;
+            transform: translateY(-60px);
+        }
+
+        @keyframes logoSpin {
+            0% { transform: translateY(-60px) rotateY(0deg) rotateX(0deg); }
+            100% { transform: translateY(-60px) rotateY(360deg) rotateX(360deg); }
+        }
+
+        .logo-ring {
+            position: absolute;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+
+        .ring-1 {
+            width: 120px;
+            height: 120px;
+            border-top-color: var(--portal-blue);
+            border-right-color: var(--electric-gold);
+            animation-delay: 0s;
+        }
+
+        .ring-2 {
+            width: 90px;
+            height: 90px;
+            top: 15px;
+            left: 15px;
+            border-bottom-color: var(--cyber-purple);
+            border-left-color: var(--neon-pink);
+            animation-delay: 0.8s;
+            animation-direction: reverse;
+        }
+
+        .ring-3 {
+            width: 60px;
+            height: 60px;
+            top: 30px;
+            left: 30px;
+            border-top-color: var(--quantum-green);
+            border-bottom-color: var(--electric-gold);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes ringPulse {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: rotate(120deg) scale(1.08);
+                opacity: 0.8;
+            }
+        }
+
+        .loading-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--portal-blue), var(--electric-gold), var(--cyber-purple));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            letter-spacing: 3px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-text {
+            display: inline-block;
+            animation: textReveal 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .animated-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--portal-blue) 30%, 
+                var(--electric-gold) 70%, 
+                transparent 100%);
+            animation: textScan 4s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        .animated-text .char {
+            display: inline-block;
+            animation: charGlow 2s ease-in-out infinite;
+        }
+
+        .animated-text .char:nth-child(1) { animation-delay: 0.1s; }
+        .animated-text .char:nth-child(2) { animation-delay: 0.2s; }
+        .animated-text .char:nth-child(3) { animation-delay: 0.3s; }
+        .animated-text .char:nth-child(4) { animation-delay: 0.4s; }
+        .animated-text .char:nth-child(5) { animation-delay: 0.5s; }
+        .animated-text .char:nth-child(6) { animation-delay: 0.6s; }
+        .animated-text .char:nth-child(7) { animation-delay: 0.7s; }
+        .animated-text .char:nth-child(8) { animation-delay: 0.8s; }
+        .animated-text .char:nth-child(9) { animation-delay: 0.9s; }
+        .animated-text .char:nth-child(10) { animation-delay: 1.0s; }
+        .animated-text .char:nth-child(11) { animation-delay: 1.1s; }
+        .animated-text .char:nth-child(12) { animation-delay: 1.2s; }
+        .animated-text .char:nth-child(13) { animation-delay: 1.3s; }
+        .animated-text .char:nth-child(14) { animation-delay: 1.4s; }
+        .animated-text .char:nth-child(15) { animation-delay: 1.5s; }
+
+        @keyframes textReveal {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            20% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            80% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10px);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes textScan {
+            0%, 100% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(100%);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes charGlow {
+            0%, 100% {
+                color: rgba(255, 255, 255, 0.9);
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                color: var(--portal-blue);
+                text-shadow: 0 0 15px var(--portal-blue);
+                transform: scale(1.05);
+            }
+        }
+
+        .progress-container {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--portal-blue), var(--electric-gold), var(--cyber-purple));
+            border-radius: 10px;
+            width: 0%;
+            animation: progressGlow 1.5s ease-in-out infinite;
+            position: relative;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes progressGlow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
+            animation: progressShine 2s linear infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .loading-percentage {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--electric-gold);
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px currentColor;
+        }
+
+        .loading-status {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: statusBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .portal-beams {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .beam {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(to bottom, transparent, var(--portal-blue), transparent);
+            animation: beamMove 6s linear infinite;
+            opacity: 0.6;
+        }
+
+        .beam:nth-child(1) {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .beam:nth-child(2) {
+            left: 40%;
+            animation-delay: 1.5s;
+            background: linear-gradient(to bottom, transparent, var(--electric-gold), transparent);
+        }
+
+        .beam:nth-child(3) {
+            left: 60%;
+            animation-delay: 3s;
+            background: linear-gradient(to bottom, transparent, var(--cyber-purple), transparent);
+        }
+
+        .beam:nth-child(4) {
+            left: 80%;
+            animation-delay: 4.5s;
+            background: linear-gradient(to bottom, transparent, var(--neon-pink), transparent);
+        }
+
+        @keyframes beamMove {
+            0% {
+                transform: translateY(-100%) scaleY(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.6;
+                transform: translateY(0) scaleY(1);
+            }
+            80% {
+                opacity: 0.6;
+                transform: translateY(0) scaleY(1);
+            }
+            100% {
+                transform: translateY(100%) scaleY(0);
+                opacity: 0;
+            }
+        }
+
+        .hologram-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--portal-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: cursorPulse 1s ease-in-out infinite;
+            mix-blend-mode: difference;
+        }
+
+        @keyframes cursorPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.7;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loading-title {
+                font-size: 2rem;
+            }
+            
+            .progress-container {
+                width: 250px;
+            }
+            
+            .portal-logo {
+                width: 80px;
+                height: 80px;
+                transform: translateY(-40px);
+            }
+            
+            .ring-1 { width: 80px; height: 80px; }
+            .ring-2 { width: 60px; height: 60px; top: 10px; left: 10px; }
+            .ring-3 { width: 40px; height: 40px; top: 20px; left: 20px; }
+            
+            .loading-subtitle {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        .fade-out {
+            animation: fadeOutPortal 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeOutPortal {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8);
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container" id="loadingContainer">
+        <canvas id="threejs-canvas"></canvas>
+        
+        <div class="portal-overlay">
+            <div class="cyber-grid"></div>
+            
+            <div class="quantum-particles" id="particleContainer"></div>
+            
+            <div class="portal-beams">
+                <div class="beam"></div>
+                <div class="beam"></div>
+                <div class="beam"></div>
+                <div class="beam"></div>
+            </div>
+        </div>
+
+        <div class="loading-content">
+            <div class="portal-logo">
+                <div class="logo-ring ring-1"></div>
+                <div class="logo-ring ring-2"></div>
+                <div class="logo-ring ring-3"></div>
+            </div>
+            
+            <h1 class="loading-title">24HD PORTAL</h1>
+            <p class="loading-subtitle">
+                <span class="animated-text" id="animatedText">ACCESSING PREMIUM ZONE</span>
+            </p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="loading-percentage" id="percentage">0%</div>
+            <div class="loading-status" id="status">시스템 초기화 중...</div>
+        </div>
+    </div>
+
+    <div class="hologram-cursor" id="cursor"></div>
+
+    <script>
+        // 홀로그래픽 커서
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // THREE.js 포털 효과
+        let scene, camera, renderer, portalParticles = [];
+        let vortexGeometry, vortexMaterial, vortexMesh;
+
+        function initThreeJS() {
+            const canvas = document.getElementById('threejs-canvas');
+            
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                alpha: true, 
+                antialias: true 
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            
+            // 포털 소용돌이 생성
+            createPortalVortex();
+            
+            // 3D 파티클 시스템
+            createPortalParticles();
+            
+            // 조명 설정
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
+            scene.add(ambientLight);
+            
+            const portalLight = new THREE.PointLight(0x00d4ff, 2, 100);
+            portalLight.position.set(0, 0, 10);
+            scene.add(portalLight);
+            
+            camera.position.z = 30;
+            
+            animate();
+        }
+
+        function createPortalVortex() {
+            const radius = 15;
+            const segments = 64;
+            
+            vortexGeometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            
+            // 소용돌이 모양 생성
+            for (let i = 0; i < segments; i++) {
+                const angle = (i / segments) * Math.PI * 4;
+                const spiralRadius = radius * (1 - i / segments);
+                
+                const x = Math.cos(angle) * spiralRadius;
+                const y = Math.sin(angle) * spiralRadius;
+                const z = (i / segments) * 20 - 10;
+                
+                vertices.push(x, y, z);
+                
+                // 그라디언트 색상
+                const colorPhase = (i / segments);
+                colors.push(
+                    0.0 + colorPhase * 0.8,  // R
+                    0.8 + colorPhase * 0.2,  // G
+                    1.0 - colorPhase * 0.3   // B
+                );
+            }
+            
+            vortexGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            vortexGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            
+            vortexMaterial = new THREE.PointsMaterial({
+                size: 0.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+            
+            vortexMesh = new THREE.Points(vortexGeometry, vortexMaterial);
+            scene.add(vortexMesh);
+        }
+
+        function createPortalParticles() {
+            const particleCount = 200;
+            const particleGeometry = new THREE.BufferGeometry();
+            const positions = [];
+            const colors = [];
+            const sizes = [];
+            
+            for (let i = 0; i < particleCount; i++) {
+                positions.push(
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100
+                );
+                
+                colors.push(
+                    Math.random() * 0.5 + 0.5,
+                    Math.random() * 0.5 + 0.5,
+                    1
+                );
+                
+                sizes.push(Math.random() * 3 + 1);
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            particleGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            particleGeometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+            
+            const particleMaterial = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 }
+                },
+                vertexShader: `
+                    attribute float size;
+                    attribute vec3 color;
+                    varying vec3 vColor;
+                    uniform float time;
+                    
+                    void main() {
+                        vColor = color;
+                        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                        gl_PointSize = size * (300.0 / -mvPosition.z);
+                        gl_Position = projectionMatrix * mvPosition;
+                    }
+                `,
+                fragmentShader: `
+                    varying vec3 vColor;
+                    
+                    void main() {
+                        float dist = distance(gl_PointCoord, vec2(0.5));
+                        if (dist > 0.5) discard;
+                        
+                        float alpha = 1.0 - (dist * 2.0);
+                        gl_FragColor = vec4(vColor, alpha);
+                    }
+                `,
+                transparent: true,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+            portalParticles.push(particles);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const time = Date.now() * 0.001;
+            
+            // 소용돌이 회전 (속도 낮춤)
+            if (vortexMesh) {
+                vortexMesh.rotation.z += 0.0125;
+                vortexMesh.rotation.x = Math.sin(time * 0.3) * 0.05;
+            }
+            
+            // 파티클 애니메이션 (속도 낮춤)
+            portalParticles.forEach((particles, index) => {
+                particles.rotation.y += 0.006 * (index + 1);
+                particles.rotation.x += 0.003 * (index + 1);
+                
+                if (particles.material.uniforms) {
+                    particles.material.uniforms.time.value = time;
+                }
+            });
+            
+            // 카메라 미세한 움직임 (더 부드럽게)
+            camera.position.x = Math.sin(time * 0.1) * 1.5;
+            camera.position.y = Math.cos(time * 0.075) * 0.8;
+            camera.lookAt(0, 0, 0);
+            
+            renderer.render(scene, camera);
+        }
+
+        // 2D 파티클 생성
+        function createQuantumParticles() {
+            const container = document.getElementById('particleContainer');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                
+                // 랜덤 색상
+                const colors = ['#00d4ff', '#ffd700', '#8a2be2', '#ff1493', '#39ff14'];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // 로딩 프로그레스
+        let progress = 0;
+        const statusMessages = [
+            "시스템 초기화 중...",
+            "포털 인증 중...",
+            "정회원 권한 확인 중...",
+            "보안 프로토콜 적용 중...",
+            "3D 환경 구성 중...",
+            "완료! 포털로 이동합니다..."
+        ];
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = document.getElementById('percentage');
+            const status = document.getElementById('status');
+            
+            if (progress < 100) {
+                progress += Math.random() * 7 + 4;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                percentage.textContent = Math.floor(progress) + '%';
+                
+                const statusIndex = Math.floor((progress / 100) * (statusMessages.length - 1));
+                status.textContent = statusMessages[statusIndex];
+                
+                setTimeout(updateProgress, 150 + Math.random() * 200);
+            } else {
+                // 로딩 완료
+                setTimeout(() => {
+                    const container = document.getElementById('loadingContainer');
+                    container.classList.add('fade-out');
+                    
+                    setTimeout(() => {
+                        // portal.html로 리다이렉트
+                        window.location.href = '../Main-pages/portal.html';
+                    }, 2000);
+                }, 800);
+            }
+        }
+
+        // 윈도우 리사이즈 처리
+        function onWindowResize() {
+            if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        }
+
+        // 애니메이티드 텍스트 초기화
+        function initAnimatedText() {
+            const animatedText = document.getElementById('animatedText');
+            const text = animatedText.textContent;
+            animatedText.innerHTML = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i] === ' ' ? '&nbsp;' : text[i];
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.innerHTML = char;
+                animatedText.appendChild(span);
+            }
+        }
+
+        // 초기화
+        window.addEventListener('load', () => {
+            initThreeJS();
+            createQuantumParticles();
+            initAnimatedText();
+            setTimeout(updateProgress, 300);
+        });
+
+        window.addEventListener('resize', onWindowResize);
+
+        // 키보드 이벤트 (스킵 기능)
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'Enter') {
+                progress = 100;
+                updateProgress();
+            }
+        });
+    </script>
+</body>
+</html>

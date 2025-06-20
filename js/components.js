@@ -99,20 +99,26 @@ class ComponentManager {
     static async loadAll() {
         console.log('🚀 Starting component loading...');
         
-        // Load components in parallel for better performance
+        // 현재 페이지 감지
+        const currentPage = window.location.pathname.toLowerCase();
+        const isPortalPage = currentPage.includes('portal.html');
+        
+        // Load components conditionally
         const promises = [
-            MobileNavigationLoader.load(),
-            FooterLoader.load()
+            MobileNavigationLoader.load()
         ];
+        
+        // Portal 페이지가 아닐 때만 footer 로드
+        if (!isPortalPage) {
+            promises.push(FooterLoader.load());
+        }
         
         try {
             await Promise.all(promises);
             console.log('🎉 All components loaded successfully');
             
-            // Initialize mobile menu after loading
             this.initializeMobileMenu();
             
-            // Dispatch custom event when all components are ready
             const event = new CustomEvent('componentsLoaded', {
                 detail: { timestamp: Date.now() }
             });
@@ -122,7 +128,6 @@ class ComponentManager {
             console.error('💥 Some components failed to load:', error);
         }
     }
-    
     // Initialize mobile menu functionality
     static initializeMobileMenu() {
         const hamburger = document.getElementById('mobileMenuToggle');
@@ -133,16 +138,38 @@ class ComponentManager {
             return;
         }
         
-        // Toggle menu
-        hamburger.addEventListener('click', () => {
-            const isActive = hamburger.classList.toggle('active');
-            overlay.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', isActive);
-            document.body.style.overflow = isActive ? 'hidden' : '';
-            
-            console.log(`📱 Mobile menu ${isActive ? 'opened' : 'closed'}`);
-        });
+     // Toggle menu
+hamburger.addEventListener('click', () => {
+    const isActive = hamburger.classList.toggle('active');
+    overlay.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isActive);
+    document.body.style.overflow = isActive ? 'hidden' : '';
+    
+    // Portal 페이지에서 quantum tabs 멋진 제어! 🌌
+    if (document.body.classList.contains('portal-theme')) {
+        const quantumTabs = document.querySelectorAll('.quantum-tabs, [class*="quantum"], .portal-tabs, .tab-container');
         
+        quantumTabs.forEach((tab, index) => {
+            if (isActive) {
+                // Quantum disappear effect! ✨
+                tab.classList.add('quantum-disappear');
+                tab.style.animationDelay = `${index * 0.1}s`;
+            } else {
+                // Quantum restore effect! 🔮
+                tab.classList.remove('quantum-disappear');
+                tab.classList.add('quantum-restore');
+                tab.style.animationDelay = `${index * 0.05}s`;
+                
+                // 애니메이션 완료 후 클래스 제거
+                setTimeout(() => {
+                    tab.classList.remove('quantum-restore');
+                }, 800);
+            }
+        });
+    }
+    
+    console.log(`📱 Mobile menu ${isActive ? 'opened' : 'closed'} with quantum effects! ⚡`);
+});
         // Close when clicking links
         const navLinks = overlay.querySelectorAll('.mobile-nav-links a, .mobile-nav-actions a');
         navLinks.forEach(link => {
