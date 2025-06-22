@@ -550,77 +550,9 @@
       }
 
       @media (min-width: 769px) {
-        .mobile-menu-toggle {
-          display: none;
-        }
+      
       }
 
-      .hamburger-line {
-        width: 25px;
-        height: 2px;
-        background: var(--championship-gold);
-        transition: all 0.3s ease;
-      }
-
-      .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-
-      .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-        opacity: 0;
-      }
-
-      .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-      }
-
-      /* Mobile Menu Overlay */
-      .mobile-menu-overlay {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: var(--glass-blur-strong);
-        transform: translateX(-100%);
-        transition: transform 0.4s var(--ease-out-quart);
-        z-index: 999;
-        padding: var(--mobile-space-2xl);
-      }
-
-      .mobile-menu-overlay.active {
-        transform: translateX(0);
-      }
-
-      .mobile-nav-links {
-        list-style: none;
-        margin-bottom: var(--mobile-space-2xl);
-      }
-
-      .mobile-nav-links li {
-        margin-bottom: var(--mobile-space-lg);
-      }
-
-      .mobile-nav-links a {
-        display: flex;
-        align-items: center;
-        gap: var(--mobile-space-md);
-        color: var(--platinum-white);
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 500;
-        padding: var(--mobile-space-lg);
-        border-radius: 10px;
-        background: var(--gradient-glass);
-        border: var(--glass-border);
-        transition: all 0.3s ease;
-      }
-
-      .mobile-nav-links a:hover {
-        color: var(--championship-gold);
-        background: var(--gradient-glass-strong);
-      }
 
       .nav-actions {
         display: none;
@@ -674,19 +606,6 @@
         background: var(--gradient-glass-strong);
         color: var(--championship-gold);
         transform: translateY(-2px);
-      }
-
-      .mobile-nav-actions {
-        display: flex;
-        flex-direction: column;
-        gap: var(--mobile-space-md);
-      }
-
-      .mobile-nav-actions .nav-btn {
-        width: 100%;
-        text-align: center;
-        padding: var(--mobile-space-lg);
-        font-size: 1rem;
       }
 
       /* Epic Arena Section - Mobile First */
@@ -805,7 +724,7 @@
 
       @media (min-width: 769px) {
         .hero-logo {
-          width: 100px;
+          width: 280px;
           height: 200px;
         }
       }
@@ -818,7 +737,7 @@
         margin-bottom: var(--mobile-space-lg);
         color: var(--platinum-white);
         position: relative;
-        letter-spacing: -0.05em;
+        letter-spacing: 0.01em;
         margin-top: -var(--mobile-space-md);
       }
 
