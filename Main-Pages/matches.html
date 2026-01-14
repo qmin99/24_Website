@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <script src="../js/components.js" defer></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24HD | 경기 결과 - Always Ready</title>
+
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/../../fasvicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/../../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/../../favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/../../favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="24HD" />
+    <link rel="manifest" href="/../../favicon/site.webmanifest" />
+
+    <!-- Premium Korean + English Typography -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP & Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      /* Championship Premium Variables */
+      :root {
+        --midnight-black: #0a0a0a;
+        --pure-black: #000000;
+        --stadium-black: #1a1a1a;
+        --championship-gold: #c19b3a;
+        --golden-accent: #d4af37;
+        --golden-bright: #f4d03f;
+        --neon-gold: #ffeb3b;
+        --platinum-white: #ffffff;
+        --glass-white: rgba(255, 255, 255, 0.1);
+        --glass-strong: rgba(255, 255, 255, 0.2);
+
+        --victory-green: #00ff88;
+        --victory-green-glow: rgba(0, 255, 136, 0.3);
+        --defeat-red: #ff4757;
+        --defeat-red-glow: rgba(255, 71, 87, 0.3);
+        --draw-blue: #3742fa;
+        --draw-blue-glow: rgba(55, 66, 250, 0.3);
+
+        --gradient-neon: linear-gradient(
+          45deg,
+          var(--neon-gold) 0%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 100%
+        );
+        --gradient-gold: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        --gradient-victory: linear-gradient(
+          135deg,
+          rgba(0, 255, 136, 0.1) 0%,
+          rgba(0, 255, 136, 0.05) 100%
+        );
+        --gradient-defeat: linear-gradient(
+          135deg,
+          rgba(255, 71, 87, 0.1) 0%,
+          rgba(255, 71, 87, 0.05) 100%
+        );
+        --gradient-draw: linear-gradient(
+          135deg,
+          rgba(55, 66, 250, 0.1) 0%,
+          rgba(55, 66, 250, 0.05) 100%
+        );
+       
+        --gradient-glass-strong: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+
+        --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-display: "Orbitron", "Pretendard", sans-serif;
+        --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+        --space-4xl: 6rem;
+
+        --mobile-space-xs: 0.125rem;
+        --mobile-space-sm: 0.25rem;
+        --mobile-space-md: 0.5rem;
+        --mobile-space-lg: 1rem;
+        --mobile-space-xl: 1.5rem;
+        --mobile-space-2xl: 2rem;
+        --mobile-space-3xl: 3rem;
+
+        --glass-blur: blur(20px);
+        --glass-blur-strong: blur(40px);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+        --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      @media (max-width: 480px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      body {
+        font-family: var(--font-korean);
+        background: var(--pure-black);
+        color: var(--platinum-white);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(196, 155, 58, 0.1) 45%,
+            rgba(196, 155, 58, 0.15) 50%,
+            rgba(196, 155, 58, 0.1) 55%,
+            transparent 60%,
+            transparent 100%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            135deg,
+            var(--pure-black) 0%,
+            var(--stadium-black) 100%
+          );
+        z-index: -1;
+        animation: stadiumAmbience 20s ease-in-out infinite;
+        transform: rotate(45deg) translateX(-10%) translateY(-10%);
+      }
+
+      @keyframes stadiumAmbience {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+
+      .stadium-cursor {
+        width: 6px;
+        height: 6px;
+        background: var(--golden-bright);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 20px var(--championship-gold);
+      }
+
+      .cursor-aura {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+      }
+
+      @media (max-width: 768px) and (hover: none) {
+        .stadium-cursor,
+        .cursor-aura {
+          display: none;
+        }
+      }
+
+      .stadium-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: var(--glass-blur);
+        border-bottom: var(--glass-border);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .stadium-nav {
+          height: 90px;
+        }
+      }
+
+      .stadium-nav.scrolled {
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 1px solid var(--championship-gold);
+        backdrop-filter: var(--glass-blur-strong);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .nav-container {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .team-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        text-decoration: none;
+        color: var(--platinum-white);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .team-brand {
+          gap: var(--space-lg);
+        }
+      }
+
+      .brand-shield {
+        width: 50px;
+        height: 40px;
+        background: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 4px;
+      }
+
+      @media (min-width: 769px) {
+        .brand-shield {
+          width: 60px;
+          height: 50px;
+          border-radius: 8px;
+        }
+      }
+
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%);
+        transition: all 0.3s ease;
+      }
+
+      .brand-shield::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .team-brand:hover .brand-shield::before {
+        left: 100%;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--championship-gold);
+        line-height: 1;
+      }
+
+      @media (min-width: 769px) {
+        .brand-title {
+          font-size: 1.3rem;
+        }
+      }
+
+      .brand-subtitle {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media (min-width: 769px) {
+        .brand-subtitle {
+          font-size: 0.8rem;
+          letter-spacing: 0.1em;
+        }
+      }
+
+      .nav-menu {
+        display: none;
+        list-style: none;
+        gap: var(--space-2xl);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-menu {
+          display: flex;
+        }
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: var(--space-md) var(--space-lg);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-glass);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-link:hover::before {
+        opacity: 1;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--championship-gold);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      @media (min-width: 769px) {
+        .mobile-menu-toggle {
+          display: none;
+        }
+      }
+
+      .hamburger-line {
+        width: 25px;
+        height: 2px;
+        background: var(--championship-gold);
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: var(--glass-blur-strong);
+        transform: translateX(-100%);
+        transition: transform 0.4s var(--ease-out-quart);
+        z-index: 999;
+        padding: var(--mobile-space-2xl);
+      }
+
+      .mobile-menu-overlay.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        margin-bottom: var(--mobile-space-2xl);
+      }
+
+      .mobile-nav-links li {
+        margin-bottom: var(--mobile-space-lg);
+      }
+
+      .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: var(--mobile-space-lg);
+        border-radius: 10px;
+        background: var(--gradient-glass);
+        border: var(--glass-border);
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--championship-gold);
+        background: var(--gradient-glass-strong);
+      }
+
+      .nav-actions {
+        display: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-actions {
+          display: flex;
+        }
+      }
+
+      .nav-btn {
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        border: var(--glass-border);
+        background: var(--gradient-glass);
+        color: var(--platinum-white);
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 8px;
+        backdrop-filter: var(--glass-blur);
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .nav-btn {
+          padding: var(--space-md) var(--space-xl);
+          font-size: 0.85rem;
+          border-radius: 12px;
+        }
+      }
+
+      .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--pure-black);
+        border: 1px solid var(--championship-gold);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: var(--gradient-glass-strong);
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
+
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-space-md);
+      }
+
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--mobile-space-lg);
+        font-size: 1rem;
+      }
+      .championship-arena {
+        position: relative;
+        min-height: 70vh;
+        background: var(--pure-black);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+      }
+
+      @media (min-width: 769px) {
+        .championship-arena {
+          min-height: 80vh;
+        }
+      }
+
+      .stadium-atmosphere {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 30% 70%,
+            rgba(212, 175, 55, 0.1) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 40%
+          ),
+          linear-gradient(
+            45deg,
+            transparent 30%,
+            rgba(212, 175, 55, 0.03) 50%,
+            transparent 70%
+          );
+        animation: atmosphereFlow 20s ease-in-out infinite;
+      }
+
+      @keyframes atmosphereFlow {
+        0%,
+        100% {
+          transform: translateX(0) scale(1);
+        }
+        50% {
+          transform: translateX(-20px) scale(1.02);
+        }
+      }
+
+      .arena-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.5rem, 2vw, 2rem);
+        align-items: center;
+      }
+
+      .hero-main-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(2rem, 4vw, 3rem);
+        align-items: center;
+      }
+
+      @media (min-width: 1024px) {
+        .hero-main-content {
+          grid-template-columns: 1.2fr 1fr;
+          text-align: left;
+          gap: clamp(3rem, 6vw, 6rem);
+        }
+      }
+
+      .championship-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 50px;
+        font-family: var(--font-accent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--championship-gold);
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .championship-badge {
+          gap: var(--space-sm);
+          padding: var(--space-md) var(--space-xl);
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
+          align-self: center;
+        }
+      }
+
+      .arena-title {
+        font-family: var(--font-display);
+        font-weight: 600;
+        line-height: 0.85;
+        color: var(--platinum-white);
+        letter-spacing: -0.02em;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.5rem, 2vw, 1rem);
+      }
+
+      .title-highlight {
+        font-size: clamp(2.2rem, 6vw, 6rem);
+        line-height: 1.3;
+        background: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+      }
+
+      .title-subtitle {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: var(--font-korean);
+      }
+
+      .stadium-stats-integrated {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(1rem, 3vw, 2rem);
+        justify-content: center;
+        perspective: 1000px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 768px) {
+        .stadium-stats-integrated {
+          grid-template-columns: repeat(2, 1fr);
+          max-width: 350px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .stadium-stats-integrated {
+          margin: 0;
+        }
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: clamp(1rem, 2vw, 1.5rem);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      @media (min-width: 1024px) {
+        .hero-actions {
+          justify-content: flex-start;
+          grid-column: 1 / -1;
+        }
+      }
+
+      .hero-cta {
+        padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.5rem);
+        border-radius: 15px;
+        font-weight: 800;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        transition: all 0.3s var(--ease-out-quart);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0rem;
+      }
+
+      .hero-cta.primary {
+        background: linear-gradient(
+          45deg,
+          var(--championship-gold),
+          var(--golden-accent)
+        );
+        color: var(--pure-black);
+        border: none;
+      }
+
+      .hero-cta.secondary {
+        background: transparent;
+        color: var(--championship-gold);
+        border: 2px solid var(--championship-gold);
+      }
+
+      .hero-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .stat-hexagon {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        transition: all 0.6s var(--ease-out-expo);
+        transform-style: preserve-3d;
+      }
+
+      @media (min-width: 769px) {
+        .stat-hexagon {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      .hexagon-shape {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.2) 0%,
+          rgba(212, 175, 55, 0.3) 50%,
+          rgba(196, 155, 58, 0.2) 100%
+        );
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 50%,
+          70% 100%,
+          30% 100%,
+          0% 50%
+        );
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid transparent;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .hexagon-shape::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          60deg,
+          transparent 0%,
+          var(--neon-gold) 25%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 75%,
+          transparent 100%
+        );
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 50%,
+          70% 100%,
+          30% 100%,
+          0% 50%
+        );
+        z-index: -1;
+        opacity: 0;
+        animation: neonFlow 3s ease-in-out infinite;
+        transition: opacity 0.4s ease;
+      }
+
+      @keyframes neonFlow {
+        0%,
+        100% {
+          background-position: 0% 50%;
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          background-position: 100% 50%;
+          filter: hue-rotate(45deg);
+        }
+      }
+
+      .stat-hexagon:hover .hexagon-shape::before {
+        opacity: 1;
+      }
+
+      .stat-hexagon:hover {
+        transform: translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1);
+      }
+
+      .stat-hexagon:hover .hexagon-shape {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.4) 0%,
+          rgba(212, 175, 55, 0.5) 50%,
+          rgba(196, 155, 58, 0.4) 100%
+        );
+        box-shadow: 0 20px 40px rgba(255, 235, 59, 0.3),
+          inset 0 0 20px rgba(255, 235, 59, 0.2);
+      }
+
+      .hex-stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 900;
+        color: var(--neon-gold);
+        line-height: 1;
+        margin-bottom: 2px;
+        text-shadow: 0 0 10px var(--neon-gold), 0 0 20px rgba(255, 235, 59, 0.5);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-number {
+        transform: scale(1.1);
+        text-shadow: 0 0 15px var(--neon-gold), 0 0 30px rgba(255, 235, 59, 0.8),
+          0 0 45px rgba(255, 235, 59, 0.4);
+      }
+
+      .hex-stat-label {
+        font-family: var(--font-korean);
+        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-label {
+        color: var(--neon-gold);
+        text-shadow: 0 0 8px rgba(255, 235, 59, 0.6);
+      }
+
+      .matches-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .matches-container {
+          padding: var(--space-2xl) var(--space-xl);
+        }
+      }
+
+      .matches-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--mobile-space-xl);
+      }
+
+      @media (min-width: 769px) {
+        .matches-grid {
+          grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+      }
+
+      .match-card {
+        position: relative;
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 24px;
+        padding: var(--mobile-space-xl);
+        box-shadow: var(--glass-shadow);
+        transition: all 0.6s var(--ease-out-expo);
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .match-card {
+          padding: var(--space-2xl);
+          border-radius: 32px;
+        }
+      }
+
+      .match-card.victory {
+        border-color: var(--victory-green);
+        box-shadow: var(--glass-shadow), 0 0 30px var(--victory-green-glow);
+      }
+
+      .match-card.defeat {
+        border-color: var(--defeat-red);
+        box-shadow: var(--glass-shadow), 0 0 30px var(--defeat-red-glow);
+      }
+
+      .match-card.draw {
+        border-color: var(--draw-blue);
+        box-shadow: var(--glass-shadow), 0 0 30px var(--draw-blue-glow);
+      }
+
+      .match-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        backdrop-filter: var(--glass-blur-strong);
+      }
+
+      .match-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 30%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          rgba(196, 155, 58, 0.1) 40%,
+          rgba(196, 155, 58, 0.2) 50%,
+          rgba(196, 155, 58, 0.1) 60%,
+          transparent 100%
+        );
+        transform: rotate(15deg);
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .match-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--mobile-space-lg);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-header {
+          margin-bottom: var(--space-xl);
+        }
+      }
+
+      .match-date {
+        font-family: var(--font-accent);
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.1);
+        padding: var(--mobile-space-sm) var(--mobile-space-md);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+      }
+
+      @media (min-width: 769px) {
+        .match-date {
+          font-size: 0.9rem;
+          padding: var(--space-sm) var(--space-lg);
+          border-radius: 16px;
+        }
+      }
+
+      .match-status {
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: var(--mobile-space-sm) var(--mobile-space-lg);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .match-status {
+          font-size: 0.9rem;
+          padding: var(--space-sm) var(--space-xl);
+        }
+      }
+
+      .match-status.victory {
+        background: var(--gradient-victory);
+        color: var(--victory-green);
+        box-shadow: 0 0 20px var(--victory-green-glow);
+      }
+
+      .match-status.defeat {
+        background: var(--gradient-defeat);
+        color: var(--defeat-red);
+        box-shadow: 0 0 20px var(--defeat-red-glow);
+      }
+
+      .match-status.draw {
+        background: var(--gradient-draw);
+        color: var(--draw-blue);
+        box-shadow: 0 0 20px var(--draw-blue-glow);
+      }
+
+      .match-score {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-xl);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-score {
+          gap: var(--space-2xl);
+          margin-bottom: var(--space-2xl);
+        }
+      }
+
+      .team-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--mobile-space-md);
+      }
+
+      .team-name {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--platinum-white);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .team-name {
+          font-size: 1.2rem;
+        }
+      }
+
+      .score-number {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 900;
+        background: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        line-height: 1;
+      }
+
+      .score-vs {
+        font-family: var(--font-accent);
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 var(--mobile-space-md);
+      }
+
+      @media (min-width: 769px) {
+        .score-vs {
+          font-size: 2rem;
+          margin: 0 var(--space-lg);
+        }
+      }
+
+      .goal-scorers {
+        margin-bottom: var(--mobile-space-xl);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .goal-scorers {
+          margin-bottom: var(--space-xl);
+        }
+      }
+
+      .goal-scorers h4 {
+        font-family: var(--font-accent);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--championship-gold);
+        margin-bottom: var(--mobile-space-md);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media (min-width: 769px) {
+        .goal-scorers h4 {
+          font-size: 1.1rem;
+          margin-bottom: var(--space-md);
+        }
+      }
+
+      .scorers-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--mobile-space-sm);
+      }
+
+      @media (min-width: 769px) {
+        .scorers-list {
+          gap: var(--space-sm);
+        }
+      }
+
+      .scorer-chip {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--platinum-white);
+        padding: var(--mobile-space-sm) var(--mobile-space-md);
+        border-radius: 16px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .scorer-chip {
+          padding: var(--space-sm) var(--space-lg);
+          font-size: 0.9rem;
+          border-radius: 20px;
+        }
+      }
+
+      .scorer-chip:hover {
+        background: rgba(212, 175, 55, 0.2);
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
+
+      .match-actions {
+        display: flex;
+        gap: var(--mobile-space-md);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-actions {
+          gap: var(--space-lg);
+        }
+      }
+
+      .action-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        color: var(--platinum-white);
+        text-decoration: none;
+        border-radius: 16px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: var(--glass-border);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s var(--ease-out-back);
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .action-btn {
+          padding: var(--space-lg) var(--space-xl);
+          border-radius: 20px;
+          font-size: 1rem;
+        }
+      }
+
+      .action-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.2),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .action-btn:hover::before {
+        left: 100%;
+      }
+
+      .action-btn:hover {
+        color: var(--championship-gold);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .match-gallery {
+        margin-top: var(--mobile-space-2xl);
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 769px) {
+        .match-gallery {
+          margin-top: var(--space-2xl);
+        }
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--mobile-space-md);
+        margin-top: var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-lg);
+          margin-top: var(--space-xl);
+        }
+      }
+
+      .gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.4s ease;
+      }
+
+      @media (min-width: 769px) {
+        .gallery-item {
+          border-radius: 20px;
+        }
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05) rotate(1deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          rgba(212, 175, 55, 0.1) 50%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+      }
+
+      .gallery-item:hover::before {
+        opacity: 1;
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .fade-up {
+          transform: translateY(40px);
+        }
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .championship-footer {
+        background: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 100%
+        );
+        border-top: var(--glass-border);
+        padding: var(--mobile-space-2xl) 0;
+        backdrop-filter: var(--glass-blur);
+        margin-top: var(--mobile-space-xl);
+      }
+
+      @media (min-width: 769px) {
+        .championship-footer {
+          padding: var(--space-3xl) 0;
+          margin-top: var(--space-2xl);
+        }
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .footer-content {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .footer-brand {
+        margin-bottom: var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 16px;
+        padding: var(--mobile-space-lg);
+        display: inline-block;
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .footer-brand {
+          margin-bottom: var(--space-xl);
+          border-radius: 20px;
+          padding: var(--space-xl);
+        }
+      }
+
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--mobile-space-xs);
+      }
+
+      @media (min-width: 769px) {
+        .footer-logo {
+          font-size: 2.2rem;
+        }
+      }
+
+      .footer-tagline {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      @media (min-width: 769px) {
+        .footer-tagline {
+          font-size: 0.8rem;
+          letter-spacing: 0.15em;
+        }
+      }
+
+      .footer-text {
+        font-family: var(--font-korean);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (min-width: 769px) {
+        .footer-text {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (hover: none) {
+        .stat-hexagon:hover,
+        .match-card:hover,
+        .action-btn:hover,
+        .gallery-item:hover {
+          transform: none;
+        }
+
+        .stat-hexagon:active {
+          transform: scale(0.95);
+        }
+
+        .action-btn:active {
+          transform: scale(0.95);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .team-name {
+          font-size: 0.9rem;
+        }
+
+        .scorer-chip {
+          font-size: 0.8rem;
+        }
+      }
+      .cta-icon {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        margin-right: 0.1rem;
+      }
+
+      @media (max-width: 768px) {
+        .cta-icon {
+          width: 35px;
+          height: 30px;
+        }
+      }
+
+      .hero-cta:hover .cta-icon {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-nav-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mobile-space-md);
+      }
+
+      .mobile-nav-actions .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--mobile-space-lg);
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stadium-cursor"></div>
+    <div class="cursor-aura"></div>
+    <nav class="stadium-nav" id="nav">
+      <div class="nav-container">
+        <a href="../index.html" class="team-brand">
+          <div class="brand-shield">
+            <img
+              src="../images/logo/24HD_logo.png"
+              alt="24HD Logo"
+              class="brand-logo"
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">24HD</span>
+            <span class="brand-subtitle">항시대기</span>
+          </div>
+        </a>
+        <ul class="nav-menu">
+          <li>
+            <a href="matches.html" class="nav-link">
+              <span>🏆</span>
+              경기 결과
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+              class="nav-link"
+              target="_blank"
+            >
+              <span>🎬</span>
+              경기 영상
+            </a>
+          </li>
+          <li>
+            <a href="#squad" class="nav-link">
+              <span>⚽</span>
+              팀 구성
+            </a>
+          </li>
+          <li>
+            <a href="uniform.html" class="nav-link">
+              <span>👕</span>
+              유니폼 신청
+            </a>
+          </li>
+          <li>
+            <a href="#news" class="nav-link">
+              <span>📰</span>
+              팀 소식
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#" class="nav-btn btn-secondary">로그인</a>
+          <a href="#" class="nav-btn btn-primary">팀 가입</a>
+        </div>
+
+       
+      </div>
+    </nav>
+
+
+    <section class="championship-arena" id="arena">
+      <div class="stadium-atmosphere"></div>
+      <div class="arena-content">
+        <div class="championship-badge fade-up">
+          <span>⚽</span>
+          Match Archives
+        </div>
+
+        <div class="hero-main-content fade-up">
+          <h1 class="arena-title">
+            <span class="title-highlight">경기 기록</span>
+            <span class="title-subtitle">24시 항시대기의 모든 순간들</span>
+          </h1>
+
+          <div class="stadium-stats-integrated">
+            <div class="stat-hexagon">
+              <div class="hexagon-shape">
+                <span class="hex-stat-number">8</span>
+                <span class="hex-stat-label">경기</span>
+              </div>
+            </div>
+            <div class="stat-hexagon">
+              <div class="hexagon-shape">
+                <span class="hex-stat-number">5</span>
+                <span class="hex-stat-label">승리</span>
+              </div>
+            </div>
+            <div class="stat-hexagon">
+              <div class="hexagon-shape">
+                <span class="hex-stat-number">2</span>
+                <span class="hex-stat-label">무승부</span>
+              </div>
+            </div>
+            <div class="stat-hexagon">
+              <div class="hexagon-shape">
+                <span class="hex-stat-number">1</span>
+                <span class="hex-stat-label">패배</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions fade-up">
+          <a
+            href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+            class="hero-cta primary"
+            target="_blank"
+          >
+            <img
+              src="../images/icons/youtube.png"
+              alt="YouTube"
+              class="cta-icon"
+            />
+            24 유튜브
+          </a>
+          <a href="#matches-section" class="hero-cta secondary"> 전체 기록 </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="matches-container" id="matches-section">
+      <section class="matches-grid">
+        <!-- Match Card 1 - Defeat -->
+        <div class="match-card defeat fade-up">
+          <div class="match-header">
+            <div class="match-date">2025.06.07</div>
+            <div class="match-status defeat">패배</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">4</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">라이거 FC</div>
+              <div class="score-number">5</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">최윤혁 2골</span>
+              <span class="scorer-chip">백승훈 1골</span>
+              <span class="scorer-chip">남재영 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a
+              href="https://youtu.be/a4bJeE2qPPk?si=4NnnEk9C4Tymak88"
+              class="action-btn"
+              target="_blank"
+            >
+              <span>🎬</span>경기 영상
+            </a>
+            <a href="#" class="action-btn" onclick="openGallery('match1')">
+              <span>📸</span>사진 보기
+            </a>
+          </div>
+
+          <div class="match-gallery" id="gallery-match1" style="display: none">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_17/IMG_8378.JPG"
+                  alt="경기 사진 1"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_17/IMG_8379.JPG"
+                  alt="경기 사진 2"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_17/IMG_8380.JPG"
+                  alt="경기 사진 3"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_17/IMG_8381.JPG"
+                  alt="경기 사진 4"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_17/IMG_8382.JPG"
+                  alt="경기 사진 5"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_17/IMG_8383.JPG"
+                  alt="경기 사진 6"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 2 - Defeat -->
+        <div class="match-card defeat fade-up">
+          <div class="match-header">
+            <div class="match-date">2025.06.03</div>
+            <div class="match-status defeat">패배</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">1</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">라이거 fc</div>
+              <div class="score-number">4</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">이성원 1골</span>
+              <span class="scorer-chip">이원준 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a
+              href="https://www.youtube.com/watch?v=Lk5pV0GKsD0"
+              class="action-btn"
+              target="_blank"
+            >
+              <span>🎬</span>경기 영상
+            </a>
+            <button class="action-btn" onclick="openGallery('match2')">
+              <span>📸</span>
+              사진 보기
+            </button>
+          </div>
+
+          <div class="match-gallery" id="gallery-match2" style="display: none">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_03/IMG_8393.JPG"
+                  alt="경기 사진 1"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_03/IMG_8395.JPG"
+                  alt="경기 사진 2"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_03/IMG_8396.JPG"
+                  alt="경기 사진 3"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/06_03/IMG_8397.JPG"
+                  alt="경기 사진 4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 3 - Draw -->
+        <div class="match-card draw fade-up">
+          <div class="match-header">
+            <div class="match-date">2025.05.24</div>
+            <div class="match-status draw">무승부</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">4</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">BPM FC</div>
+              <div class="score-number">4</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">김영훈 1골</span>
+              <span class="scorer-chip">조한준 1골</span>
+              <span class="scorer-chip">박지수 1골</span>
+              <span class="scorer-chip">이기목 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a
+              href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+              class="action-btn"
+              target="_blank"
+            >
+              <span>🎬</span>경기 영상
+            </a>
+            <button class="action-btn" onclick="openGallery('match3')">
+              <span>📸</span>
+              사진 보기
+            </button>
+          </div>
+
+          <div class="match-gallery" id="gallery-match3" style="display: none">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/05_24/IMG_8410.JPG"
+                  alt="경기 사진 1"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/05_24/IMG_8411.JPG"
+                  alt="경기 사진 2"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/05_24/IMG_8412.JPG"
+                  alt="경기 사진 3"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/05_24/IMG_8413.JPG"
+                  alt="경기 사진 4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Card 4 - Victory -->
+        <div class="match-card victory fade-up">
+          <div class="match-header">
+            <div class="match-date">2025.05.17</div>
+            <div class="match-status victory">승리</div>
+          </div>
+
+          <div class="match-score">
+            <div class="team-score">
+              <div class="team-name">24HD</div>
+              <div class="score-number">4</div>
+            </div>
+            <div class="score-vs">vs</div>
+            <div class="team-score">
+              <div class="team-name">언주 FC</div>
+              <div class="score-number">2</div>
+            </div>
+          </div>
+
+          <div class="goal-scorers">
+            <h4>⚽ 득점자</h4>
+            <div class="scorers-list">
+              <span class="scorer-chip">이원준 2골</span>
+              <span class="scorer-chip">김주완 1골</span>
+              <span class="scorer-chip">조한준 1골</span>
+            </div>
+          </div>
+
+          <div class="match-actions">
+            <a
+              href="https://www.youtube.com/watch?v=O80Ertziv64"
+              class="action-btn"
+              target="_blank"
+            >
+              <span>🎬</span>경기 영상
+            </a>
+            <button class="action-btn" onclick="openGallery('match4')">
+              <span>📸</span>
+              사진 보기
+            </button>
+          </div>
+
+          <div class="match-gallery" id="gallery-match4" style="display: none">
+            <h4>📸 경기 후 사진</h4>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/05_17/IMG_8414.JPG"
+                  alt="경기 사진 1"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="../images/match_photos/05_17/IMG_8415.JPG"
+                  alt="경기 사진 2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Championship Footer -->
+    <footer class="championship-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">24HD</div>
+          <div class="footer-tagline">24시 항시대기 • 공식 웹페이지</div>
+        </div>
+        <div class="footer-text">
+          &copy; 2025 24HD. All rights reserved. For the driven.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced Cursor System - Always Active on Desktop
+        const cursor = document.querySelector(".stadium-cursor");
+        const aura = document.querySelector(".cursor-aura");
+
+        if (cursor && aura) {
+          document.addEventListener("mousemove", (e) => {
+            requestAnimationFrame(() => {
+              cursor.style.left = e.clientX + "px";
+              cursor.style.top = e.clientY + "px";
+
+              setTimeout(() => {
+                aura.style.left = e.clientX - 15 + "px";
+                aura.style.top = e.clientY - 15 + "px";
+              }, 50);
+            });
+          });
+
+          // Enhanced cursor interactions
+          document
+            .querySelectorAll(
+              ".stat-hexagon, .action-btn, .match-card, .gallery-item"
+            )
+            .forEach((element) => {
+              element.addEventListener("mouseenter", function () {
+                cursor.style.transform = "scale(2)";
+                aura.style.transform = "scale(1.5)";
+                cursor.style.background = "var(--golden-bright)";
+                cursor.style.boxShadow = "0 0 30px var(--championship-gold)";
+              });
+
+              element.addEventListener("mouseleave", function () {
+                cursor.style.transform = "scale(1)";
+                aura.style.transform = "scale(1)";
+                cursor.style.background = "var(--golden-bright)";
+                cursor.style.boxShadow = "0 0 20px var(--championship-gold)";
+              });
+            });
+        }
+
+        // Mobile Detection
+        const isMobile = window.innerWidth <= 768;
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+
+        if (mobileMenuToggle && mobileMenuOverlay) {
+          mobileMenuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mobileMenuOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileMenuOverlay.classList.contains(
+              "active"
+            )
+              ? "hidden"
+              : "";
+          });
+
+          // Close mobile menu when clicking on links
+          const mobileNavLinks = document.querySelectorAll(
+            ".mobile-nav-links a"
+          );
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenuToggle.classList.remove("active");
+              mobileMenuOverlay.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+
+        // Enhanced Arena Entrance
+        setTimeout(() => {
+          const elements = document.querySelectorAll(".fade-up");
+          elements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add("visible");
+            }, index * 200);
+          });
+        }, 500);
+
+        // Navigation effects
+        const nav = document.getElementById("nav");
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.scrollY > 100) {
+              nav.classList.add("scrolled");
+            } else {
+              nav.classList.remove("scrolled");
+            }
+
+            // Hide nav on scroll down, show on scroll up (mobile)
+            if (isMobile) {
+              if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                nav.style.transform = "translateY(-100%)";
+              } else {
+                nav.style.transform = "translateY(0)";
+              }
+              lastScrollY = window.scrollY;
+            }
+          },
+          { passive: true }
+        );
+
+        // Enhanced interactions with touch support
+        document
+          .querySelectorAll(".stat-hexagon, .match-card, .action-btn")
+          .forEach((element) => {
+            // Touch events for mobile
+            element.addEventListener(
+              "touchstart",
+              function () {
+                if (isMobile) {
+                  this.style.transform = "scale(0.95)";
+                }
+              },
+              { passive: true }
+            );
+
+            element.addEventListener(
+              "touchend",
+              function () {
+                if (isMobile) {
+                  this.style.transform = "scale(1)";
+                }
+              },
+              { passive: true }
+            );
+          });
+
+        // Enhanced 3D Tilt Effects for Hexagons - Desktop Only
+        if (!isMobile) {
+          document.querySelectorAll(".stat-hexagon").forEach((hexagon) => {
+            hexagon.addEventListener("mousemove", (e) => {
+              const rect = hexagon.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / 6;
+              const rotateY = (centerX - x) / 6;
+
+              hexagon.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            });
+
+            hexagon.addEventListener("mouseleave", () => {
+              hexagon.style.transform =
+                "translateY(0) rotateX(0deg) rotateY(0deg) scale(1)";
+            });
+          });
+        }
+      });
+
+      // Gallery Toggle Function
+      function openGallery(matchId) {
+        const gallery = document.getElementById(`gallery-${matchId}`);
+        if (gallery.style.display === "none" || gallery.style.display === "") {
+          gallery.style.display = "block";
+          gallery.style.animation = "fadeInUp 0.5s ease-out forwards";
+
+          setTimeout(() => {
+            const galleryTitle = gallery.querySelector("h4");
+            if (galleryTitle) {
+              galleryTitle.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
+          }, 200);
+        } else {
+          gallery.style.animation = "fadeOutDown 0.5s ease-in forwards";
+          setTimeout(() => {
+            gallery.style.display = "none";
+          }, 500);
+        }
+      }
+
+      // Add fade animations
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeOutDown {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Handle orientation change on mobile
+      window.addEventListener("orientationchange", function () {
+        setTimeout(() => {
+          // Recalculate viewport height for mobile
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+          // Close mobile menu if open
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const mobileMenuOverlay =
+            document.getElementById("mobileMenuOverlay");
+
+          if (mobileMenuToggle && mobileMenuOverlay) {
+            mobileMenuToggle.classList.remove("active");
+            mobileMenuOverlay.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }, 100);
+      });
+
+      // Initial viewport height calculation for mobile
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    </script>
+  </body>
+</html>

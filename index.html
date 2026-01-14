@@ -1,100 +1,1988 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2424 | Home</title>
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-</head>
-<body>
-    <header id="main-header">
-        <nav id="main-nav">
-            <div class="container">
-                <a href="index.html" class="logo">2424</a>
-                <button class="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
-                <div class="nav-links">
-                    <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li class="has-dropdown">
-                            <a href="about.html">About</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="about.html#team-history">Team History</a></li>
-                                <li><a href="about.html#our-values">Our Values</a></li>
-                                <li><a href="about.html#player-profiles">Player Profiles</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="matches.html">Matches</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="matches.html#schedule">Schedule</a></li>
-                                <li><a href="matches.html#results">Results</a></li>
-                                <li><a href="matches.html#gallery">Photo Gallery</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="store.html">Uniforms</a></li>
-                        <li><a href="join.html">Join Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="nav-buttons">
-                    <a href="#" class="btn btn-signin">Sign In</a>
-                    <a href="#" class="btn btn-getstarted">Get Started</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+<html lang="ko">
+  <head>
+    <script src="js/components.js" defer></script>
 
-    <main>
-       <section id="hero">
-           <div class="hero-content">
-               <h1 class="hero-title">2424</h1>
-               <p class="hero-subtitle">Style. Spirit. Soccer.</p>
-               <a href="about.html" class="btn btn-primary">Discover The Team</a>
-               <a href="store.html" class="btn btn-secondary">View Uniforms</a>
-           </div>
-           <!-- A background image will be applied via CSS -->
-       </section>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24HD | 24시 항시대기 - Always Ready</title>
 
-       <section id="intro" class="home-section animate-on-scroll">
-           <div class="container">
-               <h2>Welcome to Team 2424</h2>
-               <p>We are a friendly soccer team passionate about the beautiful game, community, and playing with style. Explore our site to learn more about our matches, our unique identity, and how you can get involved. This section will later feature a more engaging introduction to the team's ethos and spirit.</p>
-               <!-- More engaging content can be added here later -->
-           </div>
-       </section>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="24HD" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
 
-       <section id="upcoming-matches" class="home-section bg-light animate-on-scroll">
-           <div class="container">
-               <h2>Upcoming Matches</h2>
-               <p>Stay tuned for our match schedule! We'll be posting details about our upcoming games here soon. Get ready to cheer us on from the sidelines or follow our progress online.</p>
-               <!-- Placeholder for a match calendar or list -->
-           </div>
-       </section>
+    <!-- Premium Korean + English Typography -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-       <section id="news" class="home-section animate-on-scroll">
-           <div class="container">
-               <h2>Team News & Announcements</h2>
-               <p>Check back regularly for the latest news, announcements, and updates from Team 2424. From new player signings (just kidding, we're a friendly team!) to community events, this is where you'll find it all.</p>
-               <!-- Placeholder for news items -->
-           </div>
-       </section>
-    </main>
+    <!-- GSAP & Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <footer id="main-footer">
-        <div class="container">
-            <p>&copy; 2024 Team 2424. All rights reserved.</p>
-            <!-- Social media links will go here later -->
+    <style>
+      /* Championship Premium Variables */
+      :root {
+        /* Team Colors - Based on Uniform */
+        --midnight-black: #0a0a0a;
+        --pure-black: #000000;
+        --stadium-black: #1a1a1a;
+        --championship-gold: #c19b3a;
+        --golden-accent: #d4af37;
+        --golden-bright: #f4d03f;
+        --neon-gold: #ffeb3b;
+        --platinum-white: #ffffff;
+        --glass-white: rgba(255, 255, 255, 0.1);
+        --glass-strong: rgba(255, 255, 255, 0.2);
+
+        /* Enhanced Gradients with Diagonal Elements */
+        --gradient-primary: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 50%,
+          var(--championship-gold) 100%
+        );
+        --gradient-neon: linear-gradient(
+          45deg,
+          var(--neon-gold) 0%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 100%
+        );
+        --gradient-gold: linear-gradient(
+          45deg,
+          var(--championship-gold) 0%,
+          var(--golden-accent) 100%
+        );
+        --gradient-glass: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+
+        /* Premium Typography */
+        --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-display: "Orbitron", "Pretendard", sans-serif;
+        --font-accent: "Space Grotesk", "Pretendard", sans-serif;
+
+        /* Enhanced Spacing - Mobile First */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+        --space-4xl: 6rem;
+
+        /* Mobile Spacing */
+        --mobile-space-xs: 0.125rem;
+        --mobile-space-sm: 0.25rem;
+        --mobile-space-md: 0.5rem;
+        --mobile-space-lg: 1rem;
+        --mobile-space-xl: 1.5rem;
+        --mobile-space-2xl: 2rem;
+        --mobile-space-3xl: 3rem;
+
+        /* Glassmorphism Effects */
+        --glass-blur: blur(20px);
+        --glass-blur-strong: blur(40px);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+        --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+        /* Advanced Animations */
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      /* Mobile First Font Sizing */
+      @media (max-width: 480px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      body {
+        font-family: var(--font-korean);
+        background: var(--pure-black);
+        color: var(--platinum-white);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+      }
+
+      /* Enhanced Stadium Background with Uniform Diagonal */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(
+            45deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(196, 155, 58, 0.1) 45%,
+            rgba(196, 155, 58, 0.15) 50%,
+            rgba(196, 155, 58, 0.1) 55%,
+            transparent 60%,
+            transparent 100%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            135deg,
+            var(--pure-black) 0%,
+            var(--stadium-black) 100%
+          );
+        z-index: -1;
+        animation: stadiumAmbience 20s ease-in-out infinite;
+        transform: rotate(45deg) translateX(-10%) translateY(-10%);
+      }
+
+      @keyframes stadiumAmbience {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+
+      /* Premium Cursor System - Always Active */
+      .stadium-cursor {
+        width: 6px;
+        height: 6px;
+        background: var(--golden-bright);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 20px var(--championship-gold);
+      }
+
+      .cursor-aura {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+      }
+
+      /* Championship Portal Enhanced with Uniform Diagonal */
+      .championship-portal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--gradient-primary);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        visibility: visible;
+        padding: var(--mobile-space-xl);
+      }
+
+      .portal-content {
+        text-align: center;
+        position: relative;
+        padding: var(--mobile-space-2xl);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 20px;
+        box-shadow: var(--glass-shadow);
+        max-width: 400px;
+        width: 100%;
+
+        /* Uniform Diagonal Stripe */
+        overflow: hidden;
+      }
+
+      .portal-content::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: 30%;
+        width: 25%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 0%,
+          rgba(196, 155, 58, 0.3) 40%,
+          rgba(196, 155, 58, 0.5) 50%,
+          rgba(196, 155, 58, 0.3) 60%,
+          transparent 100%
+        );
+        transform: rotate(45deg);
+        animation: diagonalShine 3s ease-in-out infinite;
+      }
+
+      @keyframes diagonalShine {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: rotate(45deg) translateX(-20px);
+        }
+        50% {
+          opacity: 0.7;
+          transform: rotate(45deg) translateX(20px);
+        }
+      }
+
+      .portal-logo {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 12vw, 6rem);
+        font-weight: 900;
+        color: var(--platinum-white);
+        margin-bottom: var(--mobile-space-md);
+        position: relative;
+        letter-spacing: -0.05em;
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        z-index: 2;
+      }
+
+      .portal-subtitle {
+        font-family: var(--font-accent);
+        font-size: clamp(0.8rem, 3vw, 1.1rem);
+        color: var(--championship-gold);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-weight: 600;
+        margin-bottom: var(--mobile-space-lg);
+        z-index: 2;
+        position: relative;
+      }
+
+      .portal-tagline {
+        font-family: var(--font-korean);
+        font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: var(--mobile-space-xl);
+        z-index: 2;
+        position: relative;
+        line-height: 1.4;
+      }
+
+      .portal-progress {
+        width: 100%;
+        max-width: 250px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+        z-index: 2;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--gradient-gold);
+        width: 0%;
+        transition: width 3s var(--ease-out-expo);
+        border-radius: 2px;
+        box-shadow: 0 0 10px var(--championship-gold);
+      }
+
+      /* Hide cursors on mobile only */
+      @media (max-width: 768px) and (hover: none) {
+        .stadium-cursor,
+        .cursor-aura {
+          display: none;
+        }
+      }
+      /* Mobile-First Glassmorphism Navigation */
+      .stadium-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: var(--glass-blur);
+        border-bottom: var(--glass-border);
+        z-index: 1000;
+        transition: all 0.4s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .stadium-nav {
+          height: 90px;
+        }
+      }
+
+      .stadium-nav.scrolled {
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 1px solid var(--championship-gold);
+        backdrop-filter: var(--glass-blur-strong);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+      }
+
+      @media (min-width: 769px) {
+        .nav-container {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .team-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--mobile-space-md);
+        text-decoration: none;
+        color: var(--platinum-white);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .team-brand {
+          gap: var(--space-lg);
+        }
+      }
+
+      .brand-shield {
+        width: 50px;
+        height: 40px;
+        background: var(--gradient-gold);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 4px;
+      }
+
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%);
+        transition: all 0.3s ease;
+      }
+
+      @media (min-width: 769px) {
+        .brand-shield {
+          width: 60px;
+          height: 50px;
+          border-radius: 8px;
+        }
+      }
+
+      .brand-shield::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .team-brand:hover .brand-shield::before {
+        left: 100%;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--championship-gold);
+        line-height: 1;
+      }
+
+      @media (min-width: 769px) {
+        .brand-title {
+          font-size: 1.3rem;
+        }
+      }
+
+      .brand-subtitle {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media (min-width: 769px) {
+        .brand-subtitle {
+          font-size: 0.8rem;
+          letter-spacing: 0.1em;
+        }
+      }
+
+      /* Mobile Navigation Menu */
+      .nav-menu {
+        display: none;
+        list-style: none;
+        gap: var(--space-2xl);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-menu {
+          display: flex;
+        }
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--platinum-white);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: var(--space-md) var(--space-lg);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-glass);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-link:hover::before {
+        opacity: 1;
+      }
+
+      .nav-link:hover {
+        color: var(--championship-gold);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      @media (min-width: 769px) {
+      
+      }
+
+
+      .nav-actions {
+        display: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
+
+      @media (min-width: 769px) {
+        .nav-actions {
+          display: flex;
+        }
+      }
+
+      .nav-btn {
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        border: var(--glass-border);
+        background: var(--gradient-glass);
+        color: var(--platinum-white);
+        font-family: var(--font-korean);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 8px;
+        backdrop-filter: var(--glass-blur);
+        position: relative;
+        overflow: hidden;
+      }
+
+      @media (min-width: 769px) {
+        .nav-btn {
+          padding: var(--space-md) var(--space-xl);
+          font-size: 0.85rem;
+          border-radius: 12px;
+        }
+      }
+
+      .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--pure-black);
+        border: 1px solid var(--championship-gold);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: var(--gradient-glass-strong);
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+      }
+
+      /* Epic Arena Section - Mobile First */
+      .championship-arena {
+        position: relative;
+        min-height: 100vh;
+        background: var(--pure-black);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--mobile-space-2xl) var(--mobile-space-lg);
+        margin-top: 30px;
+      }
+
+      @media (min-width: 769px) {
+        .championship-arena {
+          padding: var(--space-4xl) 0;
+          margin-top: 90px;
+        }
+      }
+
+      .stadium-atmosphere {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 30% 70%,
+            rgba(212, 175, 55, 0.1) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 40%
+          ),
+          linear-gradient(
+            45deg,
+            transparent 30%,
+            rgba(212, 175, 55, 0.03) 50%,
+            transparent 70%
+          );
+        animation: atmosphereFlow 20s ease-in-out infinite;
+      }
+
+      @keyframes atmosphereFlow {
+        0%,
+        100% {
+          transform: translateX(0) scale(1);
+        }
+        50% {
+          transform: translateX(-20px) scale(1.02);
+        }
+      }
+
+      .arena-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      .championship-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--mobile-space-sm);
+        padding: var(--mobile-space-md) var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 50px;
+        margin-bottom: var(--mobile-space-xl);
+        font-family: var(--font-accent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--championship-gold);
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .championship-badge {
+          gap: var(--space-sm);
+          padding: var(--space-md) var(--space-xl);
+          margin-bottom: var(--space-2xl);
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
+        }
+      }
+
+      /* Hero Logo Enhancement - REDUCED SIZE & SPACING & IMPROVED CROPPING */
+      .hero-logo-container {
+        position: relative;
+        margin-bottom: 0;
+        margin-top: -var(--mobile-space-md);
+      }
+
+      .hero-logo {
+        width: 180px;
+        height: 120px;
+        margin: 0 auto;
+        display: block;
+        transition: all 0.5s var(--ease-out-quart);
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-logo:hover {
+        transform: scale(1.05) rotate(0.5deg);
+        filter: brightness(0) saturate(100%) invert(100%)
+          drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      }
+
+      @media (min-width: 769px) {
+        .hero-logo {
+          width: 280px;
+          height: 200px;
+        }
+      }
+
+      .arena-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 15vw, 9rem);
+        font-weight: 900;
+        line-height: 0.85;
+        margin-bottom: var(--mobile-space-lg);
+        color: var(--platinum-white);
+        position: relative;
+        letter-spacing: 0.01em;
+        margin-top: -var(--mobile-space-md);
+      }
+
+      @media (min-width: 769px) {
+        .arena-title {
+          margin-bottom: var(--space-lg);
+          margin-top: -var(--space-md);
+        }
+      }
+
+      .title-highlight {
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        font-size: clamp(2.5rem, 2vw, 2.6rem);
+      }
+
+      .arena-subtitle {
+        font-family: var(--font-korean);
+        font-size: clamp(1rem, 4vw, 1.6rem);
+        font-weight: 400;
+        margin-bottom: var(--mobile-space-sm);
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        padding: 0 var(--mobile-space-md);
+      }
+
+      @media (min-width: 769px) {
+        .arena-subtitle {
+          margin-bottom: var(--space-md);
+          padding: 0;
+        }
+      }
+
+      /* 🔥 REVOLUTIONARY HEXAGON NEON GRID - 2025 HIGH-TECH TREND */
+      .stadium-stats {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--mobile-space-lg);
+        margin-bottom: var(--mobile-space-xl);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        perspective: 1000px;
+        padding: var(--mobile-space-xl) 0;
+      }
+
+      @media (min-width: 769px) {
+        .stadium-stats {
+          gap: var(--space-2xl);
+          margin-bottom: var(--space-xl);
+          max-width: 800px;
+          padding: var(--space-2xl) 0;
+        }
+      }
+
+      /* Hexagonal Neon Stats - Revolutionary Design */
+      .stat-hexagon {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        transition: all 0.6s var(--ease-out-expo);
+        transform-style: preserve-3d;
+      }
+
+      @media (min-width: 769px) {
+        .stat-hexagon {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      /* Hexagon Shape with CSS Clip-Path */
+      .hexagon-shape {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.2) 0%,
+          rgba(212, 175, 55, 0.3) 50%,
+          rgba(196, 155, 58, 0.2) 100%
+        );
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 50%,
+          70% 100%,
+          30% 100%,
+          0% 50%
+        );
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid transparent;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Animated Neon Border */
+      .hexagon-shape::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          60deg,
+          transparent 0%,
+          var(--neon-gold) 25%,
+          var(--championship-gold) 50%,
+          var(--golden-bright) 75%,
+          transparent 100%
+        );
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 50%,
+          70% 100%,
+          30% 100%,
+          0% 50%
+        );
+        z-index: -1;
+        opacity: 0;
+        animation: neonFlow 3s ease-in-out infinite;
+        transition: opacity 0.4s ease;
+      }
+
+      @keyframes neonFlow {
+        0%,
+        100% {
+          background-position: 0% 50%;
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          background-position: 100% 50%;
+          filter: hue-rotate(45deg);
+        }
+      }
+
+      .stat-hexagon:hover .hexagon-shape::before {
+        opacity: 1;
+      }
+
+      /* Pulsing Glow Effect */
+      .hexagon-shape::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 235, 59, 0.3) 0%,
+          rgba(212, 175, 55, 0.2) 30%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: hexagonPulse 2s ease-in-out infinite;
+        z-index: -2;
+        border-radius: 50%;
+      }
+
+      @keyframes hexagonPulse {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.8);
+        }
+        50% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1.2);
+        }
+      }
+
+      .stat-hexagon:hover .hexagon-shape::after {
+        animation-duration: 1s;
+      }
+
+      /* Enhanced Hover Effect */
+      .stat-hexagon:hover {
+        transform: translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1);
+      }
+
+      .stat-hexagon:hover .hexagon-shape {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 235, 59, 0.4) 0%,
+          rgba(212, 175, 55, 0.5) 50%,
+          rgba(196, 155, 58, 0.4) 100%
+        );
+        box-shadow: 0 20px 40px rgba(255, 235, 59, 0.3),
+          inset 0 0 20px rgba(255, 235, 59, 0.2);
+      }
+
+      .hex-stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 900;
+        color: var(--neon-gold);
+        line-height: 1;
+        margin-bottom: 2px;
+        text-shadow: 0 0 10px var(--neon-gold), 0 0 20px rgba(255, 235, 59, 0.5);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-number {
+        transform: scale(1.1);
+        text-shadow: 0 0 15px var(--neon-gold), 0 0 30px rgba(255, 235, 59, 0.8),
+          0 0 45px rgba(255, 235, 59, 0.4);
+      }
+
+      .hex-stat-label {
+        font-family: var(--font-korean);
+        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .stat-hexagon:hover .hex-stat-label {
+        color: var(--neon-gold);
+        text-shadow: 0 0 8px rgba(255, 235, 59, 0.6);
+      }
+
+      /* 🫧 FLOATING BUBBLE PORTALS - ORGANIC DESIGN REVOLUTION */
+      .stadium-interface {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--mobile-space-md);
+        max-width: 700px;
+        margin: 0 auto;
+        padding: var(--mobile-space-xl) 0;
+      }
+
+      @media (min-width: 769px) {
+        .stadium-interface {
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-lg);
+          max-width: 900px;
+          padding: var(--space-2xl) 0;
+        }
+      }
+
+      /* Revolutionary Floating Bubble Portals */
+      .bubble-portal {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        cursor: pointer;
+        transition: all 0.6s var(--ease-out-expo);
+        transform-style: preserve-3d;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .bubble-shape {
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 40%,
+          rgba(212, 175, 55, 0.1) 100%
+        );
+        border-radius: 50%;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s var(--ease-out-quart);
+
+        /* Bubble Reflection Effect */
+        box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.1),
+          0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+
+      /* Floating Animation */
+      @keyframes bubbleFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        33% {
+          transform: translateY(-8px) rotate(1deg);
+        }
+        66% {
+          transform: translateY(-4px) rotate(-1deg);
+        }
+      }
+
+      .bubble-portal:nth-child(1) {
+        animation: bubbleFloat 6s ease-in-out infinite;
+      }
+
+      .bubble-portal:nth-child(2) {
+        animation: bubbleFloat 8s ease-in-out infinite 2s;
+      }
+
+      .bubble-portal:nth-child(3) {
+        animation: bubbleFloat 7s ease-in-out infinite 4s;
+      }
+
+      /* Iridescent Shimmer Effect */
+      .bubble-shape::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.1) 60deg,
+          rgba(212, 175, 55, 0.2) 120deg,
+          rgba(255, 255, 255, 0.1) 180deg,
+          transparent 240deg,
+          rgba(255, 235, 59, 0.15) 300deg,
+          transparent 360deg
+        );
+        border-radius: 50%;
+        opacity: 0;
+        animation: shimmerRotate 4s linear infinite;
+        transition: opacity 0.3s ease;
+      }
+
+      @keyframes shimmerRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .bubble-portal:hover .bubble-shape::before {
+        opacity: 1;
+      }
+
+      /* Enhanced Hover Effect */
+      .bubble-portal:hover {
+        transform: translateY(-20px) scale(1.1);
+        animation-play-state: paused;
+      }
+
+      .bubble-portal:hover .bubble-shape {
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.1) 40%,
+          rgba(212, 175, 55, 0.2) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.2),
+          0 20px 60px rgba(212, 175, 55, 0.3), 0 0 0 2px rgba(212, 175, 55, 0.2);
+      }
+
+      .bubble-icon {
+        font-size: 2rem;
+        margin-bottom: var(--mobile-space-sm);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        transition: all 0.4s var(--ease-out-back);
+      }
+
+      @media (min-width: 769px) {
+        .bubble-icon {
+          font-size: 2.5rem;
+        }
+      }
+
+      .bubble-portal:hover .bubble-icon {
+        transform: scale(1.2) rotateY(15deg);
+        filter: drop-shadow(0 8px 16px rgba(212, 175, 55, 0.3));
+      }
+
+      .bubble-title {
+        font-family: var(--font-display);
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+        font-weight: 600;
+        color: var(--platinum-white);
+        text-align: center;
+        line-height: 1.2;
+        transition: all 0.3s ease;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      @media (min-width: 769px) {
+        .bubble-title {
+          font-size: 1rem;
+        }
+      }
+
+      .bubble-portal:hover .bubble-title {
+        color: var(--championship-gold);
+        transform: translateY(-2px);
+        text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+      }
+
+      /* Championship Footer */
+      .championship-footer {
+        background: linear-gradient(
+          135deg,
+          var(--pure-black) 0%,
+          var(--stadium-black) 100%
+        );
+        border-top: var(--glass-border);
+        padding: var(--mobile-space-2xl) 0;
+        backdrop-filter: var(--glass-blur);
+        margin-top: var(--mobile-space-xl);
+      }
+
+      @media (min-width: 769px) {
+        .championship-footer {
+          padding: var(--space-3xl) 0;
+          margin-top: var(--space-2xl);
+        }
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 var(--mobile-space-lg);
+        text-align: center;
+      }
+
+      @media (min-width: 769px) {
+        .footer-content {
+          padding: 0 var(--space-xl);
+        }
+      }
+
+      .footer-brand {
+        margin-bottom: var(--mobile-space-lg);
+        background: var(--gradient-glass);
+        backdrop-filter: var(--glass-blur);
+        border: var(--glass-border);
+        border-radius: 16px;
+        padding: var(--mobile-space-lg);
+        display: inline-block;
+        box-shadow: var(--glass-shadow);
+      }
+
+      @media (min-width: 769px) {
+        .footer-brand {
+          margin-bottom: var(--space-xl);
+          border-radius: 20px;
+          padding: var(--space-xl);
+        }
+      }
+
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--mobile-space-xs);
+      }
+
+      @media (min-width: 769px) {
+        .footer-logo {
+          font-size: 2.2rem;
+        }
+      }
+
+      .footer-tagline {
+        font-family: var(--font-korean);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      @media (min-width: 769px) {
+        .footer-tagline {
+          font-size: 0.8rem;
+          letter-spacing: 0.15em;
+        }
+      }
+
+      .footer-text {
+        font-family: var(--font-korean);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (min-width: 769px) {
+        .footer-text {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Enhanced Animation Classes */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s var(--ease-out-quart);
+      }
+
+      @media (min-width: 769px) {
+        .fade-up {
+          transform: translateY(40px);
+        }
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Stadium Effect Particles */
+      .stadium-particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: var(--championship-gold);
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 4s infinite ease-in-out;
+      }
+
+      @media (min-width: 769px) {
+        .stadium-particle {
+          width: 3px;
+          height: 3px;
+        }
+      }
+
+      @keyframes particleFloat {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5);
+        }
+        50% {
+          opacity: 0.8;
+          transform: translateY(-100px) scale(1);
+        }
+      }
+
+      @media (min-width: 769px) {
+        @keyframes particleFloat {
+          0%,
+          100% {
+            opacity: 0;
+            transform: translateY(0) scale(0.5);
+          }
+          50% {
+            opacity: 0.8;
+            transform: translateY(-150px) scale(1);
+          }
+        }
+      }
+
+      /* Touch Optimizations */
+      @media (hover: none) {
+        .bubble-portal:hover,
+        .stat-hexagon:hover {
+          transform: none;
+        }
+
+        .bubble-portal:active {
+          transform: scale(0.95);
+        }
+
+        .stat-hexagon:active {
+          transform: scale(0.95);
+        }
+      }
+
+      /* Improved readability on small screens */
+      @media (max-width: 480px) {
+        .arena-subtitle {
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+
+        .bubble-title {
+          font-size: 0.8rem;
+          line-height: 1.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stadium Cursors - Desktop Only -->
+    <div class="stadium-cursor"></div>
+    <div class="cursor-aura"></div>
+
+    <!-- Championship Portal with Uniform Diagonal -->
+    <div class="championship-portal" id="portal">
+      <div class="portal-content">
+        <div class="portal-logo">24HD</div>
+        <div class="portal-subtitle">Always Ready</div>
+        <div class="portal-tagline">24시 항시대기 • 언제나 준비된 팀</div>
+        <div class="portal-progress">
+          <div class="progress-fill" id="progressFill"></div>
         </div>
+      </div>
+    </div>
+
+    <!-- Mobile-First Glassmorphism Navigation -->
+    <nav class="stadium-nav" id="nav">
+      <div class="nav-container">
+        <a href="#" class="team-brand">
+          <div class="brand-shield">
+            <img
+              src="images/logo/24HD_logo.png"
+              alt="24HD Logo"
+              class="brand-logo"
+              
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">24HD</span>
+            <span class="brand-subtitle">항시대기</span>
+          </div>
+        </a>
+        <ul class="nav-menu">
+          <li>
+            <a href="Main-Pages/matches.html" class="nav-link">
+              <span>🏆</span>
+              경기 결과
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x" class="nav-link" target="_blank">
+              <span>🎬</span>
+              경기 영상
+            </a>
+          </li>
+          <li>
+            <a href="#squad" class="nav-link">
+              <span>⚽</span>
+              팀 구성
+            </a>
+          </li>
+          <li>
+            <a href="Main-Pages/uniform.html" class="nav-link">
+              <span>👕</span>
+              유니폼 신청
+            </a>
+          </li>
+          <li>
+            <a href="#news" class="nav-link">
+              <span>📰</span>
+              팀 소식
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="Main-Components/portal-loading.html" class="nav-btn btn-primary">정회원 포털</a>
+        </div>
+
+       
+      </div>
+    </nav>
+
+    <!-- Epic Championship Arena -->
+    <section class="championship-arena" id="arena">
+      <div class="stadium-atmosphere"></div>
+
+      <div class="arena-content">
+        <div class="championship-badge fade-up">
+          <span>⚡</span>
+          Championship Level
+        </div>
+
+        <div class="hero-logo-container fade-up">
+          <img
+            src="../images/logo/24HD_logo.png"
+            alt="24HD Team Logo"
+            class="hero-logo"
+          />
+        </div>
+
+        <h1 class="arena-title fade-up">
+          <span class="title-highlight">24시 항시대기</span><br />
+          <!-- Always Ready -->
+        </h1>
+
+        <p class="arena-subtitle fade-up">휘문고 109기 그리고 그 이상</p>
+
+        <!-- 🔥 REVOLUTIONARY HEXAGON NEON GRID -->
+        <div class="stadium-stats fade-up">
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">24</span>
+              <span class="hex-stat-label">Hours</span>
+            </div>
+          </div>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">365</span>
+              <span class="hex-stat-label">Days</span>
+            </div>
+          </div>
+          <div class="stat-hexagon">
+            <div class="hexagon-shape">
+              <span class="hex-stat-number">∞</span>
+              <span class="hex-stat-label">Passion</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🫧 FLOATING BUBBLE PORTALS -->
+        <div class="stadium-interface fade-up">
+          <div class="bubble-portal" onclick="navigateToResults()">
+            <div class="bubble-shape">
+              <span class="bubble-icon">🏆</span>
+              <h3 class="bubble-title">경기 결과</h3>
+            </div>
+          </div>
+
+          <a
+            href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+            class="bubble-portal"
+            target="_blank"
+          >
+            <div class="bubble-shape">
+              <span class="bubble-icon">🎬</span>
+              <h3 class="bubble-title">하이라이트</h3>
+            </div>
+          </a>
+
+          <div class="bubble-portal" onclick="navigateToUniforms()">
+            <div class="bubble-shape">
+              <span class="bubble-icon">👕</span>
+              <h3 class="bubble-title">유니폼 신청</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Championship Footer -->
+    <footer class="championship-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">24HD</div>
+          <div class="footer-tagline">24시 항시대기 • 공식 웹페이지</div>
+        </div>
+        <div class="footer-text">
+          &copy; 2025 24HD. All rights reserved. For the driven.
+        </div>
+      </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/animations.js" defer></script>
-    <!-- Other page-specific scripts might be added later -->
-</body>
+    <script>
+      // Premium Stadium Experience - Enhanced Cursor Always Active
+      document.addEventListener("DOMContentLoaded", function () {
+        // Intro management with smooth animations for both first-time and returning visitors
+        function initializeIntro() {
+          const hasVisited = sessionStorage.getItem("hasVisitedIndex");
+          const portal = document.getElementById("portal");
+
+          if (hasVisited) {
+            // Hide intro immediately for returning visitors
+            portal.style.opacity = "0";
+            portal.style.visibility = "hidden";
+            portal.style.pointerEvents = "none";
+            portal.style.zIndex = "-1";
+
+            // Show content with smooth animation for returning visitors too
+            setTimeout(() => {
+              const elements = document.querySelectorAll(".fade-up");
+              elements.forEach((el, index) => {
+                setTimeout(() => {
+                  el.classList.add("visible");
+                }, index * 100); // Faster animation for returning visitors
+              });
+            }, 200);
+
+            return;
+          }
+
+          // Save visit record after intro completes (keep original timing)
+          setTimeout(() => {
+            sessionStorage.setItem("hasVisitedIndex", "true");
+          }, 3500);
+        }
+
+        // Initialize intro check
+        initializeIntro();
+
+        // Premium Cursor System with enhanced design
+        const cursor = document.querySelector(".stadium-cursor");
+        const aura = document.querySelector(".cursor-aura");
+        const isMobile = window.innerWidth <= 768;
+
+        if (cursor && aura) {
+          // Synchronized movement with smooth positioning
+          function handleMouseMove(e) {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            // Both cursors move together instantly
+            requestAnimationFrame(() => {
+              cursor.style.left = x + "px";
+              cursor.style.top = y + "px";
+              aura.style.left = x - 20 + "px";
+              aura.style.top = y - 20 + "px";
+            });
+          }
+
+          // Touch movement for mobile
+          function handleTouchMove(e) {
+            if (e.touches && e.touches[0]) {
+              const x = e.touches[0].clientX;
+              const y = e.touches[0].clientY;
+
+              requestAnimationFrame(() => {
+                cursor.style.left = x + "px";
+                cursor.style.top = y + "px";
+                aura.style.left = x - 20 + "px";
+                aura.style.top = y - 20 + "px";
+              });
+            }
+          }
+
+          // Add event listeners for both mouse and touch
+          document.addEventListener("mousemove", handleMouseMove);
+          document.addEventListener("touchmove", handleTouchMove, {
+            passive: true,
+          });
+
+          // Touch handlers for mobile
+          document.addEventListener(
+            "touchstart",
+            (e) => {
+              if (e.touches[0]) {
+                const x = e.touches[0].clientX;
+                const y = e.touches[0].clientY;
+
+                cursor.style.left = x + "px";
+                cursor.style.top = y + "px";
+                aura.style.left = x - 20 + "px";
+                aura.style.top = y - 20 + "px";
+
+                // Show cursors on touch
+                cursor.classList.add("touch-active");
+                aura.classList.add("touch-active");
+              }
+            },
+            { passive: true }
+          );
+
+          document.addEventListener("touchend", () => {
+            // Hide cursors after touch ends
+            setTimeout(() => {
+              cursor.classList.remove("touch-active");
+              aura.classList.remove("touch-active");
+            }, 800);
+          });
+
+          // Enhanced cursor interactions with new active states
+          const interactiveElements = document.querySelectorAll(
+            ".bubble-portal, .stat-hexagon, .nav-btn, a, button, [onclick]"
+          );
+
+          interactiveElements.forEach((element) => {
+            element.addEventListener("mouseenter", function () {
+              cursor.classList.add("active");
+              aura.classList.add("active");
+            });
+
+            element.addEventListener("mouseleave", function () {
+              cursor.classList.remove("active");
+              aura.classList.remove("active");
+            });
+
+            // Touch events for mobile
+            element.addEventListener(
+              "touchstart",
+              function () {
+                cursor.classList.add("active");
+                aura.classList.add("active");
+              },
+              { passive: true }
+            );
+
+            element.addEventListener(
+              "touchend",
+              function () {
+                setTimeout(() => {
+                  cursor.classList.remove("active");
+                  aura.classList.remove("active");
+                }, 150);
+              },
+              { passive: true }
+            );
+          });
+        }
+
+        // Mobile Detection
+        const isMobileDevice = window.innerWidth <= 768;
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+
+        if (mobileMenuToggle && mobileMenuOverlay) {
+          mobileMenuToggle.addEventListener("click", function () {
+            this.classList.toggle("active");
+            mobileMenuOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileMenuOverlay.classList.contains(
+              "active"
+            )
+              ? "hidden"
+              : "";
+          });
+
+          // Close mobile menu when clicking on links
+          const mobileNavLinks = document.querySelectorAll(
+            ".mobile-nav-links a"
+          );
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenuToggle.classList.remove("active");
+              mobileMenuOverlay.classList.remove("active");
+              document.body.style.overflow = "";
+            });
+          });
+
+          // Close when clicking overlay
+          mobileMenuOverlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+              mobileMenuToggle.classList.remove("active");
+              this.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+
+        // Championship Portal Sequence (keep original)
+        const portal = document.getElementById("portal");
+        const progressFill = document.getElementById("progressFill");
+
+        // Enhanced progress animation
+        setTimeout(() => {
+          if (progressFill) {
+            progressFill.style.width = "100%";
+          }
+        }, 1000);
+
+        // Stadium entrance with particles
+        setTimeout(() => {
+          if (!isMobileDevice) {
+            createStadiumParticles();
+          }
+          portal.style.transition = "all 2s cubic-bezier(0.19, 1, 0.22, 1)";
+          portal.style.opacity = "0";
+          portal.style.transform = "scale(1.3)";
+
+          setTimeout(() => {
+            portal.style.visibility = "hidden";
+            portal.style.zIndex = "-1";
+          }, 2000);
+        }, 3500);
+
+        // Enhanced Arena Entrance - only for first-time visitors
+        const hasVisited = sessionStorage.getItem("hasVisitedIndex");
+        if (!hasVisited) {
+          setTimeout(() => {
+            const elements = document.querySelectorAll(".fade-up");
+            elements.forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add("visible");
+              }, index * 200);
+            });
+          }, 5500);
+        }
+
+        // Stadium particle system - Desktop Only
+        function createStadiumParticles() {
+          if (isMobileDevice) return;
+
+          for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+              const particle = document.createElement("div");
+              particle.className = "stadium-particle";
+              particle.style.left = Math.random() * window.innerWidth + "px";
+              particle.style.animationDelay = Math.random() * 4 + "s";
+              const arena = document.querySelector(".championship-arena");
+              if (arena) {
+                arena.appendChild(particle);
+                setTimeout(() => {
+                  particle.remove();
+                }, 4000);
+              }
+            }, i * 200);
+          }
+        }
+
+        // Navigation effects
+        const nav = document.getElementById("nav");
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.scrollY > 100) {
+              nav.classList.add("scrolled");
+            } else {
+              nav.classList.remove("scrolled");
+            }
+
+            // Hide nav on scroll down, show on scroll up (mobile)
+            if (isMobileDevice) {
+              if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                nav.style.transform = "translateY(-100%)";
+              } else {
+                nav.style.transform = "translateY(0)";
+              }
+              lastScrollY = window.scrollY;
+            }
+          },
+          { passive: true }
+        );
+
+        // Enhanced interactions with touch support
+        document
+          .querySelectorAll(".bubble-portal, .stat-hexagon")
+          .forEach((element) => {
+            // Mouse events for desktop
+            element.addEventListener("mouseenter", function () {
+              if (!isMobileDevice) {
+                this.style.transform = this.classList.contains("bubble-portal")
+                  ? "translateY(-20px) scale(1.1)"
+                  : "translateY(-15px) rotateX(15deg) rotateY(15deg) scale(1.1)";
+              }
+            });
+
+            element.addEventListener("mouseleave", function () {
+              if (!isMobileDevice) {
+                this.style.transform = "translateY(0) scale(1)";
+              }
+            });
+
+            // Touch events for mobile
+            element.addEventListener(
+              "touchstart",
+              function () {
+                if (isMobileDevice) {
+                  this.style.transform = "scale(0.95)";
+                }
+              },
+              { passive: true }
+            );
+
+            element.addEventListener(
+              "touchend",
+              function () {
+                if (isMobileDevice) {
+                  this.style.transform = "scale(1)";
+                }
+              },
+              { passive: true }
+            );
+          });
+
+        // Create ambient particles periodically - Desktop Only
+        if (!isMobileDevice) {
+          setInterval(createStadiumParticles, 15000);
+        }
+
+        // Performance optimizations for mobile
+        if (isMobileDevice) {
+          // Reduce animation complexity
+          document.documentElement.style.setProperty(
+            "--ease-out-quart",
+            "ease-out"
+          );
+          document.documentElement.style.setProperty(
+            "--ease-out-expo",
+            "ease-out"
+          );
+
+          // Optimize touch scrolling
+          document.body.style.webkitOverflowScrolling = "touch";
+        }
+
+        // Enhanced 3D Tilt Effects for Hexagons - Desktop Only
+        if (!isMobileDevice) {
+          document.querySelectorAll(".stat-hexagon").forEach((hexagon) => {
+            hexagon.addEventListener("mousemove", (e) => {
+              const rect = hexagon.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / 6;
+              const rotateY = (centerX - x) / 6;
+
+              hexagon.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            });
+
+            hexagon.addEventListener("mouseleave", () => {
+              hexagon.style.transform =
+                "translateY(0) rotateX(0deg) rotateY(0deg) scale(1)";
+            });
+          });
+
+          // Enhanced 3D Tilt Effects for Bubble Portals - Desktop Only
+          document.querySelectorAll(".bubble-portal").forEach((bubble) => {
+            bubble.addEventListener("mousemove", (e) => {
+              const rect = bubble.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = (y - centerY) / 10;
+              const rotateY = (centerX - x) / 10;
+
+              bubble.style.transform = `translateY(-20px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+            });
+
+            bubble.addEventListener("mouseleave", () => {
+              bubble.style.transform =
+                "translateY(0) rotateX(0deg) rotateY(0deg) scale(1)";
+            });
+          });
+        }
+      });
+
+      // Navigation functions with mobile optimization
+      function navigateToResults() {
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+          createTransitionEffect();
+        }
+
+        setTimeout(
+          () => {
+            window.location.href = "Main-Pages/matches.html";
+          },
+          isMobile ? 100 : 500
+        );
+      }
+
+      function navigateToHighlights() {
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+          createTransitionEffect();
+        }
+
+        setTimeout(
+          () => {
+            window.location.href = "highlights.html";
+          },
+          isMobile ? 100 : 500
+        );
+      }
+
+      function navigateToUniforms() {
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+          createTransitionEffect();
+        }
+
+        setTimeout(
+          () => {
+            window.location.href = "Main-Pages/uniform.html";
+          },
+          isMobile ? 100 : 500
+        );
+      }
+
+      function createTransitionEffect() {
+        const effect = document.createElement("div");
+        effect.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.9));
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  `;
+        document.body.appendChild(effect);
+
+        setTimeout(() => {
+          effect.style.opacity = "1";
+        }, 10);
+
+        setTimeout(() => {
+          effect.style.opacity = "0";
+          setTimeout(() => effect.remove(), 500);
+        }, 1000);
+      }
+
+      // Handle orientation change on mobile
+      window.addEventListener("orientationchange", function () {
+        setTimeout(() => {
+          // Recalculate viewport height for mobile
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+          // Close mobile menu if open
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const mobileMenuOverlay =
+            document.getElementById("mobileMenuOverlay");
+
+          if (mobileMenuToggle && mobileMenuOverlay) {
+            mobileMenuToggle.classList.remove("active");
+            mobileMenuOverlay.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }, 100);
+      });
+
+      // Initial viewport height calculation for mobile
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    </script>
+  </body>
 </html>

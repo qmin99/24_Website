@@ -1,0 +1,970 @@
+<!-- Professional Mobile Menu with Smooth Item Animations -->
+<button
+  class="mobile-menu-toggle"
+  id="mobileMenuToggle"
+  aria-label="Navigation Menu"
+>
+  <div class="hamburger-container">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+  <span class="menu-label">MENU</span>
+</button>
+
+<!-- Enhanced Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="menu-background-effects">
+    <div class="floating-particle"></div>
+    <div class="floating-particle"></div>
+    <div class="floating-particle"></div>
+  </div>
+
+  <div class="menu-content">
+    <div class="menu-header">
+      <a href="../index.html" class="header-link">
+        <div class="team-logo-mini">
+          <div class="logo-glow">24HD</div>
+        </div>
+        <div class="menu-subtitle">Always Ready</div>
+      </a>
+    </div>
+
+    <nav class="mobile-nav-section">
+      <ul class="mobile-nav-links">
+        <li class="nav-item" data-index="1">
+          <a href="../Main-Pages/matches.html" class="nav-link">
+            <div class="link-icon">🏆</div>
+            <div class="link-content">
+              <span class="link-title">경기 결과</span>
+              <span class="link-subtitle">Match Results</span>
+            </div>
+            <div class="link-arrow">→</div>
+          </a>
+        </li>
+
+        <li class="nav-item" data-index="2">
+          <a
+            href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+            class="nav-link"
+            target="_blank"
+          >
+            <div class="link-icon">🎬</div>
+            <div class="link-content">
+              <span class="link-title">경기 영상</span>
+              <span class="link-subtitle">Highlights</span>
+            </div>
+            <div class="link-arrow">↗</div>
+          </a>
+        </li>
+
+        <li class="nav-item" data-index="3">
+          <a href="#squad" class="nav-link">
+            <div class="link-icon">⚽</div>
+            <div class="link-content">
+              <span class="link-title">팀 구성</span>
+              <span class="link-subtitle">Squad</span>
+            </div>
+            <div class="link-arrow">→</div>
+          </a>
+        </li>
+
+        <li class="nav-item" data-index="4">
+          <a href="../Main-Pages/uniform.html" class="nav-link">
+            <div class="link-icon">👕</div>
+            <div class="link-content">
+              <span class="link-title">유니폼 신청</span>
+              <span class="link-subtitle">Uniform</span>
+            </div>
+            <div class="link-arrow">→</div>
+          </a>
+        </li>
+
+        <li class="nav-item" data-index="5">
+          <a href="#news" class="nav-link">
+            <div class="link-icon">📰</div>
+            <div class="link-content">
+              <span class="link-title">팀 소식</span>
+              <span class="link-subtitle">News</span>
+            </div>
+            <div class="link-arrow">→</div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="menu-footer">
+      <div class="social-quick-links">
+        <a
+          href="https://www.youtube.com/@%EA%B9%80%EC%84%A0%ED%98%B8-g4x"
+          class="social-link"
+          target="_blank"
+        >
+          <div class="social-icon">
+            <img src="../images/icons/youtube.png" alt="YouTube" />
+          </div>
+        </a>
+        <a href="https://www.instagram.com/fc_24hd/" class="social-link">
+          <div class="social-icon">
+            <img src="../images/icons/instagram.png" alt="Email" />
+          </div>
+        </a>
+        <a href="https://open.kakao.com/o/gjDpdDCh" class="social-link">
+          <div class="social-icon">
+            <img src="../images/icons/chat-bubble.png" alt="Phone" />
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="auth-section">
+      <a href="../Main-Pages/login.html" class="auth-btn secondary">로그인</a>
+      <a href="../Main-Components/portal-loading.html" class="auth-btn primary">
+        <span class="btn-glow">정회원 포털</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Enhanced Mobile Menu with Smooth Animations */
+  :root {
+    /* Core Colors */
+    --void-black: #000000;
+    --deep-charcoal: #0a0a0a;
+    --stadium-dark: #1a1a1a;
+    --champion-gold: #c19b3a;
+    --electric-gold: #d4af37;
+    --neon-gold: #f4d03f;
+    --platinum: #ffffff;
+
+    /* Glass & Neon Effects */
+    --glass-light: rgba(255, 255, 255, 0.08);
+    --glass-medium: rgba(255, 255, 255, 0.12);
+    --glass-strong: rgba(255, 255, 255, 0.18);
+    --gold-glow: rgba(212, 175, 55, 0.4);
+    --neon-shadow: 0 0 20px var(--gold-glow);
+
+    /* Typography */
+    --font-display: "Orbitron", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-accent: "Space Grotesk", sans-serif;
+
+    /* Smooth Animations */
+    --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Spacing System */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.25rem;
+    --space-2xl: 1.5rem;
+  }
+
+  /* Hamburger Button */
+  .mobile-menu-toggle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 6px;
+    transition: all 0.3s var(--ease-premium);
+    z-index: 1001;
+  }
+
+  @media (min-width: 769px) {
+    .mobile-menu-toggle {
+      display: none;
+    }
+  }
+
+  .hamburger-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: all 0.4s var(--ease-premium);
+  }
+
+  .hamburger-line {
+    width: 20px;
+    height: 2px;
+    background: var(--champion-gold);
+    border-radius: 2px;
+    transition: all 0.4s var(--ease-premium);
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.3);
+  }
+
+  .menu-label {
+    font-family: var(--font-accent);
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: var(--champion-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-toggle:hover .hamburger-container {
+    transform: scale(1.05);
+  }
+
+  .mobile-menu-toggle:hover .menu-label {
+    opacity: 1;
+    color: var(--electric-gold);
+  }
+
+  /* Enhanced Hamburger Animation */
+  .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+    background: var(--electric-gold);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background: var(--electric-gold);
+  }
+
+  .mobile-menu-toggle.active .menu-label {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  /* Theme Specific Hamburger Colors */
+  .uniform-theme .hamburger-line {
+    background: #76cd43;
+    box-shadow: 0 0 6px rgba(118, 205, 67, 0.3);
+  }
+  .uniform-theme .mobile-menu-toggle.active .hamburger-line:nth-child(1),
+  .uniform-theme .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    background: #76cd43;
+  }
+  .uniform-theme .menu-label {
+    color: white;
+  }
+  .uniform-theme .mobile-menu-toggle:hover .menu-label {
+    color: white;
+  }
+
+  .portal-theme .hamburger-line {
+    background: #00d4ff;
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+  }
+  .portal-theme .mobile-menu-toggle.active .hamburger-line:nth-child(1),
+  .portal-theme .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    background: #00d4ff;
+  }
+  .portal-theme .menu-label {
+    color: white;
+  }
+
+  /* Enhanced Mobile Menu Overlay */
+  .mobile-menu-overlay {
+    /* 스크롤 기능 추가 */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.96) 0%,
+      rgba(10, 10, 10, 0.98) 50%,
+      rgba(26, 26, 26, 0.96) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform: translateX(-100%);
+    transition: all 0.6s var(--ease-premium);
+    z-index: 1000;
+  }
+
+  .mobile-menu-overlay.active {
+    transform: translateX(0);
+  }
+
+  /* 스크롤바 스타일링 */
+  .mobile-menu-overlay::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .mobile-menu-overlay::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .mobile-menu-overlay::-webkit-scrollbar-thumb {
+    background: var(--champion-gold);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+
+  .mobile-menu-overlay::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+  }
+
+  /* Firefox 스크롤바 */
+  .mobile-menu-overlay {
+    scrollbar-width: thin;
+    scrollbar-color: var(--champion-gold) transparent;
+  }
+
+  /* Background Effects */
+  .menu-background-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .floating-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--champion-gold);
+    border-radius: 50%;
+    opacity: 0.25;
+    animation: floatParticle 6s infinite ease-in-out;
+    box-shadow: 0 0 8px var(--gold-glow);
+  }
+
+  .floating-particle:nth-child(1) {
+    top: 25%;
+    left: 15%;
+    animation-delay: 0s;
+  }
+
+  .floating-particle:nth-child(2) {
+    top: 65%;
+    left: 75%;
+    animation-delay: 2s;
+  }
+
+  .floating-particle:nth-child(3) {
+    top: 45%;
+    left: 85%;
+    animation-delay: 4s;
+  }
+
+  @keyframes floatParticle {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 0.4;
+    }
+  }
+
+  /* Menu Content Container */
+  .menu-content {
+    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg) var(--space-md);
+    position: relative;
+    z-index: 2;
+    justify-content: space-between;
+    /* 스크롤을 위한 최소 높이와 추가 여백 */
+    min-height: 100vh;
+    padding-bottom: calc(var(--space-lg) + 20px);
+  }
+
+  /* Menu Header */
+  .menu-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding-top: var(--space-lg);
+    opacity: 0;
+    transform: translateY(-30px) scale(0.8);
+    transition: all 0.8s var(--ease-elastic);
+  }
+
+  .mobile-menu-overlay.active .menu-header {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.2s;
+  }
+
+  .header-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s var(--ease-premium);
+    border-radius: 12px;
+    padding: var(--space-sm);
+    cursor: pointer;
+  }
+
+  .header-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+    backdrop-filter: blur(10px);
+  }
+
+  .team-logo-mini {
+    margin-bottom: var(--space-sm);
+  }
+
+  .logo-glow {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(
+      45deg,
+      var(--champion-gold) 0%,
+      var(--electric-gold) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: var(--neon-shadow);
+    animation: logoGlow 3s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+  }
+
+  @keyframes logoGlow {
+    0% {
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    }
+    100% {
+      filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.6));
+    }
+  }
+
+  .menu-subtitle {
+    font-family: var(--font-accent);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  /* Enhanced Navigation Section */
+  .mobile-nav-section {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-nav-links {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Enhanced Item Animation - The Magic Happens Here */
+  .nav-item {
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(40px) translateX(-20px) scale(0.8);
+    filter: blur(8px);
+    transition: all 0.7s var(--ease-elastic);
+  }
+
+  /* Sequential smooth entrance animation */
+  .mobile-menu-overlay.active .nav-item[data-index="1"] {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+    transition-delay: 0.3s;
+  }
+
+  .mobile-menu-overlay.active .nav-item[data-index="2"] {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+    transition-delay: 0.4s;
+  }
+
+  .mobile-menu-overlay.active .nav-item[data-index="3"] {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+    transition-delay: 0.5s;
+  }
+
+  .mobile-menu-overlay.active .nav-item[data-index="4"] {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+    transition-delay: 0.6s;
+  }
+
+  .mobile-menu-overlay.active .nav-item[data-index="5"] {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0px);
+    transition-delay: 0.7s;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--glass-light);
+    border: 1px solid var(--glass-medium);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--platinum);
+    transition: all 0.4s var(--ease-premium);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin:20px;
+  }
+
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--glass-strong),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .nav-link:hover::before {
+    left: 100%;
+  }
+
+  .nav-link:hover {
+    transform: translateX(8px) scale(1.02);
+    background: var(--glass-medium);
+    border-color: var(--champion-gold);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+  }
+
+  .link-icon {
+    font-size: 1.4rem;
+    min-width: 32px;
+    text-align: center;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover .link-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .link-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .link-title {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--platinum);
+    line-height: 1.3;
+    transition: all 0.3s ease;
+  }
+
+  .link-subtitle {
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+  }
+
+  .link-arrow {
+    font-size: 1rem;
+    color: var(--champion-gold);
+    transition: all 0.4s var(--ease-bounce);
+    opacity: 0.7;
+  }
+
+  .nav-link:hover .link-arrow {
+    transform: translateX(5px) scale(1.2);
+    opacity: 1;
+    color: var(--electric-gold);
+  }
+
+  .nav-link:hover .link-title {
+    color: var(--champion-gold);
+  }
+
+  .nav-link:hover .link-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Enhanced Menu Footer */
+  .menu-footer {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--glass-medium);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-premium);
+  }
+
+  .mobile-menu-overlay.active .menu-footer {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+  }
+
+  .social-quick-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .social-link {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-light);
+    border: 1px solid var(--glass-medium);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.4s var(--ease-bounce);
+    backdrop-filter: blur(8px);
+  }
+
+  .social-link:hover {
+    transform: translateY(-3px) scale(1.1) rotate(5deg);
+    background: var(--glass-strong);
+    border-color: var(--champion-gold);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover .social-icon img {
+    transform: scale(1.1);
+  }
+
+  /* Enhanced Auth Section */
+  .auth-section {
+    display: flex;
+    gap: var(--space-sm);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.8s var(--ease-premium);
+  }
+
+  .mobile-menu-overlay.active .auth-section {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.9s;
+  }
+
+  .auth-btn {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    transition: all 0.4s var(--ease-premium);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .auth-btn.secondary {
+    background: var(--glass-light);
+    border: 1px solid var(--glass-medium);
+    color: var(--platinum);
+    backdrop-filter: blur(8px);
+  }
+
+  .auth-btn.secondary:hover {
+    background: var(--glass-strong);
+    border-color: var(--champion-gold);
+    color: var(--champion-gold);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .auth-btn.primary {
+    background: linear-gradient(
+      45deg,
+      var(--champion-gold) 0%,
+      var(--electric-gold) 100%
+    );
+    border: 1px solid var(--champion-gold);
+    color: var(--void-black);
+  }
+
+  .auth-btn.primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+  }
+
+  .btn-glow {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Theme Variations */
+  .uniform-theme .logo-glow {
+    background: linear-gradient(45deg, #76cd43 0%, #98e060 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .uniform-theme .nav-link:hover {
+    border-color: #76cd43;
+    box-shadow: 0 8px 25px rgba(118, 205, 67, 0.25);
+  }
+
+  .uniform-theme .nav-link:hover .link-title {
+    color: #76cd43;
+  }
+
+  .uniform-theme .link-arrow {
+    color: #76cd43;
+  }
+
+  .portal-theme .logo-glow {
+    background: linear-gradient(45deg, #00d4ff 0%, #00ffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .portal-theme .nav-link:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.25);
+  }
+
+  .portal-theme .nav-link:hover .link-title {
+    color: #00d4ff;
+  }
+
+  .portal-theme .link-arrow {
+    color: #00d4ff;
+  }
+
+  .portal-theme .floating-particle {
+    background: #00d4ff;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+  }
+
+  /* iPhone SE Optimizations */
+  @media (max-width: 375px) and (max-height: 667px) {
+    .menu-content {
+      padding: var(--space-md) var(--space-sm);
+    }
+
+    .menu-header {
+      margin-bottom: var(--space-md);
+      padding-top: var(--space-md);
+    }
+
+    .logo-glow {
+      font-size: 1.8rem;
+    }
+
+    .menu-subtitle {
+      font-size: 0.7rem;
+    }
+
+    .nav-item {
+      margin-bottom: var(--space-sm);
+    }
+
+    .nav-link {
+      padding: var(--space-sm) var(--space-md);
+      gap: var(--space-sm);
+    }
+
+    .link-title {
+      font-size: 0.9rem;
+    }
+
+    .link-subtitle {
+      font-size: 0.65rem;
+    }
+
+    .link-icon {
+      font-size: 1.2rem;
+      min-width: 28px;
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+    }
+
+    .auth-btn {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.8rem;
+    }
+
+    .menu-footer {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-sm);
+    }
+
+    .social-quick-links {
+      margin-bottom: var(--space-md);
+      gap: var(--space-md);
+    }
+  }
+
+  /* Portal Theme Specific */
+  .portal-theme footer,
+  .portal-theme .championship-footer,
+  .portal-theme .locker-footer,
+  .portal-theme .hd24-footer {
+    display: none !important;
+  }
+
+  .portal-theme .quantum-disappear {
+    animation: ultraSafeDisappear 0.4s ease-out forwards;
+  }
+  .portal-theme .mobile-menu-overlay {
+  /* Portal container의 overflow:hidden 무시하고 강제 스크롤 */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  z-index: 1050 !important;
+}
+
+/* 이중 보험: 컨텐츠도 스크롤 가능 */
+/* .portal-theme .menu-content {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 40px !important;
+} */
+
+/* Portal Theme 전용 사이버 스크롤바 */
+.portal-theme .mobile-menu-overlay::-webkit-scrollbar {
+  width: 6px;
+}
+
+.portal-theme .mobile-menu-overlay::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+}
+  @keyframes ultraSafeDisappear {
+    to {
+      opacity: 0;
+      scale: 0.8;
+      filter: blur(3px);
+    }
+  }
+
+  .portal-theme .quantum-restore {
+    animation: ultraSafeRestore 0.5s ease-out forwards;
+  }
+
+  @keyframes ultraSafeRestore {
+    from {
+      opacity: 0;
+      scale: 0.8;
+      filter: blur(3px);
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+      filter: blur(0px);
+    }
+  }
+</style>
+
+<script>
+  // Smooth Mobile Menu Toggle Script
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("mobileMenuToggle");
+    const menuOverlay = document.getElementById("mobileMenuOverlay");
+
+    if (menuToggle && menuOverlay) {
+      menuToggle.addEventListener("click", function () {
+        const isActive = menuOverlay.classList.contains("active");
+
+        if (isActive) {
+          // Close menu
+          menuToggle.classList.remove("active");
+          menuOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        } else {
+          // Open menu
+          menuToggle.classList.add("active");
+          menuOverlay.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+      });
+
+      // Close menu when clicking outside
+      menuOverlay.addEventListener("click", function (e) {
+        if (e.target === menuOverlay) {
+          menuToggle.classList.remove("active");
+          menuOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Close menu on escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && menuOverlay.classList.contains("active")) {
+          menuToggle.classList.remove("active");
+          menuOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+    }
+  });
+</script>
